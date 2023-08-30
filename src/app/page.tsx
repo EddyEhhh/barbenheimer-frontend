@@ -7,7 +7,7 @@ export default function Home() {
   <>
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
-          HELLO WORLD
+          HELLO WORLD ashley says youre a lil bitch
       </div>
     </main> 
   </>
