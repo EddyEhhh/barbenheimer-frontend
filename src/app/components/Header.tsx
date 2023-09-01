@@ -1,6 +1,8 @@
-import { AppBar, Toolbar, IconButton, Box, Typography, Button,  } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Stack, Box, Typography, Button, Avatar  } from '@mui/material';
 import Link from 'next/link';
 
+
+const options = ['Home', 'Movies', 'Acc'];
 const Header = () => {
     return (
         <Box>
@@ -14,15 +16,17 @@ const Header = () => {
               sx={{ mr: 2 }}
             >
             </IconButton> */}
-            <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
-                <Box sx={{display: 'flex'}}>
-                    <Typography  variant="h6" component="div"> TITLE </Typography>
+            <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+                <Box >
+                    <Typography  variant="h5" component="div"> Barbenhemier </Typography>
                 </Box>
-                <Box sx={{display:'flex', width:'20%', justifyContent:'space-around', alignItems: 'center'}}>
-                    <Link href = "/"> Home </Link>
-                    <Link href = "/MovieDetails"> Movies </Link>
-                    <Link href = "/Account"> Acc </Link>
-                </Box>
+                <Stack sx={{width:'12%', justifyContent:'space-around', alignItems: 'center'}} color='secondary' direction='row' spacing = '18'>
+                  <Button size='large' href = "/"> Home </Button>
+                  <Button size='large' href = "/MovieDetails"> Movies </Button>
+                  <Button href= "/Account" >
+                    <Avatar></Avatar>
+                  </Button>
+                </Stack>
             </Box>
           
           </Toolbar>
