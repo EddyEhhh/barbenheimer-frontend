@@ -1,9 +1,12 @@
-
 const MovieDetails = () => {
     return (
-        <div>
-            This is movie detail page
-        </div>
+    <>
+        <main className="flex flex-col items-center justify-between">
+            <div>
+                Movie Detail page
+            </div>
+        </main> 
+    </>
     )
 }
 
