@@ -7,9 +7,8 @@ export default function Home() {
   <>
     <Box sx = {{display: "flex", flexDirection: "column"}}>
       <Preview></Preview>
-      <Container></Container>
-      <NowShowingMovies></NowShowingMovies>
 
+      <NowShowingMovies></NowShowingMovies>
     </Box>
   </>
   )
