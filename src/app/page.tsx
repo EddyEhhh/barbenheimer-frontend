@@ -1,12 +1,16 @@
+import NowShowingMovies from "./components/NowShowing"
+import { Typography, Box, Container} from "@mui/material/"
+import Preview from "./components/Preview"
 
 export default function Home() {
   return (
   <>
-    <main className="flex flex-col items-center justify-between">
-      <div>
-          Home Page : Ashley says youre a bitch
-      </div>
-    </main> 
+    <Box sx = {{display: "flex", flexDirection: "column"}}>
+      <Preview></Preview>
+      <Container></Container>
+      <NowShowingMovies></NowShowingMovies>
+
+    </Box>
   </>
   )
 }

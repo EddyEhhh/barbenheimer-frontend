@@ -5,7 +5,7 @@ import Link from 'next/link';
 const options = ['Home', 'Movies', 'Acc'];
 const Header = () => {
     return (
-        <Box>
+      <Box>
         <AppBar color="secondary" position="absolute">
           <Toolbar>
             {/* <IconButton
@@ -20,7 +20,7 @@ const Header = () => {
                 <Box >
                     <Typography  variant="h5" component="div"> Barbenhemier </Typography>
                 </Box>
-                <Stack sx={{width:'12%', justifyContent:'space-around', alignItems: 'center'}} color='secondary' direction='row' spacing = '18'>
+                <Stack sx={{width:'1/20'}} color='secondary' direction='row' spacing = '18'>
                   <Button size='large' href = "/"> Home </Button>
                   <Button size='large' href = "/MovieDetails"> Movies </Button>
                   <Button href= "/Account" >
