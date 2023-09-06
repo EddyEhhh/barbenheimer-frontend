@@ -12,8 +12,9 @@ type MovieDetails = {
 
 const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) => {
     return (
+        <main>
         <Grid>
-            <Box sx ={{display:'flex', flexDirection:'column',border:1, width:'320', height:'380'}}>
+            <Box sx ={{display:'flex', flexDirection:'column',border:1, width:320, height:380}}>
                 <Button sx= {{display:'flex', backgroundColor: 'secondary.white', border:1, height:'70%', width:'100%'}}>
                     <Box> insert img </Box>
                 </Button>
@@ -26,12 +27,13 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                     <Typography variant="subtitle1"> {duration} Time 99 Minutes </Typography>
                 </Stack>
 
-                <Box sx={{display:'flex', justifyContent:'center'}}>
-                    <Button sx = {{mt:'4', display:'flex'}} variant="contained" color="success"  size="small"> Book now </Button>
+                <Box sx={{display:'flex', justifyContent:'center',mt:2}}>
+                    <Button sx = {{mt:'7',}} variant="outlined" color="success" size="small">Book now</Button>
                 </Box>
-        
+
             </Box>
         </Grid>
+        </main>
    
     )
 }
