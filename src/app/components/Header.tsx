@@ -142,11 +142,11 @@ const Header = () => {
             >
             </IconButton> */}
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-                <Box >
+                <Box width={'20%'}>
                     <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography>
                 </Box>
                 <Autocomplete
-                  sx ={{width:'40%', height:'50%'}}
+                  sx ={{width:'40%', height:'50%', justifyContent:'center'}}
                   freeSolo options={top100Films.map((option) => option.title)}
                   renderInput={(params) => <TextField {...params} size='small' label="Search for movies" 
                   />}
@@ -167,19 +167,19 @@ const Header = () => {
                     />
                   )}
                 /> */}
-                <Stack sx={{width:'1/20'}} color='secondary' direction='row' spacing = '18'>
+                <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'end'}}>
                   <Button size='large' href = "/"> Home </Button>
-                  <Button size='large' href = "/MovieDetails"> Movies </Button>
+                  <Button size='large' href = "/MovieBrowse"> Movies </Button>
                   <Button href= "/Account" >
                     <Avatar></Avatar>
                   </Button>
-                </Stack>
+                </Box>
+                 
+              
             </Box>
-          
           </Toolbar>
         </AppBar>
-      </Box>
-
+        </Box>
     )
 }
 

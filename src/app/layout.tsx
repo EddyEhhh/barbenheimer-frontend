@@ -11,12 +11,11 @@ export default function RootLayout ({children}: {
   children: React.ReactNode
 }) {
   return (
-    
       <ThemeProvider theme = {darkTheme}> 
         <CssBaseline enableColorScheme/>
         <html>
-        <Header></Header>
-        <body className={`pt-24 pb-36 w-full ${inter.className}`}> {children} </body>
+          <body className={`pt-24 pb-36 w-full ${inter.className}`}> {children} </body>
+          <Header/>
         </html>
       </ThemeProvider>
   )
