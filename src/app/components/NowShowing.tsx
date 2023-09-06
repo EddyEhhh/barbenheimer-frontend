@@ -7,13 +7,12 @@ const NowShowingMovies = () => {
     const [pageIndex, setPageIndex] = React.useState(1);
 
     const pageChangeHandler = async (event: React.ChangeEvent<unknown>, value: number) => {
-        console.log(value);
+        // console.log(value);
         setPageIndex(value);
     }
 
-
     return (
-        <Box sx = {{pl:'20', pr:'20', height:'fill', border:1}}> 
+        <Box sx = {{pl:'20', pr:'20', height:'fill'}}> 
             <Typography fontWeight='bold'variant = 'h5' sx = {{pb:5} }> Showtimes </Typography>
                 <Box sx = {{width:'100%'}}>
                     <Grid container columns= {4} columnGap={10} rowGap={4} alignContent={'center'} justifyContent={'center'}>
