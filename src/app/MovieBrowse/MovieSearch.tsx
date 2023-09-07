@@ -3,9 +3,10 @@
 import {Box, Typography, Grid, Pagination, Stack, Button} from "@mui/material/";
 import MovieBox from "../components/MovieBox";
 import * as React from 'react';
+import { useState } from "react";
 
 const MovieSearch = () => {
-    const [pageIndex, setPageIndex] = React.useState(1);
+    const [pageIndex, setPageIndex] = useState<number>(1);
 
     const pageChangeHandler = async (event: React.ChangeEvent<unknown>, value: number) => {
         // console.log(value);
