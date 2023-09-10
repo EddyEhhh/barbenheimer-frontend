@@ -16,16 +16,19 @@ const Preview = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(1);
     const [isSlideIn, setIsSlideIn] = useState<boolean>(false);
     useEffect(() => {
-        setTimeout(() => {
-            setIsSlideIn(true);
-        }, 4000);
+        if (!isSlideIn) {
+            console.log("what?")
+            setTimeout(() => {
+                setIsSlideIn(true);
+            }, 8000);
+        }
     }, [])
 
     useEffect(() => {
         const timer = setInterval(() => {
             const nextIndex: number = (currentImageIndex + 1) % images.length;
             setCurrentImageIndex(nextIndex);
-        },8000);
+        },10000);
         return () => {
             clearInterval(timer);
         }; 
@@ -54,14 +57,16 @@ const Preview = () => {
             {  <Image 
             src={images[currentImageIndex]} alt="no image" 
             fill={true}
-            objectFit="cover"
+            style={{objectFit:"cover"}}
             >
             </Image>
           }
             </Slide>) : (<Image 
                 src={images[0]} alt="no image" 
                 fill={true}
-                objectFit="cover"
+                style={{objectFit:"cover"}}
+                className='transition: ease-in-out opacity-0 duration-[5s]'
+                onLoadingComplete={(image) => image.classList.remove("opacity-0")}
                 >
             </Image>)} 
 
