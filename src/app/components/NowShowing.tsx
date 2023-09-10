@@ -12,7 +12,12 @@ const NowShowingMovies = () => {
 
 
     return (
-        <Grid container justifyContent='center' sx = {{pl:10, pr:10, height:'fill'}}> 
+        
+        <Grid container justifyContent='center' sx = {{pl:10, pr:10, mt:3, height:'fill'}}> 
+            <Box sx={{height:60, width:'1', mb:1, display:"flex", alignItems:'center'}}>
+                <Typography color='white' fontWeight='bold' variant = 'h5'> Showtimes </Typography>
+            </Box> 
+
             <Box sx = {{width:'100%'}}>
                 <Grid container direction='row' columns={{xs: 1, sm: 1, md:12}} columnSpacing={6} rowGap={4}>
                     <MovieBox></MovieBox>
