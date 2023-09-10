@@ -143,7 +143,7 @@ const Header = () => {
             </IconButton> */}
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>
-                    <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography>
+                  <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography>
                 </Box>
                 <Autocomplete
                   sx ={{width:'40%', height:'50%', justifyContent:'center'}}
@@ -151,22 +151,6 @@ const Header = () => {
                   renderInput={(params) => <TextField {...params} size='small' label="Search for movies" 
                   />}
                 />
-                {/* <Autocomplete
-                  freeSolo
-                  id="free-solo-2-demo"
-                  disableClearable
-                  options={top100Films.map((option) => option.title)}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Search input"
-                      InputProps={{
-                        ...params.InputProps,
-                        type: 'search',
-                      }}
-                    />
-                  )}
-                /> */}
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'end'}}>
                   <Button size='large' href = "/"> Home </Button>
                   <Button size='large' href = "/MovieBrowse"> Movies </Button>
@@ -174,8 +158,7 @@ const Header = () => {
                     <Avatar></Avatar>
                   </Button>
                 </Box>
-                 
-              
+
             </Box>
           </Toolbar>
         </AppBar>

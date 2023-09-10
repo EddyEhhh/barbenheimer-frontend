@@ -13,28 +13,28 @@ const NowShowingMovies = () => {
 
     return (
         <Box sx = {{pl:'20', pr:'20', height:'fill'}}> 
-            <Typography fontWeight='bold'variant = 'h5' sx = {{pb:5} }> Showtimes </Typography>
-                <Box sx = {{width:'100%'}}>
-                    <Grid container columns= {4} columnGap={10} rowGap={4} alignContent={'center'} justifyContent={'center'}>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>                    
-                        <Stack>
-                            <Pagination 
-                                count={10} 
-                                showFirstButton showLastButton 
-                                size="large" 
-                                color="primary"
-                                page={pageIndex}
-                                onChange={pageChangeHandler}/>
-                        </Stack>
-                    </Grid>
+            <Box sx = {{width:'100%'}}>
+                <Grid container columns= {4} columnGap={10} rowGap={4} alignContent={'center'} justifyContent={'center'}>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>                    
+                    
+                </Grid>
             </Box>
+            <Stack>
+                <Pagination 
+                    count={10} 
+                    showFirstButton showLastButton 
+                    size="large" 
+                    color="primary"
+                    page={pageIndex}
+                    onChange={pageChangeHandler}/>
+            </Stack>
         </Box>
     )
 }
