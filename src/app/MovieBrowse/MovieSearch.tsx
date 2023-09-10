@@ -14,11 +14,10 @@ const MovieSearch = () => {
     }
 
     return (
-        <Box sx = {{ height:'fill'}}> 
-            <Typography fontWeight='bold'variant = 'h5' sx = {{pb:5} }> Movies </Typography>
-                <Box sx = {{width:'100%'}}>
-                    <Box sx ={{display:'flex', border:1, justifyContent:'center'}}>
-                        <Grid container pl={4} columns= {4} columnGap={10} rowGap={4}>
+        <Box sx = {{ height:'fill', pl:5, pr:5}}> 
+            <Typography fontWeight='bold'variant = 'h5' sx = {{pb:2, mt:5} }> Movies </Typography>
+                <Grid container justifyContent='center' sx = {{width:'100%'}}>
+                        <Grid container columns={{xs: 1, sm: 2, md:12}} columnSpacing={6} rowGap={2} >
                             <MovieBox></MovieBox>
                             <MovieBox></MovieBox>
                             <MovieBox></MovieBox>
@@ -27,21 +26,7 @@ const MovieSearch = () => {
                             <MovieBox></MovieBox>
                             <MovieBox></MovieBox>
                             <MovieBox></MovieBox>      
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
                         </Grid> 
-                    </Box>
                     
                     <Pagination 
                                 sx={{display:"flex", justifyContent:"center"}}
@@ -52,7 +37,7 @@ const MovieSearch = () => {
                                 page={pageIndex}
                                 onChange={pageChangeHandler}/>
                         
-            </Box>
+            </Grid>
         </Box>
     )
 }
