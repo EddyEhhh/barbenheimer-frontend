@@ -14,6 +14,12 @@ const images: StaticImageData[] = [
 
 const Preview = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(1);
+    const [isSlideIn, setIsSlideIn] = useState<boolean>(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsSlideIn(true);
+        }, 4000);
+    }, [])
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -22,26 +28,33 @@ const Preview = () => {
         },8000);
         return () => {
             clearInterval(timer);
-          }; 
+        }; 
     }, [currentImageIndex]);
 
 
     return (
         <Box position='relative' sx = {{width:1, height:800}}>
-            <Slide in={true}
+            {isSlideIn ? (<Slide in={true}
              direction="left"
              key={currentImageIndex}
-             timeout={500}
+             timeout={600}
+             mountOnEnter
+             unmountOnExit            
             >
-            {
-                <Image 
-                    src={images[currentImageIndex]} alt="no image" 
-                    fill={true}
-                    objectFit="cover"
-                    >
-                </Image>
-           }
-            </Slide>
+            {<Image 
+                src={images[currentImageIndex]} alt="no image" 
+                fill={true}
+                objectFit="cover"
+                >
+                </Image>}
+            </Slide>) : (<Image 
+                src={images[0]} alt="no image" 
+                fill={true}
+                objectFit="cover"
+                >
+            </Image>)} 
+
+           
         </Box>
     )
 }
