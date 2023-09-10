@@ -1,5 +1,7 @@
 
-import {Box, Stack, Button, Typography, Grid} from "@mui/material"
+import {Box, Stack, Button, Typography, Grid, Hidden} from "@mui/material"
+import Image from "next/image"
+import anime1 from '../images/anime1.jpeg'
 
 type MovieDetails = {
     title?: string,
@@ -13,14 +15,24 @@ type MovieDetails = {
 const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) => {
     return (
  
-        <Grid>
-            <Box sx ={{display:'flex', flexDirection:'column',border:1, width:320, height:380}}>
-                <Button sx= {{display:'flex', backgroundColor: 'secondary.white', border:1, height:'70%', width:'100%'}}>
-                    <Box> insert img </Box>
+        <Grid item xs={1} sm={4} md={4} width={4}>
+            <Box className="picture-section" 
+                sx ={{
+                    position:'relative',
+                    display:'flex', flexDirection:'column', 
+                    border:2, borderRadius:'12px',
+                    overflow:'hidden', 
+                    height:380}}>    
+                <Button  sx= {{display:'flex', height:'70%', width:'100%'}}>
+                    <Image 
+                        src={anime1} alt="nothing" 
+                        layout="fill" 
+                        objectFit="cover">
+                    </Image>
                 </Button>
              
-                <Stack display={"flex"} flexDirection={"column"} sx={{pl:1}}>
-                    <Stack direction='row' display={'flex'} justifyContent={'space-between'}>
+                <Stack className="text-section" display={"flex"} flexDirection={"column"} sx={{pl:1}}>
+                    <Stack direction='row' display={'flex'} justifyContent={'space-between'} alignItems={"center"}>
                         <Typography variant="h6"> {title} insert title </Typography>
                         <Typography variant="subtitle1"> {ageRating} Age Rating PG13 </Typography>
                     </Stack>

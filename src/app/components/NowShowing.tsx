@@ -7,14 +7,14 @@ const NowShowingMovies = () => {
     const [pageIndex, setPageIndex] = React.useState(1);
 
     const pageChangeHandler = async (event: React.ChangeEvent<unknown>, value: number) => {
-        // console.log(value);
         setPageIndex(value);
     }
 
+
     return (
-        <Box sx = {{pl:'20', pr:'20', height:'fill'}}> 
+        <Grid container justifyContent='center' sx = {{pl:10, pr:10, height:'fill'}}> 
             <Box sx = {{width:'100%'}}>
-                <Grid container columns= {4} columnGap={10} rowGap={4} alignContent={'center'} justifyContent={'center'}>
+                <Grid container direction='row' columns={{xs: 1, sm: 1, md:12}} columnSpacing={6} rowGap={4}>
                     <MovieBox></MovieBox>
                     <MovieBox></MovieBox>
                     <MovieBox></MovieBox>
@@ -22,11 +22,12 @@ const NowShowingMovies = () => {
                     <MovieBox></MovieBox>
                     <MovieBox></MovieBox>
                     <MovieBox></MovieBox>
-                    <MovieBox></MovieBox>                    
-                    
+                    <MovieBox></MovieBox>                  
+                    <MovieBox></MovieBox>    
                 </Grid>
             </Box>
-            <Stack>
+
+            <Grid item sx ={{mt:10}}>
                 <Pagination 
                     count={10} 
                     showFirstButton showLastButton 
@@ -34,8 +35,8 @@ const NowShowingMovies = () => {
                     color="primary"
                     page={pageIndex}
                     onChange={pageChangeHandler}/>
-            </Stack>
-        </Box>
+            </Grid>
+        </Grid>
     )
 }
 
