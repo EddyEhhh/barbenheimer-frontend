@@ -146,9 +146,9 @@ const Header = () => {
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', ml:16, justifyContent:'space-evenly', alignItems:'center'}}>
                   <Link href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
                   <Link href = "/MovieBrowse"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
-                  <Button href= "/Account" >
+                  <Link href= "/Account" >
                     <Avatar></Avatar>
-                  </Button>
+                  </Link>
                 </Box>
 
             </Box>

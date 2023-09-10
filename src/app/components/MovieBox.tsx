@@ -32,11 +32,11 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                     display:'flex', flexDirection:'column', 
                     borderRadius:'8px',
                     overflow:'hidden', 
-                    height:500, 
+                    height:350, 
                     transition:"width 0.2s ease-in-out", width: isHover === true ? '101%' : '100%',
                     }}>     
                 
-                <Button sx= {{display:'flex', height:'70%'}}>
+                <Button sx= {{display:'flex', height:'90%'}}>
                     <Image 
                         src={anime1} alt="nothing" 
                         fill={true}
@@ -47,7 +47,7 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                 </Button>
                 
                 <Paper elevation={3} sx={{borderRadius:"12px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
-                    <Stack className="text-section"  display={"flex"} flexDirection={"column"} sx={{pl:1, pr:1}}>
+                    <Stack className="text-section" height="40px" display={"flex"} flexDirection={"column"} sx={{pl:1, pr:1}}>
                         <Stack direction='row' display={'flex'} justifyContent={'space-between'} alignItems={"center"}>
                             <Typography fontWeight="bold" variant="h6"> {title} Title </Typography>
                             <Typography fontWeight="semibold" variant="subtitle1"> {ageRating} Age Rating PG13 </Typography>
@@ -55,7 +55,7 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                         <Typography fontWeight="semibold" variant="subtitle1"> {duration} Time 60 Minutes </Typography>
                     </Stack>
 
-                    <Box sx={{display:'flex', justifyContent:'center',mt:2, mb:2}}>
+                    <Box sx={{display:'flex', justifyContent:'center',mt:2, mb:1}}>
                         <Button sx = {{mt:'7', fontWeight:"bold"}} variant="outlined" color="primary" size="small">Book now</Button>
                     </Box>
                 </Paper>
