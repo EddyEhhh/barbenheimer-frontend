@@ -1,5 +1,5 @@
 
-import {Box, Stack, Button, Typography, Grid, Grow} from "@mui/material"
+import {Box, Stack, Button, Typography, Grid, Grow, Paper} from "@mui/material"
 import Image from "next/image"
 import anime1 from '../images/anime1.jpeg'
 import {useState} from "react"
@@ -22,16 +22,19 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
     const pictureOnMouseLeave = () => {
         setIsHover(false);
     }
+
     return (
         <>
-        <Grid item xs={1} sm={4} md={4}>
+        <Grid item xs={4} sm={4} md={4} lg={4}>
             <Box className="picture-section" 
                 sx ={{
                     position:'relative',
                     display:'flex', flexDirection:'column', 
                     borderRadius:'8px',
                     overflow:'hidden', 
-                    height:380, transition:"width 0.2s ease-in-out", width: isHover === true ? '101%' : '100%' }}>     
+                    height:500, 
+                    transition:"width 0.2s ease-in-out", width: isHover === true ? '101%' : '100%',
+                    }}>     
                 
                 <Button sx= {{display:'flex', height:'70%'}}>
                     <Image 
@@ -43,7 +46,7 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                     </Image>
                 </Button>
                 
-                <Box sx={{backgroundColor:"secondary.dark", borderRadius:"12px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
+                <Paper elevation={3} sx={{borderRadius:"12px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
                     <Stack className="text-section"  display={"flex"} flexDirection={"column"} sx={{pl:1, pr:1}}>
                         <Stack direction='row' display={'flex'} justifyContent={'space-between'} alignItems={"center"}>
                             <Typography fontWeight="bold" variant="h6"> {title} Title </Typography>
@@ -52,10 +55,10 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                         <Typography fontWeight="semibold" variant="subtitle1"> {duration} Time 60 Minutes </Typography>
                     </Stack>
 
-                    <Box sx={{display:'flex', justifyContent:'center',mt:2}}>
+                    <Box sx={{display:'flex', justifyContent:'center',mt:2, mb:2}}>
                         <Button sx = {{mt:'7', fontWeight:"bold"}} variant="outlined" color="primary" size="small">Book now</Button>
                     </Box>
-                </Box>
+                </Paper>
 
             </Box>
         </Grid>

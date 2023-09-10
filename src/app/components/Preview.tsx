@@ -1,4 +1,4 @@
-import {Box, Button, Slide, Typography} from '@mui/material'
+import {Box, Button, Paper, Slide, Typography} from '@mui/material'
 import anime1 from '../images/anime1.jpeg'
 import anime2 from '../images/yourname.jpg'
 import anime4 from '../images/vz3avvg6752b1.webp'
@@ -31,22 +31,33 @@ const Preview = () => {
         }; 
     }, [currentImageIndex]);
 
-
+    const test = (
+        <Paper>
+            <Image 
+            src={images[currentImageIndex]} alt="no image" 
+            fill={true}
+            objectFit="cover"
+            >
+            </Image>
+        </Paper>
+    )
     return (
         <Box position='relative' sx = {{width:1, height:800}}>
-            {isSlideIn ? (<Slide in={true}
+            {isSlideIn ? (
+            <Slide in={true}
              direction="left"
              key={currentImageIndex}
-             timeout={600}
+             timeout={1500}
              mountOnEnter
              unmountOnExit            
             >
-            {<Image 
-                src={images[currentImageIndex]} alt="no image" 
-                fill={true}
-                objectFit="cover"
-                >
-                </Image>}
+            {  <Image 
+            src={images[currentImageIndex]} alt="no image" 
+            fill={true}
+            objectFit="cover"
+            >
+            </Image>
+          }
             </Slide>) : (<Image 
                 src={images[0]} alt="no image" 
                 fill={true}

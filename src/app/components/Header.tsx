@@ -133,17 +133,9 @@ const Header = () => {
       <Box>
         <AppBar color="secondary" position="absolute" sx={{justifyContent:"center"}}>
           <Toolbar>
-            {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-            </IconButton> */}
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>
-                  <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography>
+                  <Link href= "/"> <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography> </Link>
                 </Box>
                 <Autocomplete
                   sx ={{width:'40%', height:'50%', justifyContent:'center'}}
@@ -151,9 +143,9 @@ const Header = () => {
                   renderInput={(params) => <TextField {...params} size='small' label="Search for movies" 
                   />}
                 />
-                <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'end'}}>
-                  <Button size='large' href = "/"> Home </Button>
-                  <Button size='large' href = "/MovieBrowse"> Movies </Button>
+                <Box sx={{width:'20%', display:'flex', flexDirection:'row', ml:16, justifyContent:'space-evenly', alignItems:'center'}}>
+                  <Link href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
+                  <Link href = "/MovieBrowse"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
                   <Button href= "/Account" >
                     <Avatar></Avatar>
                   </Button>

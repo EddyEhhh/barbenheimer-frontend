@@ -19,7 +19,7 @@ const NowShowingMovies = () => {
             </Box> 
 
             <Box sx = {{width:'100%'}}>
-                <Grid container direction='row' columns={{xs: 1, sm: 1, md:12}} columnSpacing={6} rowGap={4}>
+                <Grid container direction='row' columns={{xs: 4, sm: 4, md:8, lg:12}} columnSpacing={6} rowGap={4}>
                     <MovieBox></MovieBox>
                     <MovieBox></MovieBox>
                     <MovieBox></MovieBox>
