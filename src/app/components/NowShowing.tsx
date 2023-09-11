@@ -7,36 +7,41 @@ const NowShowingMovies = () => {
     const [pageIndex, setPageIndex] = React.useState(1);
 
     const pageChangeHandler = async (event: React.ChangeEvent<unknown>, value: number) => {
-        console.log(value);
         setPageIndex(value);
     }
 
 
     return (
-        <Box sx = {{pl:'20', pr:'20', height:'fill', border:1}}> 
-            <Typography fontWeight='bold'variant = 'h5' sx = {{pb:5} }> Showtimes </Typography>
-                <Box sx = {{width:'100%'}}>
-                    <Grid container columns= {4} columnGap={10} rowGap={4} alignContent={'center'} justifyContent={'center'}>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>
-                        <MovieBox></MovieBox>                    
-                        <Stack>
-                            <Pagination 
-                                count={10} 
-                                showFirstButton showLastButton 
-                                size="large" 
-                                color="primary"
-                                page={pageIndex}
-                                onChange={pageChangeHandler}/>
-                        </Stack>
-                    </Grid>
+        
+        <Grid container justifyContent='center' sx = {{pl:10, pr:10, mt:3, height:'fill'}}> 
+            <Box sx={{height:60, width:'1', mb:1, display:"flex", alignItems:'center'}}>
+                <Typography color='white' fontWeight='bold' variant = 'h5'> Showtimes </Typography>
+            </Box> 
+
+            <Box sx = {{width:'100%'}}>
+                <Grid container direction='row' columns={{xs: 4, sm: 4, md:8, lg:16}} columnSpacing={6} rowGap={4}>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>
+                    <MovieBox></MovieBox>                  
+                    <MovieBox></MovieBox>    
+                </Grid>
             </Box>
-        </Box>
+
+            <Grid item sx ={{mt:10}}>
+                <Pagination 
+                    count={10} 
+                    showFirstButton showLastButton 
+                    size="large" 
+                    color="primary"
+                    page={pageIndex}
+                    onChange={pageChangeHandler}/>
+            </Grid>
+        </Grid>
     )
 }
 
