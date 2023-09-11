@@ -1,5 +1,5 @@
-import { AppBar, Toolbar, IconButton, Stack, Box, Typography, Button, Avatar, Autocomplete, TextField} from '@mui/material';
-import Link from 'next/link';
+import { AppBar, Toolbar, IconButton, Stack, Box, Typography, Button, Avatar, Autocomplete, TextField, Link} from '@mui/material';
+
 
 const top100Films = [
   { title: 'The Shawshank Redemption', year: 1994 },
@@ -135,7 +135,7 @@ const Header = () => {
           <Toolbar>
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>
-                  <Link href= "/"> <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography> </Link>
+                  <Link underline="none" href= "/"> <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography> </Link>
                 </Box>
                 <Autocomplete
                   sx ={{width:'40%', height:'50%', justifyContent:'center'}}
@@ -144,9 +144,9 @@ const Header = () => {
                   />}
                 />
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', ml:16, justifyContent:'space-evenly', alignItems:'center'}}>
-                  <Link href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
-                  <Link href = "/MovieBrowse"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
-                  <Link href= "/Account" >
+                  <Link underline="none" href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
+                  <Link underline="none" href = "/MovieBrowse"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
+                  <Link underline="none" href= "/Account" >
                     <Avatar></Avatar>
                   </Link>
                 </Box>

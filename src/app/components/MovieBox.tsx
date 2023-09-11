@@ -55,8 +55,8 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                         <Typography fontWeight="semibold" variant="subtitle1"> {duration} Time 60 Minutes </Typography>
                     </Stack>
 
-                    <Box sx={{display:'flex', justifyContent:'center',mt:2, mb:1}}>
-                        <Button sx = {{mt:'7', fontWeight:"bold"}} variant="outlined" color="primary" size="small">Book now</Button>
+                    <Box sx={{display:'flex', justifyContent:'center',mt:3, mb:1}}>
+                        <Button sx = {{mt:'7', fontWeight:"bold"}} variant="contained" color="primary" size="small">Book now</Button>
                     </Box>
                 </Paper>
 
