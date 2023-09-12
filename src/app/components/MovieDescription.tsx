@@ -1,5 +1,7 @@
 import {Box, Typography, Grid} from "@mui/material/";
 import { alignProperty } from "@mui/material/styles/cssUtils";
+import MovieImage from "../images/img1041.webp";
+import Image, { StaticImageData } from 'next/image';
 
 type MovieDetail = {
     title?: string,
@@ -17,17 +19,18 @@ type MovieDetail = {
 const MovieDescription = ({title, duration, picture, rating, ageRating, releaseDate, spokenLanguage, subtitle, director, cast, synopsis} : MovieDetail) => {
     return (
         <main>
-            <Grid className="content" container sx= {{border:2, width:1, height:500, pl: '5%', pr:'5%'}}>
+            <Grid className="content" container sx= {{border:2, width:1, height:500, pl: '5%', pr:'5%', mt:10}}>
                 <Grid sx = {{width:'40%'}}>
                     <Box className = "picture-box" sx ={{height:500, border:1}}> 
                         <Grid>
-                            <Grid sx={{height:300}}>
-                                <Box sx={{border:0}}>
-                                    
+                            <Grid sx={{height:500}}>
+                                <Box position='absolute' sx={{border:0}}>
+                                    <Image 
+                                        src={MovieImage} alt="no image" 
+                                        fill={true}
+                                        style={{objectFit:"cover"}}>
+                                    </Image>
                                 </Box>
-                            </Grid>
-                            <Grid>
-
                             </Grid>
                         </Grid>
                     </Box>

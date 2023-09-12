@@ -4,8 +4,10 @@ import SelectTime from "../components/SelectTime";
 
 const MovieDetails = () => {
     return (
-    
         <main>
+            <div>
+                HIHI    
+            </div>
             <MovieDescription></MovieDescription>
             <SelectDate></SelectDate>
             <SelectTime></SelectTime>
