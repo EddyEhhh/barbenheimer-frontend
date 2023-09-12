@@ -1,4 +1,4 @@
-import {Box, Button, Paper, Slide, Typography} from '@mui/material'
+import {Box, Slide, Fade} from '@mui/material'
 import anime1 from '../images/anime1.jpeg'
 import anime2 from '../images/yourname.jpg'
 import anime4 from '../images/vz3avvg6752b1.webp'
@@ -17,7 +17,6 @@ const Preview = () => {
     const [isSlideIn, setIsSlideIn] = useState<boolean>(false);
     useEffect(() => {
         if (!isSlideIn) {
-            console.log("what?")
             setTimeout(() => {
                 setIsSlideIn(true);
             }, 8000);
@@ -33,17 +32,6 @@ const Preview = () => {
             clearInterval(timer);
         }; 
     }, [currentImageIndex]);
-
-    const test = (
-        <Paper>
-            <Image 
-            src={images[currentImageIndex]} alt="no image" 
-            fill={true}
-            objectFit="cover"
-            >
-            </Image>
-        </Paper>
-    )
     return (
         <Box position='relative' sx = {{width:1, height:700}}>
             {isSlideIn ? (
@@ -55,20 +43,18 @@ const Preview = () => {
              unmountOnExit            
             >
             {  <Image 
-            src={images[currentImageIndex]} alt="no image" 
-            fill={true}
-            style={{objectFit:"cover"}}
-            >
+                src={images[currentImageIndex]} alt="no image" 
+                fill={true}
+                style={{objectFit:"cover"}}>
             </Image>
           }
-            </Slide>) : (<Image 
+            </Slide>) : (
+            <Fade in={true} timeout={2000} unmountOnExit>{  <Image 
                 src={images[0]} alt="no image" 
                 fill={true}
-                style={{objectFit:"cover"}}
-                className='transition: ease-in-out opacity-0 duration-[5s]'
-                onLoadingComplete={(image) => image.classList.remove("opacity-0")}
-                >
-            </Image>)} 
+                style={{objectFit:"cover"}}>
+            </Image>}</Fade>
+           )} 
 
            
         </Box>
