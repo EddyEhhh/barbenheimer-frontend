@@ -138,12 +138,12 @@ const Header = () => {
                   <Link underline="none" href= "/"> <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography> </Link>
                 </Box>
                 <Autocomplete
-                  sx ={{width:'40%', height:'50%', justifyContent:'center'}}
+                  sx ={{width:'50%', height:'50%', justifyContent:'center'}}
                   freeSolo options={top100Films.map((option) => option.title)}
                   renderInput={(params) => <TextField {...params} size='small' label="Search for movies" 
                   />}
                 />
-                <Box sx={{width:'20%', display:'flex', flexDirection:'row', ml:16, justifyContent:'space-evenly', alignItems:'center'}}>
+                <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center'}}>
                   <Link underline="none" href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
                   <Link underline="none" href = "/MovieBrowse"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
                   <Link underline="none" href= "/Account" >
