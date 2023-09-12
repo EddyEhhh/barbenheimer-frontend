@@ -16,8 +16,8 @@ const MovieSearch = () => {
     return (
         <Box sx = {{ height:'fill', pl:5, pr:5}}> 
             <Typography fontWeight='bold'variant = 'h5' sx = {{pb:2, mt:5} }> Movies </Typography>
-                <Grid container justifyContent='center' sx = {{width:'100%'}}>
-                        <Grid container columns={{xs: 4, sm: 4, md:8, lg:16}} columnSpacing={6} rowGap={2} >
+                <Box display='flex' flexDirection='column' justifyContent="center" alignItems="center" sx = {{width:'100%'}}>
+                        <Grid container columns={{xs: 4, sm: 4, md:8, lg:16}} columnSpacing={3  } rowGap={2} >
                             <MovieBox></MovieBox>
                             <MovieBox></MovieBox>
                             <MovieBox></MovieBox>
@@ -37,7 +37,7 @@ const MovieSearch = () => {
                         page={pageIndex}
                         onChange={pageChangeHandler}/>
                         
-            </Grid>
+            </Box>
         </Box>
     )
 }

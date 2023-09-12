@@ -25,15 +25,16 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
 
     return (
         <>
-        <Grid item xs={4} sm={4} md={4} lg={4}>
+      
+        <Grid item>
             <Box className="picture-section" 
                 sx ={{
                     position:'relative',
                     display:'flex', flexDirection:'column', 
-                    borderRadius:'8px',
+                    borderRadius:'4px',
                     overflow:'hidden', 
-                    height:350, 
-                    transition:"width 0.2s ease-in-out", width: isHover === true ? '101%' : '100%',
+                    aspectRatio:2/3,
+                    transition:"width 0.2s ease-in-out", width: isHover === true ? 321 : 320,
                     }}>     
                 
                 <Button sx= {{display:'flex', height:'90%'}}>
@@ -46,7 +47,7 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
                     </Image>
                 </Button>
                 
-                <Paper elevation={3} sx={{borderRadius:"12px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
+                <Paper elevation={1} sx={{borderRadius:"4px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
                     <Stack className="text-section" height="40px" display={"flex"} flexDirection={"column"} sx={{pl:1, pr:1}}>
                         <Stack direction='row' display={'flex'} justifyContent={'space-between'} alignItems={"center"}>
                             <Typography fontWeight="bold" variant="h6"> {title} Title </Typography>
