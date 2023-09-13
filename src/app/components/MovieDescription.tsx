@@ -1,7 +1,7 @@
 import {Box, Typography, Grid} from "@mui/material/";
 import { alignProperty } from "@mui/material/styles/cssUtils";
 import MovieImage from "../images/img1041.webp";
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image'
 
 type MovieDetail = {
     title?: string,
@@ -19,32 +19,29 @@ type MovieDetail = {
 const MovieDescription = ({title, duration, picture, rating, ageRating, releaseDate, spokenLanguage, subtitle, director, cast, synopsis} : MovieDetail) => {
     return (
         <main>
-            <Grid className="content" container sx= {{border:2, width:1, height:500, pl: '5%', pr:'5%', mt:10}}>
+            <Grid className="content" container sx= {{width:1, height:500, pl: '5%', pr:'5%'}}>
                 <Grid sx = {{width:'40%'}}>
-                    <Box className = "picture-box" sx ={{height:500, border:1}}> 
-                        <Grid>
-                            <Grid sx={{height:500}}>
-                                <Box position='absolute' sx={{border:0}}>
-                                    <Image 
-                                        src={MovieImage} alt="no image" 
-                                        fill={true}
-                                        style={{objectFit:"cover"}}>
-                                    </Image>
-                                </Box>
-                            </Grid>
+                    <Box className = "picture-box" sx ={{height:500}}> 
+                        <Grid sx={{height:500}} justifyContent={'center'}>
+                            <Box position='relative' sx={{aspectRatio:3/2, height:500}}>
+                                <Image 
+                                    src={MovieImage} alt="no image" 
+                                    fill={true}
+                                    style={{objectFit:"contain"}}>
+                                </Image>
+                            </Box>
                         </Grid>
                     </Box>
                 </Grid>
 
                 <Grid sx ={{width:'60%'}} >
-                    <Box className = "desc-box" sx={{height:500, border:1}}>
+                    <Box className = "desc-box" sx={{height:500}}>
                         <Grid>
-                            <Grid container direction='row' justifyContent={'center'} sx={{border:1, height: 100}} alignContent={"center"}>
-                                <Typography variant="h3" sx={{mr:4}}>
+                            <Grid container direction='row' justifyContent={'center'} sx={{height: 100}} alignContent={"center"}>
+                                <Typography variant="h3" sx={{mr:4, fontWeight:700}}>
                                     {title} Movie Title
                                 </Typography>
-
-                
+                                
                                 <Typography>
                                     {ageRating} Age Rating
                                 </Typography>
