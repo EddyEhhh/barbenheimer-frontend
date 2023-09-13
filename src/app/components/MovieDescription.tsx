@@ -44,7 +44,6 @@ const MovieDescription = ({title, duration, picture, rating, ageRating, releaseD
                                     {title} Movie Title
                                 </Typography>
 
-                
                                 <Typography>
                                     {ageRating} Age Rating
                                 </Typography>

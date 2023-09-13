@@ -14,30 +14,31 @@ const MovieSearch = () => {
     }
 
     return (
-        <Box sx = {{ height:'fill', pl:5, pr:5}}> 
-            <Typography fontWeight='bold'variant = 'h5' sx = {{pb:2, mt:5} }> Movies </Typography>
-                <Box display='flex' flexDirection='column' justifyContent="center" alignItems="center" sx = {{width:'100%'}}>
-                        <Grid container columns={{xs: 4, sm: 4, md:8, lg:16}} columnSpacing={3  } rowGap={2} >
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>
-                            <MovieBox></MovieBox>      
-                        </Grid> 
+        <Box sx = {{ mt:10, pl:5, pr:5, display:'flex', justifyContent:'center'}}> 
+            <Box display='flex' width={1} flexDirection='column' justifyContent="center" alignContent="center">
+                <Grid container columns={{lg:4, md:3, sm:2, xs:1}} paddingLeft={1} columnSpacing={5} rowSpacing={2}>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>        
+                        <MovieBox></MovieBox>
+                        <MovieBox></MovieBox>              
+                </Grid> 
+                
+                <Pagination 
+                    sx={{display:"flex", justifyContent:"center"}}
+                    count={10} 
+                    showFirstButton showLastButton 
+                    size="large" 
+                    color="primary"
+                    page={pageIndex}
+                    onChange={pageChangeHandler}/>
                     
-                    <Pagination 
-                        sx={{display:"flex", justifyContent:"center"}}
-                        count={10} 
-                        showFirstButton showLastButton 
-                        size="large" 
-                        color="primary"
-                        page={pageIndex}
-                        onChange={pageChangeHandler}/>
-                        
-            </Box>
+        </Box>
         </Box>
     )
 }

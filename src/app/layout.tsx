@@ -14,7 +14,7 @@ export default function RootLayout ({children}: {
       <ThemeProvider theme = {darkTheme}> 
         <CssBaseline enableColorScheme/>
         <html>
-          <body className={`w-full ${inter.className}`}> {children} </body>
+          <body className = "pt-10"> {children} </body>
           <Header/>
         </html>
       </ThemeProvider>
