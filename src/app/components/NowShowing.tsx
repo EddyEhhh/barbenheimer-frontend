@@ -45,8 +45,7 @@ const NowShowingMovies = () => {
     // }
 
     return (
-      
-        
+      <Box>
         <Grid container justifyContent='center' alignItems='center' sx = {{pl:10, pr:10, mt:3, height:'fill'}}> 
             {/*         
             <Grid sx={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
@@ -55,15 +54,15 @@ const NowShowingMovies = () => {
                 <Typography pl={8} onClick= {comingSoonHandler} color='white' fontWeight={comingSoon === true ? 'bold' : ''} variant = 'h6'> Coming Soon </Typography>
             </Grid> */}
        
-            <Tabs textColor="white" value={value} onChange={handleChange} centered>
-                <Tab label="Now Showing" />
-                <Tab label="Advanced Sales" />
-                <Tab label="Coming Soon" />
+            <Tabs textColor="inherit" value={value} onChange={handleChange} centered>
+                <Tab sx={{fontSize:"medium"}} label="Now Showing"/>
+                <Tab sx={{fontSize:"medium"}} label="Advanced Sales" />
+                <Tab sx={{fontSize:"medium"}} label="Coming Soon" />
             </Tabs>
         
 
          
-            <Box sx={{height:30, width:'1', mb:1, display:"flex", alignItems:'center'}}>
+            <Box sx={{height:30, width:'1', mb:1, mt:1, display:"flex", alignItems:'center'}}>
                 <Typography color='white' fontWeight='bold' variant = 'h5'> Showtimes </Typography>
             </Box> 
           
@@ -91,6 +90,7 @@ const NowShowingMovies = () => {
                     onChange={pageChangeHandler}/>
             </Grid>
         </Grid>
+    </Box>
     )
 }
 

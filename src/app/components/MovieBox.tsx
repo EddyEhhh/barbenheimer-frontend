@@ -26,22 +26,21 @@ const MovieBox = ({title, duration, picture, rating, ageRating} : MovieDetails) 
     return (
         <>
         <Grid item lg={1} md={1} sm={1} xs={1}>
-            <Box className="picture-section" 
+            <Box className="picture-section"
                 sx ={{
                     position:'relative',
-                    display:'flex', flexDirection:'column', 
+                    display:'flex', flexDirection:'column',
                     borderRadius:'4px',
-                    overflow:'hidden', 
+                    overflow:'hidden',
                     aspectRatio:2/3,
 
                     transition:"width 0.2s ease-in-out",
-                    }}>     
-                
+                    }}>
                 <Button sx= {{display:'flex', height:'90%'}}>
-                    <Image 
-                        src={anime1} alt="nothing" 
+                    <Image
+                        src={anime1} alt="nothing"
                         fill={true}
-                        objectFit="cover"
+                        style={{objectFit:"cover"}}
                         onMouseEnter={pictureOnMouseEnter}
                         onMouseLeave={pictureOnMouseLeave}>
                     </Image>
