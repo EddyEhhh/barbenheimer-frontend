@@ -1,6 +1,6 @@
 "use client"
 import NowShowingMovies from "./components/NowShowing"
-import { Typography,Button, Box, Container, Pagination, colors} from "@mui/material/"
+import {Box} from "@mui/material/"
 import Preview from "./components/Preview"
 
 export default function Home() {
