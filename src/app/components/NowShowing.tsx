@@ -12,6 +12,7 @@ const NowShowingMovies = () => {
     const [movieData, setMovieData] = useState<MovieDetailsInterface[][]>([[]]);
     const [pageIndex, setPageIndex] = useState<number>(1);
     const [value, setValue] = useState(0);
+    // 0 - nowShowing , 1 = advanced sales, 2= comming soon
     const wantedItemsPerPage: number = 10;
     //xl-6(12) lg-5(10)
     //how to make this dynamic?
@@ -38,10 +39,8 @@ const NowShowingMovies = () => {
                 }
                 
             });
-            console.log(pagination);
             setMovieData(pagination); 
             
-// console.log(movieData[0][0].movieImages[0].imageUrl)
             } catch(error) {
                 //inset error
             }
@@ -73,8 +72,7 @@ const NowShowingMovies = () => {
           
             <Box sx = {{width:'100%'}}>
                 <Grid container columns={{lg:5, md:3, sm:2, xs:1}} columnSpacing={2} rowSpacing={2}>
-                    {
-                        movieData[pageIndex-1].map((movieData) => (
+                    {value == 0 && movieData[pageIndex-1].map((movieData) => (
                             <MovieBox 
                                 key={movieData.id} 
                                 id={movieData.id}
