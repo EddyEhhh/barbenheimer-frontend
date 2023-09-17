@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, IconButton, Stack, Box, Typography, Button, Avatar, Autocomplete, TextField, Link} from '@mui/material';
+import { AppBar, Toolbar, Box, Typography, Avatar, Autocomplete, TextField, Link} from '@mui/material';
 
 
 const top100Films = [
@@ -145,8 +145,8 @@ const Header = () => {
                 />
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center'}}>
                   <Link underline="none" href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
-                  <Link underline="none" href = "/MovieBrowse"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
-                  <Link underline="none" href= "/Account" >
+                  <Link underline="none" href = "/browseMovie"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
+                  <Link underline="none" href= "/account" >
                     <Avatar></Avatar>
                   </Link>
                 </Box>
@@ -154,7 +154,7 @@ const Header = () => {
             </Box>
           </Toolbar>
         </AppBar>
-        </Box>
+      </Box>
     )
 }
 
