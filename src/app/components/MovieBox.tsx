@@ -1,8 +1,8 @@
 
-import {Box, Stack, Button, Typography, Grid, Paper, Link} from "@mui/material"
+import {Box, Stack, Button, Typography, Grid, Paper} from "@mui/material"
 import Image from "next/image"
 import {useState} from "react"
-
+import Link from "next/link"
 
 const ratings : string[] = ["G", "PG", "PG13", "NC16", "M18", "R21" ]
 
@@ -12,7 +12,7 @@ type MovieDetails = {
     runtimeInMinute?: number,
     movieImages?: string,
     rating?: number,
-    ageRestriction?: number
+    ageRestriction: number
 }
 
 
@@ -30,7 +30,12 @@ const MovieBox = ({id,title, runtimeInMinute, movieImages, rating, ageRestrictio
         <>
       
         <Grid item lg={1} md={1} sm={1} xs={1}>
-        <Link href = {`/movieDetails/${id}`}>
+        <Link style={{ textDecoration: 'none' }} 
+            href = {{
+                pathname: `movie/${id}`,
+                // query: {id : id}
+            }}    
+        >
             <Box className="picture-section"
                 sx ={{
                     position:'relative',
@@ -45,6 +50,7 @@ const MovieBox = ({id,title, runtimeInMinute, movieImages, rating, ageRestrictio
                         fill={true}
                         style={{objectFit:"contain"}}
                         sizes="(max-width: 600px) 100vw, 600px"
+                        priority
                         onMouseEnter={pictureOnMouseEnter}
                         onMouseLeave={pictureOnMouseLeave}>
                     </Image>
