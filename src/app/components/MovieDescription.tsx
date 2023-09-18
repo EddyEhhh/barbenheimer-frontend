@@ -86,11 +86,6 @@ const MovieDescription = ({title, duration, picture, rating, ageRating, releaseD
                     </Box>
                 </Grid>
             </Grid>
-        
-              
-          
-           
-         
         </main>
         
     )
