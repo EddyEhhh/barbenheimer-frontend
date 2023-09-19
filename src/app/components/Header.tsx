@@ -155,20 +155,18 @@ const Header = () => {
       
     const searchOnEnterHandler = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key == 'Enter') { 
-        router.push(`/movieDetails/${enteredData?.id}`)
+        router.push(`/movie/${enteredData!.id}`);
       }
     }
 
     const setEnteredDataHandler =(event, value) => {
-      console.log("hi")
       setEnteredData(value);
-      console.log(typeof enteredData);
     }
   
     return (
 
       <Box>
-        <AppBar color="secondary" position="absolute" sx={{justifyContent:"center"}}>
+        <AppBar position="absolute" sx={{justifyContent:"center"}}>
           <Toolbar>
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>
@@ -176,11 +174,11 @@ const Header = () => {
                 </Box>
                 <Autocomplete
                   sx ={{width:'50%', height:'50%', justifyContent:'center'}}
-                  // onChange={setEnteredDataHandler}
                   onChange={setEnteredDataHandler}
                   freeSolo
-                  options={searchData?.map((option) => (option.title))}
-                  renderInput={(params) => <TextField {...params} size='small'   label="Search for movies" onKeyDown={searchOnEnterHandler}
+                  options={searchData}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => <TextField {...params} size='small' label="Search for movies" onKeyDown={searchOnEnterHandler}
                   />}
                 />
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center'}}>
