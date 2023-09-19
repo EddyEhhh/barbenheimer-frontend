@@ -5,19 +5,20 @@ import Header from './components/Header'
 import { ThemeProvider, Box } from '@mui/material'
 import  darkTheme  from './theme'
 import CssBaseline from '@mui/material/CssBaseline';
-import { useRouter } from 'next/router'
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout ({children}: {
   children: React.ReactNode
 }) {
   return (
+    <html>
+      <body className = "pt-10"> 
       <ThemeProvider theme = {darkTheme}> 
         <CssBaseline enableColorScheme/>
-        <html>
-          <body className = "pt-10"> {children} </body>
-          <Header/>
-        </html>
+          <div> <Header/> </div>
+          {children}
       </ThemeProvider>
+      </body>
+    </html>
   )
 };

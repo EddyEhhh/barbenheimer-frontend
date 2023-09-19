@@ -20,14 +20,15 @@ const NowShowingMovies = () => {
     useEffect (() => {
         const fetchData = async () => {
         try {
-            const data = await getAllMovies();
+            const data =  await getAllMovies()
             
             let itemsPerPage: number = 0;
             let index: number = 0; 
+//console.log(data);
 
             const pagination : MovieDetailsInterface[][] = [[]];
-            data.map((data : MovieDetailsInterface) => {
-                console.log(new Date(data.showingDate) <= new Date());
+             data.map((data : MovieDetailsInterface) => {
+//console.log(new Date(data.showingDate) <= new Date());
                 if (new Date(data.showingDate) <= new Date()){
                     if (itemsPerPage == wantedItemsPerPage) {
                         itemsPerPage = 0;
@@ -58,7 +59,6 @@ const NowShowingMovies = () => {
 
 
     return (
-      <Box>
         <Grid container justifyContent='center' alignItems='center' sx = {{pl:10, pr:10, mt:3, height:'fill'}}>      
             <Tabs textColor="inherit" value={value} onChange={handleChange} centered>
                 <Tab sx={{fontSize:"medium"}} label="Now Showing"/>
@@ -98,7 +98,6 @@ const NowShowingMovies = () => {
                     onChange={pageChangeHandler}/>
             </Grid>
         </Grid>
-    </Box>
     )
 }
 

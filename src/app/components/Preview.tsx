@@ -33,7 +33,7 @@ const Preview = () => {
         }; 
     }, [currentImageIndex]);
     return (
-        <Box position='relative' sx = {{width:1, height:700}}>
+        <Box position='relative' sx = {{width:1, height:800}}>
             {isSlideIn ? (
             <Slide in={true}
              direction="left"
