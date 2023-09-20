@@ -12,11 +12,11 @@ const PaymentInformation = () => {
             </Grid>
 
             <Grid container justifyContent={"center"} sx={{height:230, mt: 5}}>
-                <Grid container  direction="column" height={230} width={"40%"} justifyContent="space-between">
-                    <TextField label="Card Number" 
+                <Grid container direction="column" height={230} width={"40%"} justifyContent="space-between">
+                    <TextField label="Card Number" placeholder="Card Number"
                         InputProps={{startAdornment: (<InputAdornment position="start"> <CreditCardIcon /></InputAdornment>),}}sx={{width:1}}>
                     </TextField>
-
+                    
                     <TextField label="Cardholder Name" sx={{width:1}}></TextField>
                     <Grid container direction="row" justifyContent="space-between" sx={{width:1}}>
                         <TextField label="Expiration Date (MM/YY)" sx={{width:'40%'}}></TextField>
