@@ -1,4 +1,4 @@
-import {Box, Slide, Fade} from '@mui/material'
+import {Box, Slide, Fade, Typography, Card, CardMedia, CardContent} from '@mui/material'
 import anime1 from '../images/anime1.jpeg'
 import anime2 from '../images/yourname.jpg'
 import anime4 from '../images/vz3avvg6752b1.webp'
@@ -9,12 +9,21 @@ import { useState, useEffect} from 'react'
 const images: StaticImageData[] = [
     anime1, 
     anime2,
-    anime4
 ]
 
 const Preview = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(1);
     const [isSlideIn, setIsSlideIn] = useState<boolean>(false);
+
+    const [isHover, setIsHover] = useState<boolean>(false);
+
+    const pictureOnMouseEnter = () => {
+        setIsHover(true);
+    }
+    const pictureOnMouseLeave = () => {
+        setIsHover(false);
+    }
+
     useEffect(() => {
         if (!isSlideIn) {
             setTimeout(() => {
@@ -32,32 +41,72 @@ const Preview = () => {
             clearInterval(timer);
         }; 
     }, [currentImageIndex]);
+    
     return (
-        <Box position='relative' sx = {{width:1, height:800}}>
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+             <Box position='relative'
+              sx = {{
+                height:540,
+                width: isHover === true ? '91%' : '90%', 
+                transition: 'width 0.1s ease-in-out'
+               }}
+           >
             {isSlideIn ? (
             <Slide in={true}
              direction="left"
              key={currentImageIndex}
              timeout={1500}
              mountOnEnter
-             unmountOnExit            
+             onMouseEnter = {pictureOnMouseEnter}
+             onMouseLeave = {pictureOnMouseLeave}
+                        
             >
-            {  <Image 
-                src={images[currentImageIndex]} alt="no image" 
-                fill={true}
-                style={{objectFit:"cover"}}>
-            </Image>
+            {
+          
+                  <Card sx={{
+                height:540, borderRadius:'4px', 
+
+            }}
+           >
+                {/* <Typography sx={{backgroundColor:''}}>HELLO </Typography> */}
+                <CardMedia 
+                        sx={{height: 540,   
+                        // border:isHover === true ? 4 : '',
+                        // transition:"border 0.2s ease-in-out",
+                        // borderRadius:'3px',
+                        // borderColor:'primary.dark'
+                            }}
+                        image={images[currentImageIndex].src}
+                    />
+                <CardContent sx={{backgroundColor:'transparent'}}>
+                    <Typography variant="h4" color="textPrimary">HELLO </Typography>
+                </CardContent>
+            </Card>          
+
+                // <Box sx={{backgroundImage:`${anime1.src}`, height:800}} border={1}>
+                //     {/* <img    
+                //     src={}
+                //     alt="no image"
+                //     style={{objectFit:"cover", fill:'100'}}
+                //     >
+                //     </img> */}
+                // </Box>
+             
           }
             </Slide>) : (
             <Fade in={true} timeout={2000} unmountOnExit>{  <Image 
                 src={images[0]} alt="no image" 
                 fill={true}
                 style={{objectFit:"cover"}}>
-            </Image>}</Fade>
+            </Image>}
+            </Fade>
            )} 
 
            
         </Box>
+
+        </Box>
+       
     )
 }
 

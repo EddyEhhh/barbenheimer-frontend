@@ -1,5 +1,5 @@
 "use client"
-import {Box, Typography, Grid, Pagination, Tabs, Tab} from "@mui/material/";
+import {Box, Typography, Grid, Pagination, Tabs, Tab, Fade} from "@mui/material/";
 import MovieBox from "./MovieBox";
 import * as React from 'react';
 import { useState, useEffect, createContext, useContext } from "react";
@@ -61,17 +61,18 @@ const NowShowingMovies = () => {
     return (
         <Grid container justifyContent='center' alignItems='center' sx = {{pl:10, pr:10, mt:3, height:'fill'}}>      
             <Tabs textColor="inherit" value={value} onChange={handleChange} centered>
-                <Tab sx={{fontSize:"medium"}} label="Now Showing"/>
-                <Tab sx={{fontSize:"medium"}} label="Advanced Sales" />
-                <Tab sx={{fontSize:"medium"}} label="Coming Soon" />
+                <Tab sx={{fontSize:"small"}} label="Now Showing"/>
+                <Tab sx={{fontSize:"small"}} label="Advanced Sales" />
+                <Tab sx={{fontSize:"small"}} label="Coming Soon" />
             </Tabs>
         
-        <Box sx={{height:30, width:'1', mb:1, mt:1, display:"flex", alignItems:'center'}}>
-                <Typography color='white' fontWeight='bold' variant = 'h5'> Showtimes </Typography>
+        <Box sx={{height:30, width:'1', mb:1, display:"flex", alignItems:'center'}}>
+                <Typography color='white' variant = 'subtitle1'> Shows </Typography>
             </Box> 
           
             <Box sx = {{width:'100%'}}>
-                <Grid container columns={{lg:5, md:3, sm:2, xs:1}} columnSpacing={2} rowSpacing={2}>
+                <Fade in={true} timeout={1800} mountOnEnter unmountOnExit>
+                <Grid container columns={{xl:5, lg:4, md:3, sm:2, xs:1}} columnSpacing={2} rowSpacing={3}>
                     {value == 0 && movieData[pageIndex-1].map((movieData) => (
                             <MovieBox 
                                 key={movieData.id} 
@@ -83,9 +84,8 @@ const NowShowingMovies = () => {
                             ></MovieBox>
                         ))
                     }
-                     
-                
                 </Grid>
+                </Fade>
             </Box>
 
             <Grid item sx ={{mt:10}}>

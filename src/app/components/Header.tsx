@@ -1,9 +1,10 @@
 'client'
 import { AppBar, Toolbar, Box, Typography, Avatar, Autocomplete, TextField, Link} from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import TheatersIcon from '@mui/icons-material/Theaters';
 import React, { useEffect,useState } from 'react';
 import AxiosInstance from '../api/AxiosInstance';
 import { useRouter } from 'next/navigation';
-
 // const top100Films = [
 //   { title: 'The Shawshank Redemption', year: 1994 },
 //   { title: 'The Godfather', year: 1972 },
@@ -170,7 +171,7 @@ const Header = () => {
           <Toolbar>
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>
-                  <Link underline="none" href= "/"> <Typography fontWeight="bold" variant="h5" component="div"> Barbenhemier </Typography> </Link>
+                  <Link color={"white"} underline="none" href= "/"> <Typography fontWeight={"600"} variant="h6"> Barbenhemier </Typography> </Link>
                 </Box>
                 <Autocomplete
                   sx ={{width:'50%', height:'50%', justifyContent:'center'}}
@@ -182,8 +183,18 @@ const Header = () => {
                   />}
                 />
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center'}}>
-                  <Link underline="none" href = "/"> <Typography fontWeight={"semibold"}> Home </Typography> </Link>
-                  <Link underline="none" href = "/browseMovie"> <Typography fontWeight={"semibold"}> Movies </Typography> </Link>
+                  <Link underline="none" color={"white"} href = "/"> 
+                    <Box display="flex" flexDirection={"row"}  justifyContent={"space-between"} alignItems={"center"} > 
+                    <HomeIcon fontSize="small"/><Typography sx={{ml:'6px'}} fontWeight={"500"} variant="body2" > HOME </Typography> 
+                    </Box>
+                  </Link>
+
+                  <Link underline="none" color={"white"} href = "/browseMovie"> 
+                  <Box display="flex" flexDirection={"row"}  justifyContent={"space-between"} alignItems={"center"} > 
+                    <TheatersIcon fontSize="small"  /><Typography sx={{ml:'6px'}}  fontWeight={"500"} variant="body2"> MOVIES </Typography>
+                    </Box>
+                  </Link>
+                  
                   <Link underline="none" href= "/account" >
                     <Avatar></Avatar>
                   </Link>
