@@ -1,28 +1,14 @@
-import {Box, Button, Grid, Icon, Typography, Divider} from "@mui/material"
+import {Box, Button, Grid, Icon, Typography, Paper} from "@mui/material"
 import Link from "next/link";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { green, pink, red } from "@mui/material/colors";
- 
-{/* <Grid container> = big box
-    <Grid>
-        item 1
-    </Grid>
-    <Grid container > = smaller big box
-        <Grid>
-            item 2
-        </Grid>
-    </Grid>
-</Grid> */}
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
 
 const PaymentSummary = () => {
     return (
         <Box sx = {{mt:10, height:800, width:"100%"}}> 
-
             <Grid container height={800} columns={4} justifyContent="center" alignItems="center">
                 {/*Grid for Check Icon*/}
                 <Grid>
-                    <CheckCircleIcon sx={{ colour: green, fontSize: 100}} />
+                    <CheckCircleIcon sx={{ fontSize: 100}} />
                 </Grid>
                 {/*Grid for Payment Successful*/}
                 <Grid container >
@@ -45,8 +31,7 @@ const PaymentSummary = () => {
 
                 {/*Grid for Payment Summary*/}
                 <Grid container height={500} justifyContent="center">
-                    <Box sx = {{ width: 600, background:'black' }}>
-                        
+                    <Box sx = {{ width: 600, backgroundColor:'black', pt:2 }}> 
                         <Grid container width='100%' height='100%'>
                             {/*Grid for Payment Summary*/}
                             <Grid container height={50} mx={1}>
@@ -199,7 +184,6 @@ const PaymentSummary = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                       
                     </Box>
                     
                 </Grid>
@@ -210,10 +194,7 @@ const PaymentSummary = () => {
                     </Button>
                 </Grid>
             </Grid>
-            
         </Box>
-  
-
     );
 }
 
