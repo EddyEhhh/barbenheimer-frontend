@@ -8,7 +8,7 @@ export default function Home() {
   return (
   <>
   
-      <Grid container direction={"column"} width={1}>
+      <Grid container direction={"column"} width={1} pt={11}>
         <Preview></Preview>
         <NowShowingMovies></NowShowingMovies>
       </Grid>
