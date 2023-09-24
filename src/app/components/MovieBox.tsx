@@ -38,14 +38,16 @@ const MovieBox = ({id,title, runtimeInMinute, movieImages, rating, ageRestrictio
                     sx ={{
                         position:'relative',
                         display:'flex', flexDirection:'column',
-                        borderRadius:'4px',
+                        borderRadius:'9px',
+                        borderColor:'white',
                         overflow:'hidden',
-                        transition:"border 0.2s ease-in-out",
+                        transition:"border 0.1s ease-in",
                         border: isHover === true ? 4 : '',
+
                         }}
                         onMouseEnter={pictureOnMouseEnter}
                         onMouseLeave={pictureOnMouseLeave}>
-                    <Button sx= {{display:'flex', aspectRatio:2/3}}>
+                    <Button sx= {{display:'flex', aspectRatio:2/3, }}>
                         <Image
                             src={movieImages} alt="nothing" 
                             fill={true}
@@ -56,7 +58,7 @@ const MovieBox = ({id,title, runtimeInMinute, movieImages, rating, ageRestrictio
                         </Image>
                     </Button>
 
-                    <Paper elevation={1}  sx={{borderRadius:"4px", borderTopLeftRadius:'0', borderTopRightRadius:'0', backgroundOpacity:0.1}} >
+                    <Paper  sx={{borderRadius:"4px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
                         <Stack className="text-section" display={"flex"} pb={1} height="55px"  justifyContent={"space-between"}  flexDirection={"column"} sx={{pl:1, pr:1}}>
                             <Stack direction='row' display={'flex'}  justifyContent={'space-between'}>
                                 <Typography variant="inherit" width={"3/4"}> {title}</Typography>

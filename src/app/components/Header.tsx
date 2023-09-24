@@ -167,7 +167,7 @@ const Header = () => {
     return (
 
       <Box>
-        <AppBar position="absolute" sx={{justifyContent:"center"}}>
+        <AppBar position="absolute" sx={{justifyContent:"center", background:'transparent', boxShadow:'none'}}>
           <Toolbar>
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>

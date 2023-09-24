@@ -47,7 +47,7 @@ export interface MovieScheduleDatesInterface {
 export interface MovieScheduleTimeInterface {
     id: number,
     showTime :string,
-    hall: HallInterface[]
+    hall: HallInterface,
 
     onClickHandler : () => void
     selectedTime : number
