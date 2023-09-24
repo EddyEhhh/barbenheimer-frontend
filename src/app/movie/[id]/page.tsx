@@ -135,7 +135,7 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
                         <Link 
                             style={{textDecoration:'none', color:'black'}}
                             href={{
-                                pathname:`/movie/[id]/showDate/[showDate]/showTimes/[showTime]/[timeid]`,
+                                pathname:`/movie/[id]/showDate/[showDate]/showTimes/[showTime]`,
                                 query: {
                                     id:params.id,
                                     timeId:selectedTime,
