@@ -7,8 +7,8 @@ const SelectTime = ({id, showTime, hall, selectedTime, onClickHandler} : MovieSc
     // console.log(selectedTime);
     return (
         <Grid item xs={1}>
-            <Button variant={selectedTime == id ? 'contained' : 'outlined'} sx={{fontWeight:"bold"}}
-            onClick={onClickHandler} >
+            <Button size='small' variant={selectedTime == id ? 'contained' : 'outlined'} sx={{fontWeight:"bold"}}
+            onClick={onClickHandler}>
                 {showTime}
             </Button>
         </Grid>
