@@ -23,7 +23,7 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
     const [timeSelection, setTimeSelection] = useState<MovieScheduleTimeInterface[]>([])
     const [selectedTime, setSelectedTime] = useState<number | undefined>(undefined) //gets id of time
 
-    const [selectedHall, setSelectedHall] = useState<HallInterface | undefined>(undefined);
+    const [selectedHall, setSelectedHall] = useState<number>(undefined);
 
     //string form of what is selected
     const [dateString, setDateString] = useState<string>('');
@@ -135,14 +135,10 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
                         <Link 
                             style={{textDecoration:'none', color:'black'}}
                             href={{
-                                pathname:`/movie/[id]/showDate/[showDate]/showTimes/[showTime]`,
-                                query: {
-                                    id:params.id,
-                                    timeId:selectedTime,
-                                    hall:selectedHall,
-                                }
+                                pathname:`/movie/${params.id}/showDates/${dateString}/showTimes/${timeString}/showId/${selectedTime}/hall/${selectedHall}`,
+                            
                             }}
-                            as={`/movie/${params.id}/showDates/${dateString}/showTimes/${timeString}/${selectedTime}`}>
+                            >
                             <Typography fontWeight="bold"> Confirm </Typography>  
                         </Link>
                     </Button>

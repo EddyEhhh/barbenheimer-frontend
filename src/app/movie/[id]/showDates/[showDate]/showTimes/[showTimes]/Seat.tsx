@@ -21,8 +21,8 @@ const Seat = (props : any) => {
     return (
   
     <Box display={'flex'}>
-        <Checkbox  {...label} icon={<EventSeatTwoToneIcon/>} checkedIcon={<EventSeatIcon/>} color="success" sx={{left:`${props.y*1.3}em`,
-            top:`${props.x*1.3}em`,position:"absolute", width:4, height:4 }} size="medium">
+        <Checkbox  {...label} icon={<EventSeatTwoToneIcon/>} checkedIcon={<EventSeatIcon/>} color="success" sx={{left:`${props.x*1.3}em`,
+            top:`${props.y*1.3}em`,position:"absolute", width:4, height:4 }} size="medium">
         </Checkbox>
     </Box>
     )

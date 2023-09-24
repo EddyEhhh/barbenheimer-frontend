@@ -1,6 +1,7 @@
 import { Box, Checkbox, Typography, Paper} from "@mui/material"
 import Seat from "./Seat"
 import { useState, useEffect } from "react"
+import { SeatingInterface } from "@/app/interface/interface"
 
 //2 rows 3 columns
 const seats = [
@@ -19,8 +20,8 @@ const seats = [
     { x: 3, y: 4 }, 
     { x: 3, y: 5 }, 
 ]
-const SeatSelection = () => {
 
+const SeatSelection = (props : {seatingData : SeatingInterface}) => {
 
     const seatingArrangement = [];
 
@@ -37,11 +38,11 @@ const SeatSelection = () => {
         seatingArrangement.push(rowSeats);
     }
     
-    console.log(seatingArrangement);
+    // console.log(seatingArrangement);
     
     //30px
-    const width = seatingArrangement[0].length * 0.59 //2 is width of box * 5 columns
-    const height = seatingArrangement.length * 0.6  //6 is height of box * 2 rows
+    const width = 30 * 0.59 //2 is width of box * 5 columns
+    const height = 30* 0.6  //6 is height of box * 2 rows
     return (
         <Box display="flex" p={1} flexDirection="column">
             <Box width={1} border={1} mb={1.5} display='flex' justifyContent={'center'} alignContent={'center'} >
@@ -51,10 +52,13 @@ const SeatSelection = () => {
             </Box>
             <Box position='relative' display={"flex"} justifyContent={"center"} style={{width:`${width *2.2}em`, height:`${height*2.2}em`}}>
                 <Box width={1} display={'flex'} justifyContent={'center'}  >
-                {seatingArrangement.map((seat,index) => 
-                        (seat.map((seating, index) => (
-                        <Seat x={seating.x} y ={seating.y} number={index} key={index}></Seat> ))
-                    ))}
+    {/* {seatingArrangement.map((seat,index) => 
+            (seat.map((seating, index) => (
+            <Seat x={seating.x} y ={seating.y} number={index} key={index}></Seat> ))
+        ))} */}
+                    {(props.seatingData).map((seat : SeatingInterface, index) => (
+                        <Seat x = {seat.x} y ={seat.y} number ={index} key = {index}></Seat>)
+                    )}
                 </Box>
                 
             </Box>

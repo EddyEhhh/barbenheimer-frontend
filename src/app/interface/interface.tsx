@@ -59,3 +59,16 @@ export interface HallInterface {
     seatCapacity: number,
     seats: number[]
 }
+
+export interface SeatingArrangementInterface {
+    number: number,
+    seats: SeatingInterface[]
+}
+
+export interface SeatingInterface {
+    rowCharacter: string,
+    columnNumber: number,
+    x: number,
+    y:number,
+    state:number
+}

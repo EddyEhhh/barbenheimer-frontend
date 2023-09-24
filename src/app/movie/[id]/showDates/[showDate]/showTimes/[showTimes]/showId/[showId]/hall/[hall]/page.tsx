@@ -1,9 +1,9 @@
 'use client'
-import DescriptionBox from "./DescriptionBox";
-import SeatSelection from "./SeatSelection";
+import DescriptionBox from "../../../../DescriptionBox";
+import SeatSelection from "../../../../SeatSelection";
 import { useState, useEffect } from "react";
 import AxiosInstance from "@/app/api/AxiosInstance";
-import { MovieSpecificDetailsInterface } from "@/app/interface/interface";
+import { MovieSpecificDetailsInterface, SeatingArrangementInterface } from "@/app/interface/interface";
 import { useParams, useSearchParams } from 'next/navigation';
 import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
@@ -15,11 +15,20 @@ import EventSeatTwoToneIcon from '@mui/icons-material/EventSeatTwoTone';
 
 const MovieSeatingPage = () => {
     const params = useParams();
-    console.log(params);
+    console.log(params.hall);
 
     const [movieData, setMovieData] = useState<MovieSpecificDetailsInterface>();
+    const [seating, setSeating] = useState<SeatingArrangementInterface[]>([])
     useEffect(() => {
         const fetchData = async () => {
+            try {
+                const {data, status} = await AxiosInstance.get(`/api/v1/schedules/${params.hall}`);
+                setSeating(data.seats);
+                console.log(data.seats);
+            }catch {
+
+            }
+            
             try {
                 const {data, status} = await AxiosInstance.get(`/api/v1/movies/${params.id}`);
                 setMovieData(data);
@@ -49,15 +58,23 @@ const MovieSeatingPage = () => {
                 <Divider variant="middle" light={true} sx={{width:'80%'}}/>
                
                 <Box pt={1} >
-                    <SeatSelection></SeatSelection>
+                    <SeatSelection seatingData={seating}></SeatSelection>
                 </Box>
-                <Box >
+                 
 
-             </Box>  
-            
-                <EventSeatIcon color="success"></EventSeatIcon> <Typography>your seat</Typography>
-                <EventSeatIcon color='disabled'></EventSeatIcon><Typography>sold out</Typography>
-                <EventSeatIcon color='error'></EventSeatIcon>  <Typography>reserved</Typography>
+                <Box display={'flex'} flexDirection={'row'} width={300} alignContent={'center'} justifyContent={'space-between'}>
+                    <Box display={'flex'} flexDirection={'row'} justifyItems={'center'} alignContent={'center'}>
+                            <EventSeatIcon color="success"></EventSeatIcon> 
+                        <Typography>your seat</Typography>
+                    </Box>
+                    <Box display={'flex'}  flexDirection={'row'} justifyItems={'center'} alignContent={'center'}>
+                        <EventSeatIcon color='disabled'></EventSeatIcon><Typography>sold out</Typography>
+                    </Box>
+                    <Box display={'flex'} flexDirection={'row'} justifyItems={'center'} alignContent={'center'}>
+                        <EventSeatIcon color='error'></EventSeatIcon>  <Typography>reserved</Typography>
+                    </Box>
+                </Box>
+                
             </Box>
 
             <Box pt={5}>
