@@ -46,10 +46,10 @@ const Preview = () => {
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
              <Box position='relative'
               sx = {{
-                height:540,
-                width: isHover === true ? '91%' : '90%', 
-                transition: 'width 0.1s ease-in-out'
-               }}
+                height:800,
+                width: isHover === true ? '100%' : '100%', 
+                transition: 'width 0.1s ease-in-out',
+               }}           
            >
             {isSlideIn ? (
             <Slide in={true}
@@ -62,20 +62,20 @@ const Preview = () => {
                         
             >
             {
-          
                   <Card sx={{
-                height:540, borderRadius:'4px', 
+                height:800, borderRadius:'4px', 
 
             }}
            >
                 {/* <Typography sx={{backgroundColor:''}}>HELLO </Typography> */}
                 <CardMedia 
-                        sx={{height: 540,   
+                        sx={{height: 800,   
                         // border:isHover === true ? 4 : '',
                         // transition:"border 0.2s ease-in-out",
                         // borderRadius:'3px',
                         // borderColor:'primary.dark'
-                            }}
+                        }}
+                       
                         image={images[currentImageIndex].src}
                     />
                 <CardContent sx={{backgroundColor:'transparent'}}>

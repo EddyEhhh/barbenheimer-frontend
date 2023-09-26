@@ -8,7 +8,7 @@ const SelectDate = ({id, showDate, onClickHandler, selectedDate} : MovieSchedule
     // console.log(selectedDate);
     return (
             <Grid item xs={1}>
-                <Button sx={{fontWeight:"bold"}} variant={selectedDate == id ? 'contained' : 'outlined'} 
+                <Button size="small" sx={{fontWeight:"bold"}} variant={selectedDate == id ? 'contained' : 'outlined'} 
                     onClick={onClickHandler}>
                     {showDate}
                 </Button>
