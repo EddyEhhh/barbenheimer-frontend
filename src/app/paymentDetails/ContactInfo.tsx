@@ -7,8 +7,6 @@ type paymentDetails = {
     
 }
 
-
-
 const ContactInfo = () => {
     const [email, setEmail] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(true);
@@ -32,12 +30,12 @@ const ContactInfo = () => {
                 </Typography>
             </Grid>
 
-            <Grid container justifyContent={"center"} sx={{height:230, mt:5}}>
-                <Grid container direction="column" height={230} width={"40%"} justifyContent="space-between">
+            <Grid container justifyContent={"center"} sx={{height:155, mt:5}}>
+                <Grid container direction="column" height={155} width={"40%"} justifyContent="space-between">
                     <TextField label="Name" sx={{width:1}}></TextField>
                     <TextField label="Email" value={email} onChange={handleEmailChange} error={!isValidEmail}
         helperText={!isValidEmail ? 'Invalid email format' : ''} sx={{width:1}}>{email}</TextField>
-                    <TextField label="Contact Number" sx={{width:1}}></TextField> 
+                    {/*TextField label="Contact Number" sx={{width:1}}></TextField> */}
                 </Grid>
             </Grid>
         </main> 
