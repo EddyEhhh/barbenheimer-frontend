@@ -15,12 +15,12 @@ const QuantityDetails = ({ticketType, quantity, ticketPrice} : paymentDetails) =
             <Grid container direction='row' sx= {{width:1, height:60, pl: '20%', pr:'20%'}} alignItems={'center'} justifyContent={"space-between"}>
                 <Grid direction="column" justifyContent="center" alignItems="center">
                     <Grid container justifyContent={"center"}>
-                        <Typography variant='h6' fontWeight={'bold'}>
+                        <Typography variant='body1' fontWeight={'bold'}>
                             Type
                         </Typography>
                     </Grid>
                     <Grid container justifyContent={'center'}>
-                        <Typography>
+                        <Typography variant='body1'>
                             {ticketType}Type of Ticket
                         </Typography>
                     </Grid>
@@ -30,12 +30,12 @@ const QuantityDetails = ({ticketType, quantity, ticketPrice} : paymentDetails) =
 
                 <Grid direction="column" justifyContent="center" alignItems="center">
                     <Grid container justifyContent={"center"}>
-                        <Typography variant='h6' fontWeight={'bold'}>
+                        <Typography variant='body1' fontWeight={'bold'}>
                         Quantity
                         </Typography>
                     </Grid>
                     <Grid container justifyContent={'center'}>
-                        <Typography>
+                        <Typography variant='body1'>
                         {quantity} Quantity of Ticket
                         </Typography>
                     </Grid>
@@ -45,12 +45,12 @@ const QuantityDetails = ({ticketType, quantity, ticketPrice} : paymentDetails) =
                 
                 <Grid direction="column" justifyContent="center" alignItems="center">
                     <Grid container justifyContent={"center"}>
-                        <Typography variant='h6' fontWeight={'bold'}>
+                        <Typography variant='body1' fontWeight={'bold'}>
                         Price
                         </Typography>
                     </Grid>
                     <Grid container justifyContent={'center'}>
-                        <Typography>
+                        <Typography variant='body1'>
                             {ticketPrice}Total Price ($7 x 2)
                         </Typography>
                     </Grid>

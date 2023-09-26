@@ -37,7 +37,7 @@ const PaymentInformation = () => {
     return (
         <main>
             <Grid container sx={{height:50}} justifyContent={"center"} alignContent={"center"}>
-                <Typography variant="h5" fontWeight={'bold'}>
+                <Typography variant="body1" fontWeight={'bold'}>
                     Payment Information
                 </Typography>
             </Grid>

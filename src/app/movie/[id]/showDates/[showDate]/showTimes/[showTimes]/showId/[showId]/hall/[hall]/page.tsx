@@ -46,13 +46,12 @@ const MovieSeatingPage = () => {
     const submitDataHandler =  async () => {
         try {
             // const {data} = await submitSeats(seating);
-            Cookies.set('sessId', 'hello?', {expires: 600000})
+            Cookies.set('sessId', 'hello?', {expires: 1})
             const cookieValue = Cookies.get('sessid');
             console.log('Cookie Value:', cookieValue);
-            // if (!data.ok) {
-            //     router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
-            // }
+            // const encodedData = encodeURIComponent(JSON.stringify(selectedSeatDisplay));
 
+            router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
         } catch {
 //this is when data has a conflicting error
         }
@@ -112,20 +111,20 @@ const MovieSeatingPage = () => {
 
                 <Box pt={4}>
                     <Box display="flex"  flexDirection={"column"} justifyContent={'center'} alignItems={'center'} >
-                            <Typography variant="h6" fontWeight={'400'}> Seats Selected </Typography>
-                            <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
-                            <Box ml={1} height={10} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
-                                {
-                                    selectedSeatDisplay && selectedSeatDisplay.map((seat, index) => (
-                                        <Typography 
-                                            mr={1} 
-                                            key={index}> 
-                                            {`${seat.rowCharacter}${seat.columnNumber}`}
-                                        </Typography>
-                                    ))
-                                }
-                            </Box>
-                            
+                        <Typography variant="h6" fontWeight={'400'}> Seats Selected </Typography>
+                        <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
+                        <Box ml={1} height={10} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
+                            {
+                                selectedSeatDisplay && selectedSeatDisplay.map((seat, index) => (
+                                    <Typography 
+                                        mr={1} 
+                                        key={index}> 
+                                        {`${seat.rowCharacter}${seat.columnNumber}`}
+                                    </Typography>
+                                ))
+                            }
+                        </Box>
+                        
                     </Box>
                 </Box>
                     

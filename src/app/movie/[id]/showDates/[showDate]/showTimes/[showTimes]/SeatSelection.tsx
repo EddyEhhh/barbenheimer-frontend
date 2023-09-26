@@ -11,7 +11,6 @@ const SeatSelection = (props : {seatingData : SeatingInterface[], width :number,
 
     const onClickHandler = (seat:SeatingInterface, index:number) => {
         console.log(seat);
-
         if (seat.state == 0) {
             seat.state =1
         } else {

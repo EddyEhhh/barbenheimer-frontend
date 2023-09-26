@@ -10,17 +10,16 @@ type paymentDetails = {
     time?: string,
     hall?: string,
     seatNumber?: string,
-
-
+    image?: string
 }
-const PaymentHeader = ({title, date, time, hall, seatNumber} : paymentDetails) => {
+const PaymentHeader = ({title, date, time, hall, seatNumber, image} : paymentDetails) => {
     return (
         <main>
-            <Grid container sx= {{width:1, height:350, pl: '5%', pr:'5%'}}>
+            <Grid container sx= {{width:1, height:250, pl: '5%', pr:'5%'}}>
                 <Grid container sx = {{width:'45%'}} justifyContent={"center"} >
-                    <Box position='absolute' sx={{aspectRatio:3/2, height:350}}>
+                    <Box position='absolute' sx={{aspectRatio:3/2, height:250}}>
                         <Image 
-                            src={MovieImage} alt="no image" 
+                            src={image} alt="no image" 
                             fill={true}
                             style={{objectFit:"contain"}}>
                         </Image>
@@ -28,39 +27,39 @@ const PaymentHeader = ({title, date, time, hall, seatNumber} : paymentDetails) =
                 </Grid>
 
                 <Grid container sx ={{width:'55%'}} direction="column">
-                    <Grid sx={{height: '45%'}}>
-                        <Typography variant="h2" sx={{fontWeight:700}}>
-                                {title} Title
+                    <Grid sx={{height: '15%'}}>
+                        <Typography variant="h5" sx={{fontWeight:600}}>
+                                {title}
                         </Typography>
                     </Grid>
                     
-                    <Grid container direction="column" justifyContent="space-between" height={'55%'} >
-                        <Grid>
+                    <Grid container direction="column" justifyContent="space-between" height={'45%'} >
+                        {/* <Grid>
                             <Typography variant='h5'>
                                 {}Movie Theatre: Somewhere
                             </Typography>
-                        </Grid>
+                        </Grid> */}
                         <Grid>
-                            <Typography variant='h5' >
-                                {}Date:
+                            <Typography variant='subtitle1' >
+                                Date: {date}
                             </Typography>
                         </Grid>
 
                         <Grid>
-                            <Typography variant='h5' >
-                                {}Time:
+                            <Typography variant='subtitle1' >
+                                Time: {time}
                             </Typography>
                         </Grid>
                         
                         <Grid>  
-                            <Typography variant='h5' >
-                                {}Hall:
+                            <Typography variant='subtitle1' >
+                                Hall: {hall}
                             </Typography>
                         </Grid>
                         
                         <Grid>
-                            <Typography variant='h5' >
-                                {}Seat Numbers:
+                            <Typography variant='subtitle1' >
+                                Seat Numbers:{}
                             </Typography>
                         </Grid>
                     </Grid>     

@@ -24,15 +24,15 @@ const ContactInfo = () => {
 
     return (
         <main>
-            <Grid container sx={{height:50}} justifyContent={"center"} alignContent={"center"}>
-                <Typography variant="h5" fontWeight={'bold'}>
+            <Grid container sx={{height:30}} justifyContent={"center"} alignContent={"center"}>
+                <Typography variant="body1" fontWeight={'bold'}>
                     Contact Information
                 </Typography>
             </Grid>
 
             <Grid container justifyContent={"center"} sx={{height:155, mt:5}}>
                 <Grid container direction="column" height={155} width={"40%"} justifyContent="space-between">
-                    <TextField label="Name" sx={{width:1}}></TextField>
+                    <TextField label="Name" size="medium"></TextField>
                     <TextField label="Email" value={email} onChange={handleEmailChange} error={!isValidEmail}
         helperText={!isValidEmail ? 'Invalid email format' : ''} sx={{width:1}}>{email}</TextField>
                     {/*TextField label="Contact Number" sx={{width:1}}></TextField> */}
