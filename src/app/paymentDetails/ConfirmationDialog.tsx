@@ -15,7 +15,7 @@ function ConfirmationDialog({open, onClose, onConfirm }) {
                 <Button onClick={onClose} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={onConfirm} color="primary">
+                <Button onClick={onConfirm} color="primary" href='http://localhost:3000/paymentSummary'>
                     Confirm
                 </Button>
             </DialogActions>
