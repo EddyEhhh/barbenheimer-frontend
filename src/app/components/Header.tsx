@@ -140,8 +140,8 @@ interface searchFormat {
 
 const Header = () => {
   const router = useRouter();
-    const [searchData, setSearchData] = useState<searchFormat[]>()
-    const [enteredData, setEnteredData] = useState<searchFormat>();
+    const [searchData, setSearchData] = useState<searchFormat[]>([])
+    const [enteredData, setEnteredData] = useState<searchFormat>('');
 
 
     useEffect (() => {

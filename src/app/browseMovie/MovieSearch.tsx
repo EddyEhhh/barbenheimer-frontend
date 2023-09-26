@@ -3,7 +3,7 @@
 import {Box,Grid,Pagination} from "@mui/material/";
 import MovieBox from "../components/MovieBox";
 import * as React from 'react';
-import { useState , useEffect} from "react";
+import { useState , useEffect, Suspense} from "react";
 import { getAllMovies } from "../services/homeServices";
 import { MovieDetailsInterface } from "../interface/interface";
 
@@ -34,38 +34,36 @@ const MovieSearch = () => {
             } catch {
             }
         }
-        fetchData();
-        console.log(movieData);
-       
+        fetchData();       
        
     }, [])
 
     return (
-        <Box sx = {{ mt:10, pl:5, pr:5, display:'flex', justifyContent:'center'}}> 
-            <Box display='flex' width={1} flexDirection='column' justifyContent="center" alignContent="center">
-                <Grid container columns={{lg:5, md:3, sm:2, xs:1}} paddingLeft={1} columnSpacing={3} rowSpacing={2}>
-                    { 
-                    movieData[pageIndex-1].map((data)=> (
-                        <MovieBox 
-                        key={data.id}
-                        id={data.id} 
-                        title={data.title} 
-                        movieImages={data.movieImages[0].imageUrl}
-                        ageRestriction={data.ageRestriction}
-                        runtimeInMinute={data.runtimeInMinute} 
-                        ></MovieBox> )) 
-                    }   
-                </Grid> 
-                <Pagination 
-                    sx={{display:"flex", justifyContent:"center"}}
-                    count={movieData.length} 
-                    showFirstButton showLastButton 
-                    size="large" 
-                    color="primary"
-                    page={pageIndex}
-                    onChange={pageChangeHandler}/>
-        </Box>
-        </Box>
+            <Box sx = {{ mt:10, pl:5, pr:5, display:'flex', justifyContent:'center'}}> 
+                <Box display='flex' width={1} flexDirection='column' justifyContent="center" alignContent="center">
+                    <Grid container columns={{lg:5, md:3, sm:2, xs:1}} paddingLeft={1} columnSpacing={3} rowSpacing={2}>
+                        { 
+                        movieData[pageIndex-1].map((data)=> (
+                            <MovieBox 
+                            key={data.id}
+                            id={data.id} 
+                            title={data.title} 
+                            movieImages={data.movieImages[0].imageUrl}
+                            ageRestriction={data.ageRestriction}
+                            runtimeInMinute={data.runtimeInMinute} 
+                            ></MovieBox> )) 
+                        }   
+                    </Grid> 
+                    {movieData && <Pagination 
+                        sx={{display:"flex", justifyContent:"center"}}
+                        count={movieData.length} 
+                        showFirstButton showLastButton 
+                        size="large" 
+                        color="primary"
+                        page={pageIndex}
+                        onChange={pageChangeHandler}/>}
+                </Box>
+            </Box>
     )
 }
 

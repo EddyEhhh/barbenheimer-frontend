@@ -20,7 +20,7 @@ export default function RootLayout ({children}: {
         <CssBaseline enableColorScheme/>
           <div> <Header/> </div>
           <Suspense fallback={<LoadingPage/>}>
-          {children}
+            <div>{children}</div>
           </Suspense>
 
       </ThemeProvider>

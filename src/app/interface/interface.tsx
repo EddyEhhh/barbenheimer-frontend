@@ -38,7 +38,7 @@ export interface MovieScheduleDatesInterface {
     movieScheduleTimes?: MovieScheduleTimeInterface[]
     index : number
 
-    onClickHandler : () => void
+    onClickHandler?: () => void
     selectedDate: number
     
 }
@@ -49,7 +49,7 @@ export interface MovieScheduleTimeInterface {
     showTime :string,
     hall: HallInterface,
 
-    onClickHandler : () => void
+    onClickHandler?: () => void
     selectedTime : number
 
 }
@@ -60,8 +60,11 @@ export interface HallInterface {
     seats: number[]
 }
 
+
 export interface SeatingArrangementInterface {
     number: number,
+    width: number,
+    height : number,
     seats: SeatingInterface[]
 }
 
@@ -71,4 +74,6 @@ export interface SeatingInterface {
     x: number,
     y:number,
     state:number
+
+    onClickHandler?:() => void
 }
