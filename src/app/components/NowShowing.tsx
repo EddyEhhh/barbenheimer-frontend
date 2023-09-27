@@ -71,7 +71,7 @@ const NowShowingMovies = () => {
             </Box> 
           
             <Box sx = {{width:'100%'}}>
-                <Fade in={true} timeout={1800} mountOnEnter unmountOnExit>
+                {/* <Fade in={true} timeout={1800} mountOnEnter unmountOnExit> */}
                 <Grid container columns={{xl:5, lg:4, md:3, sm:2, xs:1}} columnSpacing={2} rowSpacing={3}>
                     {value == 0 && movieData[pageIndex-1].map((movieData) => (
                             <MovieBox 
@@ -85,7 +85,7 @@ const NowShowingMovies = () => {
                         ))
                     }
                 </Grid>
-                </Fade>
+                {/* </Fade> */}
             </Box>
 
             <Grid item sx ={{mt:10}}>

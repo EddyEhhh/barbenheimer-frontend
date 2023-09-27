@@ -1,6 +1,6 @@
 import AxiosInstance from "../api/AxiosInstance";
 import { SeatingInterface } from "../interface/interface";
-import { cookies } from 'next/headers'
+import Cookies from 'js-cookie'
 
 
 
@@ -14,14 +14,12 @@ export const getAllMovies = async () => {
         }
 }
 
-export const submitSeats =async (seating : SeatingInterface[]) => {
+export const submitSeats =async (showId : string, seating : SeatingInterface[]) => {
     try {
-        const {data} = await AxiosInstance.post(`/api/v1/schedules/${seating}`);
-        // if (data.ok) {
-        //     cookies().set('sessionId', `testing cookie`, {expires: 600000})
-        // }
+        const {data} = await AxiosInstance.post(`/api/v1/schedules/${showId}`, seating);
+        console.log(data.token);
         return data;
-        
+        Cookies.set(`testing`, data.token, {expiration: 60000});
     } catch {
 
     }

@@ -11,7 +11,8 @@ import { Suspense } from "react";
 import LoadingPage from "@/app/Loading";
 import SeatLegend from "./SeatLegend";
 import { submitSeats } from "@/app/services/homeServices";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import { Cookie } from "next/font/google";
 
 
 const MovieSeatingPage = () => {
@@ -28,9 +29,9 @@ const MovieSeatingPage = () => {
         const updatedSelectedSeatDisplay = [...selectedSeatDisplay];
 
         if (seat.state == 0) {
-           seat.state = 1 
+           seat.state = 4 
            updatedSelectedSeatDisplay.push(seat);
-        } else if (seat.state == 1) {
+        } else if (seat.state == 4) {
 // console.log(selectedSeatDisplay.indexOf(seat));
             updatedSelectedSeatDisplay.splice(selectedSeatDisplay.indexOf(seat), 1);
             seat.state = 0
@@ -46,9 +47,11 @@ const MovieSeatingPage = () => {
     const submitDataHandler =  async () => {
         try {
             // const {data} = await submitSeats(seating);
-            Cookies.set('sessId', 'hello?', {expires: 1})
-            const cookieValue = Cookies.get('sessid');
-            console.log('Cookie Value:', cookieValue);
+            const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
+            console.log(data);
+            Cookies.set('test1', data);
+            // const cookieValue = Cookies.get('sessid');
+            // console.log('Cookie Value:', cookieValue);
             // const encodedData = encodeURIComponent(JSON.stringify(selectedSeatDisplay));
 
             router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);

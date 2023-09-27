@@ -10,6 +10,7 @@ import CountdownTimer from "./CountdownTimer";
 import { useSearchParams } from "next/navigation";
 import AxiosInstance from "../api/AxiosInstance";
 import { MovieSpecificDetailsInterface } from "../interface/interface";
+import Cookies from 'js-cookie'
 
 const paymentDetails = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -19,8 +20,10 @@ const paymentDetails = () => {
     useEffect(() => {
         const fetchData = async () => {        
             try {
-                const {data, status} = await AxiosInstance.get(`/api/v1/movies/${search.get(`id`)}`);
+                console.log(Cookies.get('test1'))
+                const {data, status} = await AxiosInstance.get(`/api/v1/pay`,Cookies.get('test1'));
                 setMovieData(data);
+                console.log(data);
             } catch {
 
             }
@@ -35,9 +38,6 @@ const paymentDetails = () => {
 
     return (
         <main>
-            <Button sx={{ml:5, mt:10, position:'absolute', fontWeight:'bold'}} variant='contained'>
-                Back
-            </Button>
             <CountdownTimer></CountdownTimer>
             <Box sx={{pb:10, pt:10}}>
                 <PaymentHeader

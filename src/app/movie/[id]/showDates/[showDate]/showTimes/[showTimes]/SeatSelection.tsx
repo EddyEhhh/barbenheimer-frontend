@@ -3,6 +3,7 @@ import Seat from "./Seat"
 import { useState, useEffect } from "react"
 import { SeatingInterface } from "@/app/interface/interface"
 
+
 const SeatSelection = (props : {seatingData : SeatingInterface[], width :number, height: number, 
     onClickFunction: (seat: SeatingInterface, index: number) => void
 }) => {

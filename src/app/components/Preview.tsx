@@ -94,7 +94,7 @@ const Preview = () => {
              
           }
             </Slide>) : (
-            <Fade in={true} timeout={2000} unmountOnExit>{  <Image 
+            <Fade in={true} timeout={500} unmountOnExit>{  <Image 
                 src={images[0]} alt="no image" 
                 fill={true}
                 style={{objectFit:"cover"}}>
