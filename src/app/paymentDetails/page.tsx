@@ -57,14 +57,14 @@ const paymentDetails = () => {
                 <CreditCardInfo></CreditCardInfo>
 
                 <Grid container sx={{width:1, mt:8}} justifyContent={"center"} >
-                <Button sx={{position:'absolute', fontWeight:'bold'}} variant='contained' onClick={() => setDialogOpen(true)}>
-                    Confirm
-                </Button>
-                <ConfirmationDialog
-                    open={dialogOpen}
-                    onClose={() => setDialogOpen(false)}
-                    onConfirm={handleConfirm}
-                />
+                    <Button sx={{position:'absolute', fontWeight:'bold'}} variant='contained' onClick={() => setDialogOpen(true)}>
+                        Confirm
+                    </Button>
+                    <ConfirmationDialog
+                        open={dialogOpen}
+                        onClose={() => setDialogOpen(false)}
+                        onConfirm={handleConfirm}
+                    />
             </Grid>
             </Box>
         </main> 

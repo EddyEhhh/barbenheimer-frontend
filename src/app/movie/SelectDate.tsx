@@ -5,7 +5,6 @@ import { MovieScheduleDatesInterface } from "../interface/interface";
 
 
 const SelectDate = ({id, showDate, onClickHandler, selectedDate} : MovieScheduleDatesInterface)  => {
-    // console.log(selectedDate);
     return (
             <Grid item xs={1}>
                 <Button size="small" sx={{fontWeight:"bold"}} variant={selectedDate == id ? 'contained' : 'outlined'} 

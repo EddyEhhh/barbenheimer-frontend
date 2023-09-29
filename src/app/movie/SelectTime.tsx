@@ -3,8 +3,7 @@ import { MovieScheduleTimeInterface } from "../interface/interface";
 
 
 //id of time is 1 , 2 , 3 ... need to minus one for index
-const SelectTime = ({id, showTime, hall, selectedTime, onClickHandler} : MovieScheduleTimeInterface) => {
-    // console.log(selectedTime);
+const SelectTime = ({id, showTime, selectedTime, onClickHandler} : MovieScheduleTimeInterface) => {
     return (
         <Grid item xs={1}>
             <Button size='small' variant={selectedTime == id ? 'contained' : 'outlined'} sx={{fontWeight:"bold"}}

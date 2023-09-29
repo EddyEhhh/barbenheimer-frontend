@@ -5,13 +5,12 @@ import { SeatingInterface } from "@/app/interface/interface"
 
 
 const SeatSelection = (props : {seatingData : SeatingInterface[], width :number, height: number, 
-    onClickFunction: (seat: SeatingInterface, index: number) => void
+                                onClickFunction: (seat: SeatingInterface, index: number) => void
 }) => {
     const width = props.width * 0.59 //2 is width of box * 5 columns
     const height = props.height * 0.6  //6 is height of box * 2 rows
 
     const onClickHandler = (seat:SeatingInterface, index:number) => {
-        console.log(seat);
         if (seat.state == 0) {
             seat.state =1
         } else {

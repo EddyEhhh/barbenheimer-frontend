@@ -1,5 +1,5 @@
 import AxiosInstance from "../api/AxiosInstance";
-import { SeatingInterface } from "../interface/interface";
+import { HallInterface, SeatingInterface } from "../interface/interface";
 import Cookies from 'js-cookie'
 
 
@@ -14,14 +14,31 @@ export const getAllMovies = async () => {
         }
 }
 
+export const getSpecificMovies = async (id : string | string[]) => {
+    try {
+        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`);
+        return data;
+    } catch {
+
+    }
+}
+
 export const submitSeats =async (showId : string, seating : SeatingInterface[]) => {
     try {
         const {data} = await AxiosInstance.post(`/api/v1/schedules/${showId}`, seating);
-        console.log(data.token);
         return data;
-        Cookies.set(`testing`, data.token, {expiration: 60000});
     } catch {
 
     }
     
+}
+
+
+export const getScheduleFromHall = async (hall : string | string[]) => {
+    try {
+        const {data, status} = await AxiosInstance.get(`/api/v1/schedules/${hall}`);
+        return data;
+    } catch {
+
+    }
 }

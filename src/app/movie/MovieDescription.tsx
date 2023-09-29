@@ -1,25 +1,8 @@
 import {Paper, Typography, Grid, Container} from "@mui/material/";
 import Image from 'next/image'
+import { MovieSpecificDetailsInterface } from "../interface/interface";
 
-type MovieDetail = {
-    id: number,
-    title: string,
-    runtimeInMinute: number,
-    movieImages?: string,
-    rating?: number,
-    ageRestriction: string,
-    releaseDate: string,
-    lastShowingDate?: Date,
-    showingDate: Date,
-    ticketSaleDate?: Date,
-    basePrice?: number,
-    cast?: string,
-    description?: string,
-    language?: string,
-    genre?: string,
-    director: string,
-}
-const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestriction, releaseDate, language, subtitle, director, cast, description} : MovieDetail) => {
+const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestriction, releaseDate, language, director, cast, description} : MovieSpecificDetailsInterface) => {
     return (
         <>
         <Paper square={false} sx={{pt:2 ,pb:2}}>

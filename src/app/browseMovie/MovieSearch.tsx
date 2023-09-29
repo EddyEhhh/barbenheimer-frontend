@@ -4,7 +4,7 @@ import {Box,Grid,Pagination} from "@mui/material/";
 import MovieBox from "../components/MovieBox";
 import * as React from 'react';
 import { useState , useEffect, Suspense} from "react";
-import { getAllMovies } from "../services/homeServices";
+import { getAllMovies } from "../services/services";
 import { MovieDetailsInterface } from "../interface/interface";
 
 const MovieSearch = () => {
@@ -16,23 +16,21 @@ const MovieSearch = () => {
     const wantedItemsPerPage: number = 10;
     useEffect (() => {
         const fetchData = async() => {
-            try {  
-                const data = await getAllMovies();
-                let itemsPerPage: number = 0;
-                let index: number = 0; 
-                const pagination : MovieDetailsInterface[][] = [[]];
-                data.map((data : MovieDetailsInterface) => {
-                    if (itemsPerPage == wantedItemsPerPage) {
-                        itemsPerPage = 0;
-                        index++;
-                        pagination[index] = [];
-                    }
-                    pagination[index][itemsPerPage] = data;
-                    itemsPerPage++;
-                });
-                setMovieData(pagination);
-            } catch {
-            }
+            const data = await getAllMovies();
+            let itemsPerPage: number = 0;
+            let index: number = 0; 
+            const pagination : MovieDetailsInterface[][] = [[]];
+            data.map((data : MovieDetailsInterface) => {
+                if (itemsPerPage == wantedItemsPerPage) {
+                    itemsPerPage = 0;
+                    index++;
+                    pagination[index] = [];
+                }
+                pagination[index][itemsPerPage] = data;
+                itemsPerPage++;
+            });
+            setMovieData(pagination);
+
         }
         fetchData();       
        

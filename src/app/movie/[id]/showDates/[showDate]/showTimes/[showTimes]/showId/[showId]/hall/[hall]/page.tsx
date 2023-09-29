@@ -4,15 +4,14 @@ import SeatSelection from "../../../../SeatSelection";
 import { useState, useEffect } from "react";
 import AxiosInstance from "@/app/api/AxiosInstance";
 import { MovieSpecificDetailsInterface, SeatingArrangementInterface, SeatingInterface } from "@/app/interface/interface";
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams} from 'next/navigation';
 import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
 import LoadingPage from "@/app/Loading";
 import SeatLegend from "./SeatLegend";
-import { submitSeats } from "@/app/services/homeServices";
+import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
 import Cookies from 'js-cookie';
-import { Cookie } from "next/font/google";
 
 
 const MovieSeatingPage = () => {
@@ -22,12 +21,10 @@ const MovieSeatingPage = () => {
     const [movieData, setMovieData] = useState<MovieSpecificDetailsInterface>();
     const [seatingData, setSeatingData] = useState<SeatingArrangementInterface>()
     const [seating, setSeating] = useState<SeatingInterface[]>([]);
-
     const [selectedSeatDisplay, setSelectedSeatDisplay] = useState<SeatingInterface[]>([]);
 
     const onClickHandler = (seat:SeatingInterface, index:number) => {
         const updatedSelectedSeatDisplay = [...selectedSeatDisplay];
-
         if (seat.state == 0) {
            seat.state = 4 
            updatedSelectedSeatDisplay.push(seat);
@@ -45,39 +42,21 @@ const MovieSeatingPage = () => {
 
 
     const submitDataHandler =  async () => {
-        try {
-            // const {data} = await submitSeats(seating);
             const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
-            console.log(data);
-            Cookies.set('test1', data);
+            // Cookies.set('test1', data);
             // const cookieValue = Cookies.get('sessid');
-            // console.log('Cookie Value:', cookieValue);
-            // const encodedData = encodeURIComponent(JSON.stringify(selectedSeatDisplay));
-
             router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
-        } catch {
-//this is when data has a conflicting error
-        }
+      
     }
  
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const {data, status} = await AxiosInstance.get(`/api/v1/schedules/${params.hall}`);
-                setSeating(data.seats);
-                setSeatingData(data);
-                console.log(data);
-                
-            } catch {
+            const data = await getScheduleFromHall(params.hall);
+            setSeating(data.seats);
+            setSeatingData(data);
 
-            }
-            
-            try {
-                const {data, status} = await AxiosInstance.get(`/api/v1/movies/${params.id}`);
-                setMovieData(data);
-            } catch {
-
-            }
+            const data2 = await getSpecificMovies(params.id);
+            setMovieData(data2);
         }
          fetchData();
     }, [])
@@ -101,14 +80,14 @@ const MovieSeatingPage = () => {
                 <Box display="flex" pt={5} flexDirection={"column"} justifyContent={'center'} alignItems={'center'} >
                     <Typography variant="h6" fontWeight={'400'}> Seat selection </Typography>
                     <Divider variant="middle" light={true} sx={{width:'80%'}}/>
-                    <Box pt={1} >
-                        <SeatSelection  
-                        width={seatingData?.width} 
-                        height={seatingData?.height} 
-                        seatingData={seating}
-                        onClickFunction={onClickHandler}
-                        ></SeatSelection>
-                    </Box>
+                        <Box pt={1} >
+                            <SeatSelection  
+                            width={seatingData?.width} 
+                            height={seatingData?.height} 
+                            seatingData={seating}
+                            onClickFunction={onClickHandler}
+                            ></SeatSelection>
+                        </Box>
                     <SeatLegend></SeatLegend>
                 </Box>
 
@@ -118,16 +97,15 @@ const MovieSeatingPage = () => {
                         <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
                         <Box ml={1} height={10} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
                             {
-                                selectedSeatDisplay && selectedSeatDisplay.map((seat, index) => (
-                                    <Typography 
-                                        mr={1} 
-                                        key={index}> 
-                                        {`${seat.rowCharacter}${seat.columnNumber}`}
-                                    </Typography>
-                                ))
+                            selectedSeatDisplay && selectedSeatDisplay.map((seat, index) => (
+                                <Typography 
+                                    mr={1} 
+                                    key={index}> 
+                                    {`${seat.rowCharacter}${seat.columnNumber}`}
+                                </Typography>
+                            ))
                             }
-                        </Box>
-                        
+                        </Box> 
                     </Box>
                 </Box>
                     
