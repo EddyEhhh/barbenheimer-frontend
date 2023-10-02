@@ -68,8 +68,10 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
 
     // backgroundImage:{`url(${movieData?.movieImages[0].imageUrl})`}
     return (
-        <Box sx={{height:'100%',pb:10}}>
-            <Box sx={{pb:5, pt:10}}>
+    
+        
+        <Box sx={{height:'100%'}}>
+            <Box sx={{pb:5}}>
                 {movieData && <MovieDescription
                     title={movieData.title}
                     runtimeInMinute={movieData.runtimeInMinute}
@@ -83,65 +85,64 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
                 ></MovieDescription>}
             </Box>
 
-                <Grid container sx={{mt:2, mb:2,height:50}} direction={"column"} justifyContent='center' >
-                    <Grid container direction={'column'} textAlign={"center"} alignContent={"center"} justifyContent={"center"}>
-                        <Typography>Select Dates</Typography>
-                        <Divider variant="middle" light={true} sx={{width:'90%'}}/>
-                    </Grid>
-                </Grid>
-
-            <Grid container spacing={2} justifyContent={'center'} alignContent={'center'}>
-                {dateSelection?.map((dates, index) => (
-                    <SelectDate
-                    key = {dates.id}
-                    id={dates.id}
-                    index={index}
-                    selectedDate={selectedDate}
-                    showDate={dates.showDate}
-                    onClickHandler ={() => selectDateHandler(index)}
-                    />
-                ))
-            }
-            </Grid>
-        
-            <Grid container sx={{mt:2, mb:2, height:50}} direction={"row"} justifyContent='center' >
-                <Grid container  direction={'column'} textAlign={"center"} alignContent={"center"} justifyContent={"center"}>
-                    <Typography >Select Time</Typography>
+            <Grid container sx={{mt:1, mb:6,height:50}} direction={"row"} justifyContent='center' >
+                <Grid container direction={'column'} textAlign={"center"} alignContent={"center"} justifyContent={"center"}>
+                    <Typography>Date selection</Typography>
                     <Divider variant="middle" light={true} sx={{width:'90%'}}/>
                 </Grid>
+                  
+                <Grid container pt={3} direction={'row'}  justifyContent={'center'} alignContent={'center'}>
+                    {dateSelection?.map((dates, index) => (
+                        <SelectDate
+                        key = {dates.id}
+                        id={dates.id}
+                        index={index}
+                        selectedDate={selectedDate}
+                        showDate={dates.showDate}
+                        onClickHandler ={() => selectDateHandler(index)}
+                        />
+                    ))
+                }
+                </Grid>
+            </Grid>
+
+        
+            <Grid container sx={{mb:2, height:50}} direction={"row"} justifyContent='center' >
+                <Grid container  direction={'column'} textAlign={"center"} alignContent={"center"} justifyContent={"center"}>
+                    <Typography >Time Selection</Typography>
+                    <Divider variant="middle" light={true} sx={{width:'90%'}}/>
+                </Grid>
+
+                <Box display='flex' pt={3} justifyContent={'center'}>
+                    <Grid container direction={'row'} justifyContent={'center'}>
+                        {timeSelection?.map((time, index) => (
+                                <SelectTime
+                                    key={time.id}
+                                    id ={time.id}
+                                    showTime={time.showTime}
+                                    selectedTime = {selectedTime}
+                                    onClickHandler ={() => selectTimeHandler(index)}
+                                /> 
+                        ))}
+                    </Grid>    
+                </Box>
+             
             </Grid>
             
-            <Box display='flex' pb={3} justifyContent={'center'}>
-                <Grid container  spacing={3} width={1200} justifyContent={'center'} alignContent={'center'}>
-                    {timeSelection?.map((time, index) => (
-                        <SelectTime
-                            key={time.id}
-                            id ={time.id}
-                            showTime={time.showTime}
-                            selectedTime = {selectedTime}
-                            onClickHandler ={() => selectTimeHandler(index)}
-                        /> 
-                    ))}
-                </Grid>    
-            </Box>
-             
-            {/* '/movies/3/showDates/19-02-2023/showTimes/08:00' */}
             <Box display="flex" pt={10} justifyContent="center" height="300" mb="30">
-                    <Button 
-                        disabled={selectedTime === undefined} 
-                        color="success" 
-                        size="large" 
-                        variant="contained">
-                        <Link 
-                            style={{textDecoration:'none', color:'black'}}
-                            href={{
-                                pathname:`/movie/${params.id}/showDates/${dateString}/showTimes/${timeString}/showId/${selectedTime}/hall/${selectedHall}`,
-                            
-                            }}
-                            >
-                            <Typography fontWeight="bold"> Confirm </Typography>  
-                        </Link>
-                    </Button>
+                <Button 
+                    disabled={selectedTime === undefined} 
+                    color="success" 
+                    size="large" 
+                    variant="contained">
+                    <Link 
+                        style={{textDecoration:'none', color:'black'}}
+                        href={{
+                            pathname:`${params.id}/showDates/${dateString}/showTimes/${timeString}/showId/${selectedTime}/hall/${selectedHall}`,
+                        }}>
+                        <Typography fontWeight="bold"> Confirm </Typography>  
+                    </Link>
+                </Button>
             </Box>
          
         </Box> 

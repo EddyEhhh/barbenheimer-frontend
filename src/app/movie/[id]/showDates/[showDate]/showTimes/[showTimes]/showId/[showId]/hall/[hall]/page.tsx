@@ -8,7 +8,7 @@ import { useParams} from 'next/navigation';
 import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
-import LoadingPage from "@/app/Loading";
+import LoadingPage from "../../../../../../../../../../loading";
 import SeatLegend from "./SeatLegend";
 import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
 import Cookies from 'js-cookie';
@@ -33,7 +33,6 @@ const MovieSeatingPage = () => {
             updatedSelectedSeatDisplay.splice(selectedSeatDisplay.indexOf(seat), 1);
             seat.state = 0
         }
-        
         setSelectedSeatDisplay(updatedSelectedSeatDisplay)
 // console.log(selectedSeatDisplay)
 // console.log(selectedSeatDisplay);
@@ -64,52 +63,57 @@ const MovieSeatingPage = () => {
     
     return (
         <Suspense fallback={<LoadingPage/>}>
-            {movieData ? (<>  
-                {<DescriptionBox 
-                    title={movieData.title}
-                    runtimeInMinute={movieData.runtimeInMinute}
-                    ageRestriction={movieData.ageRestriction}
-                    language={movieData.language}
-                    movieImage={movieData.movieImages[0].imageUrl}
-                    showDate={params.showDate}
-                    showTime={decodeURIComponent(params.showTimes)}
-                    hall={params.hall}
-                />}
-
-
-                <Box display="flex" pt={5} flexDirection={"column"} justifyContent={'center'} alignItems={'center'} >
-                    <Typography variant="h6" fontWeight={'400'}> Seat selection </Typography>
-                    <Divider variant="middle" light={true} sx={{width:'80%'}}/>
-                        <Box pt={1} >
-                            <SeatSelection  
-                            width={seatingData?.width} 
-                            height={seatingData?.height} 
-                            seatingData={seating}
-                            onClickFunction={onClickHandler}
-                            ></SeatSelection>
-                        </Box>
-                    <SeatLegend></SeatLegend>
+            {movieData ? (<Box>  
+                <Box display="flex" flexDirection="row" justifyContent={'center'} mt={13} >
+                    {<DescriptionBox 
+                        title={movieData.title}
+                        runtimeInMinute={movieData.runtimeInMinute}
+                        ageRestriction={movieData.ageRestriction}
+                        language={movieData.language}
+                        movieImage={movieData.movieImages[0].imageUrl}
+                        showDate={params.showDate}
+                        showTime={decodeURIComponent(params.showTimes)}
+                        hall={params.hall}
+                    />}
+                    <Box display="flex" flexDirection={"column"} ml={3}  alignItems={'center'} >
+                        <Typography variant="body1" fontWeight={'400'}> Seat selection </Typography>
+                            <Divider variant="middle" light={true} sx={{width:'80%'}}/>
+                            <Box pt={1}>
+                                <SeatSelection  
+                                width={seatingData?.width} 
+                                height={seatingData?.height} 
+                                seatingData={seating}
+                                onClickFunction={onClickHandler}
+                                ></SeatSelection>
+                            </Box>
+                        <SeatLegend></SeatLegend>
+                    </Box>
                 </Box>
+               
+
 
                 <Box pt={4}>
                     <Box display="flex"  flexDirection={"column"} justifyContent={'center'} alignItems={'center'} >
                         <Typography variant="h6" fontWeight={'400'}> Seats Selected </Typography>
                         <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
-                        <Box ml={1} height={10} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
+                        <Box ml={1} height={30} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
                             {
                             selectedSeatDisplay && selectedSeatDisplay.map((seat, index) => (
-                                <Typography 
-                                    mr={1} 
+                                <Button
+                                    disabled
+                                    variant="contained"
+                                    size="large"
+                                    sx={{mr:1}}
                                     key={index}> 
-                                    {`${seat.rowCharacter}${seat.columnNumber}`}
-                                </Typography>
+                                    <Typography color={'whitesmoke'}>{`${seat.rowCharacter}${seat.columnNumber}`}</Typography>
+                                </Button>
                             ))
                             }
                         </Box> 
                     </Box>
                 </Box>
                     
-                <Box display={'flex'} mt={4} mb={10} justifyContent={'center'}>
+                <Box display={'flex'} mt={4} justifyContent={'center'}>
                     <Button 
                         disabled={selectedSeatDisplay.length == 0} 
                         onClick={submitDataHandler} 
@@ -121,7 +125,7 @@ const MovieSeatingPage = () => {
                 </Box>
 
 
-            </>) : (<LoadingPage></LoadingPage>)}
+            </Box>) : (<LoadingPage></LoadingPage>)}
         </Suspense>
 
     );

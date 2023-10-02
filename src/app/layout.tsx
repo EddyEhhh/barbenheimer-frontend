@@ -7,7 +7,8 @@ import  darkTheme  from './theme'
 import CssBaseline from '@mui/material/CssBaseline';
 const inter = Inter({ subsets: ['latin'] });
 import { Suspense } from 'react'
-import LoadingPage from './Loading'
+import Footer from './footer'
+import LoadingPage from './loading'
 export default function RootLayout ({children}: {
   children: React.ReactNode
 }) {
@@ -18,10 +19,13 @@ export default function RootLayout ({children}: {
       <body className={inter.className}> 
       <ThemeProvider theme = {darkTheme}> 
         <CssBaseline enableColorScheme/>
-          <div> <Header/> </div>
-          <Suspense fallback={<LoadingPage/>}>
-            <div>{children}</div>
-          </Suspense>
+          <Header/> 
+            <Box mt={8}>
+              <Suspense fallback={<LoadingPage/>}>
+                {children}
+              </Suspense>
+            </Box>
+              <Footer></Footer>
 
       </ThemeProvider>
       </body>

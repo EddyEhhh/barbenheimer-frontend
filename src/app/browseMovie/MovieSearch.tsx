@@ -38,6 +38,7 @@ const MovieSearch = () => {
 
     return (
             <Box sx = {{ mt:10, pl:5, pr:5, display:'flex', justifyContent:'center'}}> 
+            
                 <Box display='flex' width={1} flexDirection='column' justifyContent="center" alignContent="center">
                     <Grid container columns={{lg:5, md:3, sm:2, xs:1}} paddingLeft={1} columnSpacing={3} rowSpacing={2}>
                         { 

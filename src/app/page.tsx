@@ -10,7 +10,6 @@ export default function Home() {
   return (
   <>
       <Grid container direction={"column"} width={1} >
-
         <Preview></Preview>
         <NowShowingMovies></NowShowingMovies>
 

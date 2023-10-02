@@ -11,7 +11,7 @@ const SeatLegend = () =>{
                 <Typography>your seat</Typography>
             </Box>
             <Box display={'flex'} flexDirection={'row'} justifyItems={'center'} alignContent={'center'}>
-                <EventSeatTwoToneIcon/> 
+                <EventSeatIcon/> 
                 <Typography>available</Typography>
             </Box>
             <Box display={'flex'}  flexDirection={'row'} justifyItems={'center'} alignContent={'center'}>

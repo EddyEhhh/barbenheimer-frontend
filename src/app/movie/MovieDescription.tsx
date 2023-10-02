@@ -12,76 +12,82 @@ const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestr
                 sx= {{width:1, height:500}}
                 >
                 <Grid item position={"relative"}container xs={5}>
-                        <Image 
-                            src={movieImages} 
-                            alt="no image" 
-                            fill={true}
-                            style={{objectFit:"contain", aspectRatio:3/2}}>
-                        </Image>
+                    <Image 
+                        src={movieImages} 
+                        alt="no image" 
+                        fill={true}
+                        style={{objectFit:"contain", aspectRatio:3/2}}>
+                    </Image>
                 </Grid>
 
             
                 <Grid item xs={6}>
-                    <Paper elevation={2} sx={{height:'100%'}} >
                         <Grid container columns={2}  direction={"column"} pl={2} pr={2} rowGap={2}>
                             <Grid container direction={'column'} className="TITLE BOX" width={'80%'} pt={1}>
-                                <Typography  fontWeight="500" variant="h6">
+                                <Typography  fontWeight="600" variant="h6">
                                     {title}
                                 </Typography>
                                 <Typography sx={{mt:1}} variant="body2">
-                                        {description}
+                                    {description}
                                 </Typography>
                             </Grid> 
         
-                            <Grid>
-                                <Grid className="content-box" pt={1} pb={2} mb={1} pr={2} container rowGap={2} >
-                                    <Grid container direction='row' justifyContent={"space-between"}>
-                                
-                                        <Grid xs={6} container direction={'column'} rowGap={1}>
-                                            <Typography fontWeight="500" variant="body2">
-                                                Rating: {ageRestriction}
+                            <Grid className="content-box" pt={1} pb={2} mb={1} pr={2} container rowGap={2} >
+                                <Grid container direction='row' justifyContent={"space-between"}>
+                                    <Grid xs={6} container direction={'column'} rowGap={1}>
+                                        <Grid>
+                                            <Typography variant="body2" color={'GrayText'}>
+                                                Rating:
                                             </Typography>
-                                            <Typography variant="body2"  fontWeight={"500"}> 
+                                            <Typography  variant="body2" > {ageRestriction}</Typography> 
+                                        </Grid>
+                                        
+                                        <Grid>
+                                            <Typography variant="body2" color={'GrayText'}> 
                                                 Duration:
-                                                <Typography  variant="body2" > 
-                                                    {runtimeInMinute} minutes 
-                                                </Typography> 
                                             </Typography>
-                                            <Typography variant="body2" fontWeight={"500"}> 
+                                            <Typography  variant="body2" >{runtimeInMinute} minutes</Typography> 
+                                        </Grid>
+                                
+                                        <Grid>
+                                            <Typography variant="body2" color={'GrayText'}> 
                                                 Release Date: 
-                                                <Typography variant="body2">
-                                                    {releaseDate}
-                                                </Typography>
                                             </Typography>
-
-                                            <Typography variant="body2">
+                                            <Typography variant="body2">{releaseDate}</Typography>
+                                        </Grid>
+                                    
+                                        <Grid>
+                                            <Typography variant="body2" color={'GrayText'}>
                                                 Spoken Language:
-                                                <Typography variant="body2">
-                                                    {language}
-                                                </Typography>
-                                                </Typography>
+                                            </Typography>
+                                            <Typography variant="body2">{language}</Typography>
                                         </Grid>
 
-                                        <Grid container direction={'column'}xs={6}  rowGap={1}>
-                                            <Typography  variant="body2" fontWeight={"bold"}> 
+                                    </Grid>
+
+                                    <Grid container direction={'column'}xs={6}  rowGap={1}>
+                                        <Grid>
+                                            <Typography variant="body2" color={"GrayText"}> 
                                                 Director: 
-                                                <Typography variant="body2">
-                                                {director} 
-                                                </Typography>
                                             </Typography>
-                                            <Typography variant="body2" fontWeight={"bold"}>
+                                            <Typography variant="body2">
+                                                {director} 
+                                            </Typography>
+                                        </Grid>
+                                       
+                                        <Grid>
+                                            <Typography variant="body2" color={"GrayText"}>
                                                 Starring: 
-                                                <Typography variant="body2">
+                                            </Typography>
+                                            <Typography variant="body2">
                                                 {cast}
-                                                </Typography>
                                             </Typography>
                                         </Grid>
                                     </Grid>
-
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Paper>
+                   
                 </Grid>
 
 
