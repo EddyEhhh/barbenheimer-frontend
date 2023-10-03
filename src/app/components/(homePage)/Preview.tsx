@@ -1,7 +1,7 @@
 import {Box, Slide, Fade, Typography, Card, CardMedia, CardContent} from '@mui/material'
-import anime1 from '../images/anime1.jpeg'
-import anime2 from '../images/yourname.jpg'
-import anime4 from '../images/vz3avvg6752b1.webp'
+import anime1 from '../../images/anime1.jpeg'
+import anime2 from '../../images/yourname.jpg'
+import anime4 from '../../images/vz3avvg6752b1.webp'
 import Image, { StaticImageData } from 'next/image'
 import { useState, useEffect} from 'react'
 
