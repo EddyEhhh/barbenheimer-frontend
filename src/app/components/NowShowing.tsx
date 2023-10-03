@@ -59,7 +59,7 @@ const NowShowingMovies = () => {
 
 
     return (
-        <Grid container justifyContent='center' alignItems='center' sx = {{pl:10, pr:10, mt:3, height:'fill'}}>      
+        <Grid container justifyContent='center' alignItems='center' sx = {{pl:10, pr:10, mt:3, height:'100%'}}>      
             <Tabs textColor="inherit" value={value} onChange={handleChange} centered>
                 <Tab sx={{fontSize:"small"}} label="Now Showing"/>
                 <Tab sx={{fontSize:"small"}} label="Advanced Sales" />
@@ -67,21 +67,21 @@ const NowShowingMovies = () => {
             </Tabs>
         
         <Box sx={{height:30, width:'1', mb:1, display:"flex", alignItems:'center'}}>
-                <Typography color='white' variant = 'subtitle1'> Shows </Typography>
+                <Typography variant = 'subtitle1'> Shows </Typography>
             </Box> 
           
             <Box sx = {{width:'100%'}}>
                 {/* <Fade in={true} timeout={1800} mountOnEnter unmountOnExit> */}
                 <Grid container columns={{xl:5, lg:4, md:3, sm:2, xs:1}} columnSpacing={2} rowSpacing={3}>
                     {value == 0 && movieData[pageIndex-1].map((movieData) => (
-                            <MovieBox 
-                                key={movieData.id} 
-                                id={movieData.id}
-                                title={movieData.title} 
-                                ageRestriction={movieData.ageRestriction} 
-                                runtimeInMinute={movieData.runtimeInMinute} 
-                                movieImages={movieData.movieImages[0].imageUrl}
-                            ></MovieBox>
+                        <MovieBox 
+                            key={movieData.id} 
+                            id={movieData.id}
+                            title={movieData.title} 
+                            ageRestriction={movieData.ageRestriction} 
+                            runtimeInMinute={movieData.runtimeInMinute} 
+                            movieImages={movieData.movieImages[0].imageUrl}
+                        ></MovieBox>
                         ))
                     }
                 </Grid>

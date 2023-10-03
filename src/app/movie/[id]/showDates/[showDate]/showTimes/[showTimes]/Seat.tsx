@@ -14,14 +14,13 @@ const Seat = (props : SeatingInterface) => {
         sx={{
             left:`${props.x*1.3}em`,
             top:`${props.y*1.3}em`,
-            position:"absolute",}} 
-            >
-            {props.state == 0 && <EventSeatTwoToneIcon/> }
-            {props.state == 1 && <EventSeatIcon color="error" />}
-            {props.state == 2 && <EventSeatIcon color="disabled"/>} 
-            {props.state == 4 && <EventSeatIcon color = "success"/>}
-
-       
+            position:"absolute"}} 
+        >
+            
+        {props.state == 0 && <EventSeatIcon color="secondary"/> }
+        {props.state == 1 && <EventSeatIcon color="error" />}
+        {props.state == 2 && <EventSeatIcon color="disabled"/>} 
+        {props.state == 4 && <EventSeatIcon color = "success"/>}
         </Box>
     )
 }

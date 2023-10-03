@@ -20,11 +20,7 @@ const Header = () => {
 
 
     useEffect (() => {
-        const fetchData = async () => {
-          const {data, status} = await getAllMovies();
-          setSearchData(data);
-        }
-        fetchData();
+        getAllMovies().then((data)=>setSearchData(data));
     }, [])
 
 
@@ -42,7 +38,7 @@ const Header = () => {
     return (
 
       <Box>
-        <AppBar position="absolute" sx={{justifyContent:"center", background:'transparent', boxShadow:'none'}}>
+        <AppBar component={"nav"}  sx={{justifyContent:"center"}}>
           <Toolbar>
             <Box sx={{font:'bold', width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
                 <Box width={'20%'}>
@@ -54,19 +50,19 @@ const Header = () => {
                   freeSolo
                   options={searchData}
                   getOptionLabel={(option) => option.title}
-                  renderInput={(params) => <TextField {...params} size='small' label="Search for movies" onKeyDown={searchOnEnterHandler}
+                  renderInput={(params) => <TextField {...params} size='small' label="Search movies" onKeyDown={searchOnEnterHandler}
                   />}
                 />
                 <Box sx={{width:'20%', display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center'}}>
                   <Link underline="none" color={"white"} href = "/"> 
                     <Box display="flex" flexDirection={"row"}  justifyContent={"space-between"} alignItems={"center"} > 
-                    <HomeIcon fontSize="small"/><Typography sx={{ml:'6px'}} fontWeight={"500"} variant="body2" > HOME </Typography> 
+                    <HomeIcon fontSize="small"/><Typography sx={{ml:'6px'}} fontWeight={"500"} variant="body2" > Home </Typography> 
                     </Box>
                   </Link>
 
                   <Link underline="none" color={"white"} href = "/browseMovie"> 
                     <Box display="flex" flexDirection={"row"}  justifyContent={"space-between"} alignItems={"center"} > 
-                     <TheatersIcon fontSize="small"  /><Typography sx={{ml:'6px'}}  fontWeight={"500"} variant="body2"> MOVIES </Typography>
+                     <TheatersIcon fontSize="small"  /><Typography sx={{ml:'6px'}}  fontWeight={"500"} variant="body2"> Movies </Typography>
                     </Box>
                   </Link>
                   

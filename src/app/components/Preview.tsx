@@ -49,8 +49,7 @@ const Preview = () => {
                 height:800,
                 width: isHover === true ? '100%' : '100%', 
                 transition: 'width 0.1s ease-in-out',
-               }}           
-           >
+               }}>
             {isSlideIn ? (
             <Slide in={true}
              direction="left"
@@ -62,22 +61,21 @@ const Preview = () => {
                         
             >
             {
-                  <Card sx={{
-                height:800, borderRadius:'4px', 
-
+            <Card 
+            sx={{
+                height:800, 
+                borderRadius:'4px', 
             }}
            >
-                {/* <Typography sx={{backgroundColor:''}}>HELLO </Typography> */}
-                <CardMedia 
-                        sx={{height: 800,   
-                        // border:isHover === true ? 4 : '',
-                        // transition:"border 0.2s ease-in-out",
-                        // borderRadius:'3px',
-                        // borderColor:'primary.dark'
-                        }}
-                       
-                        image={images[currentImageIndex].src}
-                    />
+            <CardMedia 
+                sx={{height: 800,   
+                // border:isHover === true ? 4 : '',
+                // transition:"border 0.2s ease-in-out",
+                // borderRadius:'3px',
+                // borderColor:'primary.dark'
+                }}
+                image={images[currentImageIndex].src}
+            />
                 <CardContent sx={{backgroundColor:'transparent'}}>
                     <Typography variant="h4" color="textPrimary">HELLO </Typography>
                 </CardContent>
@@ -94,11 +92,15 @@ const Preview = () => {
              
           }
             </Slide>) : (
-            <Fade in={true} timeout={500} unmountOnExit>{  <Image 
+            <Fade in={true} timeout={500} unmountOnExit>
+                {  
+                <Image 
                 src={images[0]} alt="no image" 
                 fill={true}
-                style={{objectFit:"cover"}}>
-            </Image>}
+                style={{objectFit:"cover"}}
+                priority={true}>
+                </Image>
+                }
             </Fade>
            )} 
 

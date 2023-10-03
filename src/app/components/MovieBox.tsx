@@ -58,19 +58,17 @@ const MovieBox = ({id,title, runtimeInMinute, movieImages, rating, ageRestrictio
                         </Image>
                     </Button>
 
-                    <Paper  sx={{borderRadius:"4px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
-                        <Stack className="text-section" display={"flex"} pb={1} height="55px"  justifyContent={"space-between"}  flexDirection={"column"} sx={{pl:1, pr:1}}>
+                    <Paper sx={{borderRadius:"4px", borderTopLeftRadius:'0', borderTopRightRadius:'0'}} >
+                        <Stack className="text-section" display={"flex"} height="43px"  justifyContent={"space-between"} flexDirection={"column"} sx={{pl:1, pr:1}}>
                             <Stack direction='row' display={'flex'}  justifyContent={'space-between'}>
-                                <Typography variant="inherit" width={"3/4"}> {title}</Typography>
-                                <Typography variant="subtitle1"> {ratings[ageRestriction]} </Typography>
+                                <Typography variant="body2" width={"3/4"}> {title}</Typography>
+                                <Typography variant="body2"> {ratings[ageRestriction]} </Typography>
                             </Stack>
                             {/* <Box display={"flex"} justifyContent="space-between">
                                 <Typography variant="subtitle1"> {runtimeInMinute} minutes</Typography>
                                 <Button sx = {{fontWeight:"bold"}} variant="contained" color="primary" size="small">Buy now</Button>
                             </Box> */}
                         </Stack>
-
-
                     </Paper>
 
                 </Box>
