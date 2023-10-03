@@ -1,6 +1,6 @@
 'use client'
-import DescriptionBox from "../../../../DescriptionBox";
-import SeatSelection from "../../../../SeatSelection";
+import DescriptionBox from "../../../../../../../../../../components/(movieSeatsPage)/DescriptionBox";
+import SeatSelection from "../../../../../../../../../../components/(movieSeatsPage)/SeatSelection";
 import { useState, useEffect } from "react";
 import AxiosInstance from "@/app/api/AxiosInstance";
 import { MovieSpecificDetailsInterface, SeatingArrangementInterface, SeatingInterface } from "@/app/interface/interface";
@@ -9,7 +9,7 @@ import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
 import LoadingPage from "../../../../../../../../../../loading";
-import SeatLegend from "./SeatLegend";
+import SeatLegend from "../../../../../../../../../../components/(movieSeatsPage)/SeatLegend";
 import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
 import Cookies from 'js-cookie';
 

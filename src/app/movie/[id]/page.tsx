@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState} from "react";
-import MovieDescription from "../MovieDescription";
-import SelectDate from "../SelectDate";
-import SelectTime from "../SelectTime";
+import MovieDescription from "../../components/(movieDetailPage)/MovieDescription";
+import SelectDate from "../../components/(movieDetailPage)/SelectDate";
+import SelectTime from "../../components/(movieDetailPage)/SelectTime";
 import {Box, Paper, Grid, Typography, Button, Divider} from "@mui/material";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";

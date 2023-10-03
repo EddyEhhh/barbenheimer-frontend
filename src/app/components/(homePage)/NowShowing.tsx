@@ -1,11 +1,11 @@
 "use client"
 import {Box, Typography, Grid, Pagination, Tabs, Tab, Fade} from "@mui/material/";
-import MovieBox from "./MovieBox";
+import MovieBox from "../MovieBox";
 import * as React from 'react';
 import { useState, useEffect, createContext, useContext } from "react";
-import AxiosInstance from "../api/AxiosInstance";
-import { getAllMovies } from "../services/services";
-import { MovieDetailsInterface } from "../interface/interface";
+import AxiosInstance from "../../api/AxiosInstance";
+import { getAllMovies } from "../../services/services";
+import { MovieDetailsInterface } from "../../interface/interface";
 
 
 const NowShowingMovies = () => {

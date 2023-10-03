@@ -1,6 +1,6 @@
 import {Typography, Grid, Button, Stack, Paper} from "@mui/material/";    
 import Link from "next/link";
-import { MovieScheduleDatesInterface } from "../interface/interface";
+import { MovieScheduleDatesInterface } from "../../interface/interface";
 
 
 

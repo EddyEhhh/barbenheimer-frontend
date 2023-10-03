@@ -1,6 +1,6 @@
 import {Paper, Typography, Grid, Container} from "@mui/material/";
 import Image from 'next/image'
-import { MovieSpecificDetailsInterface } from "../interface/interface";
+import { MovieSpecificDetailsInterface } from "../../interface/interface";
 
 const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestriction, releaseDate, language, director, cast, description} : MovieSpecificDetailsInterface) => {
     return (

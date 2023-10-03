@@ -1,4 +1,4 @@
-import NowShowingMovies from "../components/NowShowing";
+import NowShowingMovies from "../components/(homePage)/NowShowing";
 import MovieSearch from "./MovieSearch";
 import { Suspense } from "react";
 

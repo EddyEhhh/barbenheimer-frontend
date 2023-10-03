@@ -1,7 +1,7 @@
 "use client"
-import NowShowingMovies from "./components/NowShowing"
+import NowShowingMovies from "./components/(homePage)/NowShowing"
 import {Box, Grid} from "@mui/material/"
-import Preview from "./components/Preview"
+import Preview from "./components/(homePage)/Preview"
 import { Suspense } from "react"
 import LoadingPage from "./Loading"
 

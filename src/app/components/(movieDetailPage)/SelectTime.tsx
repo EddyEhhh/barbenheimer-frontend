@@ -1,5 +1,5 @@
 import {Box, Typography, Grid, Button, Stack, Paper} from "@mui/material/";
-import { MovieScheduleTimeInterface } from "../interface/interface";
+import { MovieScheduleTimeInterface } from "../../interface/interface";
 
 
 //id of time is 1 , 2 , 3 ... need to minus one for index
