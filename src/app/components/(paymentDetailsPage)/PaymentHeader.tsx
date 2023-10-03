@@ -7,7 +7,7 @@ type paymentDetails = {
     time?: string,
     hall?: string,
     seatNumber?: string,
-    image?: string
+    image?: string;
 }
 
 const PaymentHeader = ({title, date, time, hall, seatNumber, image} : paymentDetails) => {
