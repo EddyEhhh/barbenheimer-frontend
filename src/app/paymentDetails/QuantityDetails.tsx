@@ -1,7 +1,4 @@
-import {Box, Typography, Grid, Button, Stack, Paper, Divider} from "@mui/material/";
-import Image from 'next/image';
-import MovieImage from "../images/img1041.webp";
-
+import {Typography, Grid, Divider} from "@mui/material/";
 
 type paymentDetails = {
     ticketType?: string,
@@ -10,54 +7,29 @@ type paymentDetails = {
 }
 
 const QuantityDetails = ({ticketType, quantity, ticketPrice} : paymentDetails) => {
+    const renderDetail = (label: string, value: string) => (
+            <Grid direction="column" justifyContent="center" alignItems="center">
+                <Grid className='quantity-details-column-title' container justifyContent={"center"}>
+                    <Typography variant="body1" fontWeight="bold">{label}</Typography>
+                </Grid>
+                <Grid className='quantity-details-column-values' container justifyContent={"center"}>
+                    <Typography variant="body1">{value}</Typography>
+                </Grid>
+            </Grid>
+    );
+
     return (
         <main>
-            <Grid container direction='row' sx= {{width:1, height:60, pl: '20%', pr:'20%'}} alignItems={'center'} justifyContent={"space-between"}>
-                <Grid direction="column" justifyContent="center" alignItems="center">
-                    <Grid container justifyContent={"center"}>
-                        <Typography variant='body1' fontWeight={'bold'}>
-                            Type
-                        </Typography>
-                    </Grid>
-                    <Grid container justifyContent={'center'}>
-                        <Typography variant='body1'>
-                            {ticketType}Type of Ticket
-                        </Typography>
-                    </Grid>
-                </Grid>
-
+            <Grid className='quantity-details' container direction="row" sx={{ width: 1, height: 60, pl: '20%', pr: '20%' }} alignItems="center" justifyContent="space-between">
+                {renderDetail("Type", `${ticketType} Type of Ticket`)}
                 <Divider orientation="vertical" flexItem></Divider>
-
-                <Grid direction="column" justifyContent="center" alignItems="center">
-                    <Grid container justifyContent={"center"}>
-                        <Typography variant='body1' fontWeight={'bold'}>
-                        Quantity
-                        </Typography>
-                    </Grid>
-                    <Grid container justifyContent={'center'}>
-                        <Typography variant='body1'>
-                        {quantity} Quantity of Ticket
-                        </Typography>
-                    </Grid>
-                </Grid>
-
+                {renderDetail("Quantity", `${quantity} Quantity of Ticket`)}
                 <Divider orientation="vertical" flexItem></Divider>
-                
-                <Grid direction="column" justifyContent="center" alignItems="center">
-                    <Grid container justifyContent={"center"}>
-                        <Typography variant='body1' fontWeight={'bold'}>
-                        Price
-                        </Typography>
-                    </Grid>
-                    <Grid container justifyContent={'center'}>
-                        <Typography variant='body1'>
-                            {ticketPrice}Total Price ($7 x 2)
-                        </Typography>
-                    </Grid>
-                </Grid>
+                {renderDetail("Price", `${ticketPrice} Total Price ($${ticketPrice * 7})`)}
             </Grid>
         </main>
     )
+
 }
 
 export default QuantityDetails;
