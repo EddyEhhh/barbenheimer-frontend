@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button} from '@mui/material';
 
 
-function ConfirmationDialog({open, onClose, onConfirm }) {
+function ConfirmationDialog({open = false, onClose = () => {}, onConfirm = () => {}}) {
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Confirm Purchase</DialogTitle>
