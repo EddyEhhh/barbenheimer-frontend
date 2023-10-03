@@ -1,12 +1,12 @@
 'use client'
 import {Button, Box, Divider, Grid} from "@mui/material/";
-import PaymentHeader from "./PaymentHeader";
-import QuantityDetails from "./QuantityDetails";
-import ContactInfo from "./ContactInfo";
-import CreditCardInfo from "./PaymentInformation";
-import ConfirmationDialog from "./ConfirmationDialog";
+import PaymentHeader from "../components/(paymentDetailsPage)/PaymentHeader";
+import QuantityDetails from "../components/(paymentDetailsPage)/QuantityDetails";
+import ContactInfo from "../components/(paymentDetailsPage)/ContactInfo";
+import CreditCardInfo from "../components/(paymentDetailsPage)/PaymentInformation";
+import ConfirmationDialog from "../components/(paymentDetailsPage)/ConfirmationDialog";
 import React, { useEffect, useState } from 'react';
-import CountdownTimer from "./CountdownTimer";
+import CountdownTimer from "../components/(paymentDetailsPage)/CountdownTimer";
 import { useSearchParams } from "next/navigation";
 import AxiosInstance from "../api/AxiosInstance";
 import { MovieSpecificDetailsInterface } from "../interface/interface";
