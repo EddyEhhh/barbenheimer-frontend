@@ -10,7 +10,7 @@ import CountdownTimer from "./CountdownTimer";
 import { useSearchParams } from "next/navigation";
 import AxiosInstance from "../api/AxiosInstance";
 import { MovieSpecificDetailsInterface } from "../interface/interface";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 const paymentDetails = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -32,7 +32,6 @@ const paymentDetails = () => {
     }, [])
 
     const handleConfirm = () => {
-      //Go to Backend?
       setDialogOpen(false);
     }
 
@@ -40,32 +39,24 @@ const paymentDetails = () => {
         <main>
             <CountdownTimer></CountdownTimer>
             <Box sx={{pb:10, pt:10}}>
-                <PaymentHeader
-                    title={movieData?.title}
-                    date={search.get('date')}
-                    time={search.get('time')}
-                    hall={search.get('hall')}
-                    image={movieData?.movieImages[0].imageUrl}
-                    seatNumber={search.get('seats')}
-                ></PaymentHeader>
+                <PaymentHeader title={movieData?.title} date={search.get('date')} time={search.get('time')} hall={search.get('hall')}
+                image={movieData?.movieImages[0].imageUrl} seatNumber={search.get('seats')}></PaymentHeader>
 
                 <Divider orientation="horizontal" flexItem sx={{mt:6,mb:3}}></Divider>
                 <QuantityDetails></QuantityDetails>
+
                 <Divider orientation="horizontal" flexItem sx={{mt:3,mb:3}}></Divider>
                 <ContactInfo></ContactInfo>
+
                 <Divider orientation="horizontal" flexItem sx={{mt:3,mb:3}}></Divider>
                 <CreditCardInfo></CreditCardInfo>
 
-                <Grid container sx={{width:1, mt:8}} justifyContent={"center"} >
+                <Grid className='confirm-button' container sx={{width:1, mt:8}} justifyContent={"center"} >
                     <Button sx={{position:'absolute', fontWeight:'bold'}} variant='contained' onClick={() => setDialogOpen(true)}>
                         Confirm
                     </Button>
-                    <ConfirmationDialog
-                        open={dialogOpen}
-                        onClose={() => setDialogOpen(false)}
-                        onConfirm={handleConfirm}
-                    />
-            </Grid>
+                    <ConfirmationDialog open={dialogOpen} onClose={() => setDialogOpen(false)} onConfirm={handleConfirm}/>
+                </Grid>
             </Box>
         </main> 
     )
