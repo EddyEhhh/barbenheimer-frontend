@@ -9,9 +9,6 @@ const SelectDate = ({id, showDate, onClickHandler, selectedDate} : MovieSchedule
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
     const dateConverter = (showDate : string) => {
-        // const year = 2000 + parseInt(showDate.slice(0,2), 10); // Assuming 20XX format for years
-        // const month = parseInt(showDate.slice(2, 2), 10);
-        // const day = parseInt(showDate.slice(4, 2), 10);
         const [years, months, days] = showDate.split("-");
         const day = parseInt(days, 10);
         const month = parseInt(months,10);

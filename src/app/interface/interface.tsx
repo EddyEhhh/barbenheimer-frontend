@@ -3,7 +3,7 @@ export interface MovieDetailsInterface {
     id: number,
     title: string,
     runtimeInMinute: number,
-    movieImages: {imageUrl: string}[],
+    movieImages: movieImage[],
     rating?: number,
     ageRestriction: number,
     releaseDate?: Date,
@@ -17,9 +17,9 @@ export interface MovieSpecificDetailsInterface {
     id:number,
     title: string,
     runtimeInMinute: number,
-    movieImages: {imageUrl: string}[],
+    movieImages: movieImage[],
     rating?: number,
-    ageRestriction: number,
+    ageRestriction: string,
     releaseDate: Date,
     showingDate: Date,
     ticketSaleDate?: Date,
@@ -31,6 +31,9 @@ export interface MovieSpecificDetailsInterface {
     director: string,
 }
 
+export interface movieImage {
+    imageUrl : string
+}
 
 export interface MovieScheduleDatesInterface {
     id: number,

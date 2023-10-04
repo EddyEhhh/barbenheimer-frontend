@@ -5,8 +5,6 @@ import SelectDate from "../../components/(movieDetailPage)/SelectDate";
 import SelectTime from "../../components/(movieDetailPage)/SelectTime";
 import {Box, Paper, Grid, Typography, Button, Divider} from "@mui/material";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 import AxiosInstance from "@/app/api/AxiosInstance";
 import { MovieSpecificDetailsInterface, MovieScheduleDatesInterface, MovieScheduleTimeInterface, HallInterface} from "@/app/interface/interface";
 
@@ -21,9 +19,9 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
     const [selectedDate, setSelectedDate] = useState<number>(0); //gets id of data
     
     const [timeSelection, setTimeSelection] = useState<MovieScheduleTimeInterface[]>([])
-    const [selectedTime, setSelectedTime] = useState<number | undefined>(undefined) //gets id of time
+    const [selectedTime, setSelectedTime] = useState<number>() //gets id of time
 
-    const [selectedHall, setSelectedHall] = useState<number>(undefined);
+    const [selectedHall, setSelectedHall] = useState<number>();
 
     //string form of what is selected
     const [dateString, setDateString] = useState<string>('');
@@ -47,17 +45,15 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
         const fetchData = async () => {
             try {
                 const {data, status} = await AxiosInstance.get(`/api/v1/movies/${params.id}`);
-                console.log(data);
-                console.log(data.movieScheduleDates[0]) //this gives me the schedule id..?
+                // console.log(data);
+                // console.log(data.movieScheduleDates[0]) //this gives me the schedule id..?
 
                 //default selection of data
                 setMovieData(data);
                 setDateSelection(data.movieScheduleDates);
                 setSelectedDate(data.movieScheduleDates[0].id);
-
                 setTimeSelection(data.movieScheduleDates[0].movieScheduleTimes);
                 setDateString(data.movieScheduleDates[0].showDate)
-                // console.log(typeof data.movieScheduleDates[0].movieScheduleTimes[0].showTime);
                 
             } catch {
             }
@@ -65,8 +61,6 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
          fetchData();
     }, [])
 
-
-    // backgroundImage:{`url(${movieData?.movieImages[0].imageUrl})`}
     return (
     
         
@@ -85,7 +79,7 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
                 ></MovieDescription>}
             </Box>
 
-            <Grid container sx={{mt:1, mb:6,height:50}} direction={"row"} justifyContent='center' >
+            <Grid  className="date-selection-container" container sx={{mt:1, mb:6,height:50}} direction={"row"} justifyContent='center' >
                 <Grid container direction={'column'} textAlign={"center"} alignContent={"center"} justifyContent={"center"}>
                     <Typography>Date selection</Typography>
                     <Divider variant="middle" light={true} sx={{width:'90%'}}/>
@@ -107,7 +101,7 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
             </Grid>
 
         
-            <Grid container sx={{mb:2, height:50}} direction={"row"} justifyContent='center' >
+            <Grid className="time-selection-container" container sx={{mb:2, height:50}} direction={"row"} justifyContent='center' >
                 <Grid container  direction={'column'} textAlign={"center"} alignContent={"center"} justifyContent={"center"}>
                     <Typography >Time Selection</Typography>
                     <Divider variant="middle" light={true} sx={{width:'90%'}}/>
@@ -116,20 +110,24 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
                 <Box display='flex' pt={3} justifyContent={'center'}>
                     <Grid container direction={'row'} justifyContent={'center'}>
                         {timeSelection?.map((time, index) => (
-                                <SelectTime
-                                    key={time.id}
-                                    id ={time.id}
-                                    showTime={time.showTime}
-                                    selectedTime = {selectedTime}
-                                    onClickHandler ={() => selectTimeHandler(index)}
-                                /> 
+                            <SelectTime
+                                key={time.id}
+                                id ={time.id}
+                                showTime={time.showTime}
+                                selectedTime = {selectedTime}
+                                onClickHandler ={() => selectTimeHandler(index)}
+                            /> 
                         ))}
                     </Grid>    
                 </Box>
              
             </Grid>
             
-            <Box display="flex" pt={10} justifyContent="center" height="300" mb="30">
+            <Box className="confirmation-button" 
+                display="flex" pt={10} 
+                justifyContent="center" 
+                height="300" 
+                mb="30">
                 <Button 
                     disabled={selectedTime === undefined} 
                     color="success" 

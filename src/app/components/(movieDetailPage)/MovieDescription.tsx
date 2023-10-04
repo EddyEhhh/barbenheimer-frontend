@@ -6,7 +6,6 @@ const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestr
     return (
         <>
         <Paper square={false} sx={{pt:2 ,pb:2}}>
-
             <Grid container className="content" 
                 direction={"row"} columnGap={5}
                 sx= {{width:1, height:500}}
