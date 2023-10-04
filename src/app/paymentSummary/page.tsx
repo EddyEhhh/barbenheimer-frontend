@@ -1,5 +1,4 @@
-import {Box, Button, Grid, Icon, Typography, Paper} from "@mui/material"
-import Link from "next/link";
+import {Box, Button, Grid, Icon, Typography, Paper, Link} from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
 
 const PaymentSummary = () => {
@@ -8,12 +7,12 @@ const PaymentSummary = () => {
             <Grid container height={800} columns={4} justifyContent="center" alignItems="center">
                 {/*Grid for Check Icon*/}
                 <Grid>
-                    <CheckCircleIcon sx={{ fontSize: 100}} />
+                    <CheckCircleIcon sx={{ fontSize: 90}} />
                 </Grid>
                 {/*Grid for Payment Successful*/}
                 <Grid container >
                     <Grid container justifyContent="center" alignItems="center">
-                        <Typography variant="h4" fontWeight="bold">
+                        <Typography variant="h5" fontWeight="bold">
                             Payment Successful 
                         </Typography>
                     </Grid>
@@ -31,25 +30,25 @@ const PaymentSummary = () => {
 
                 {/*Grid for Payment Summary*/}
                 <Grid container height={500} justifyContent="center">
-                    <Box sx = {{ width: 600, backgroundColor:'black', pt:2 }}> 
+                    <Box sx = {{ width: 550, backgroundColor:'black', pt:2 }}> 
                         <Grid container width='100%' height='100%'>
                             {/*Grid for Payment Summary*/}
-                            <Grid container height={50} mx={1}>
+                            <Grid className ="paymentSummary"container height={30} px={3}>
                                 <Grid item xs>
-                                    <Typography gutterBottom component="div" fontWeight="bold">
+                                    <Typography component="div" fontWeight="bold" fontSize={18}>
                                         Payment summary
                                     </Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Typography component="div">
+                                    <Typography component="div" fontWeight="bold">
                                         Ticket ID: 0000000
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid height='90%' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
-                                <Grid container ml={6}>
-                                    <Grid container >
-                                        <Grid container xs={6} md={8}>
+                            <Grid className = "movieDetails" height='90%' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+                                <Grid container ml={6.5}>
+                                    <Grid container mb={1}>
+                                        <Grid container xs={6} md={7.8}>
                                             <Typography>
                                                 Movie: Barbenheimer
                                             </Typography>
@@ -61,8 +60,8 @@ const PaymentSummary = () => {
                                             </Typography>
                                         </Grid>
                                     </Grid>
-                                    <Grid container>
-                                        <Grid container xs={6} md={8}>
+                                    <Grid container mb={1}>
+                                        <Grid container xs={6} md={7.8}>
                                             <Typography>
                                                 Date & Time: 01/01/00001 2359
                                             </Typography>
@@ -76,7 +75,7 @@ const PaymentSummary = () => {
                                     </Grid>
 
                                     <Grid container>
-                                        <Grid container xs={6} md={3}>
+                                        <Grid container xs={6} md={2.5}>
                                             <Typography>
                                                 Venue Details: 
                                             </Typography>
@@ -90,20 +89,19 @@ const PaymentSummary = () => {
                                         
                                     </Grid>
                                 </Grid>
-                            
-                            
 
                                 {/*line*/}
-                                <Grid container border={0.1} sx={{ mx: 'auto', width: '80%'}}></Grid>
+                                <Grid className="line" container border={0.1} sx={{ mx: 'auto', width: '80%'}}></Grid>
                                 {/*line*/}
-                                <Grid container ml={6}  >
-                                    <Grid container >
-                                        <Grid container xs={6} md={5}>
+
+                                <Grid className="bookingDetails" container ml={6.5}  >
+                                    <Grid container mb={1}>
+                                        <Grid container xs={6} md={5.3}>
                                             <Typography>
                                                 Booking ID: 0000000
                                             </Typography>
                                         </Grid>
-                                        <Grid container xs={6} md={7}>
+                                        <Grid container xs={6} md={6}>
                                             <Typography>
                                                 Payment type: Credit Card
                                             </Typography>
@@ -111,53 +109,32 @@ const PaymentSummary = () => {
                                     </Grid>
 
                                     <Grid container>
+                                        <Grid container xs={6} md={3.7}>
+                                            <Typography>
+                                                Booking Date & Time:
+                                            </Typography>
+                                        </Grid>
                                         <Grid>
                                             <Typography>
-                                                Booking Date & Time: 01/01/00001 2359
+                                                01/01/00001 2359
                                             </Typography>
                                         </Grid>
                                     
                                     </Grid>
                                 </Grid>
-                                
 
                                 {/*line*/}
-                                <Grid container border={0.1}  sx={{ mx: 'auto', width: '80%'}}></Grid>
+                                <Grid className="line" container border={0.1}  sx={{ mx: 'auto', width: '80%'}}></Grid>
                                 {/*line*/}
 
-                                <Grid container ml={10}>
-                                    <Grid container>
-                                        <Grid container xs={6} md={7.8}>
+                                <Grid className="Total Amount" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
+                                    <Grid container ml={6.5}>
+                                        <Grid container xs={6} md={8.5}>
                                             <Typography >
-                                                Ticket(2)
+                                                Total Amount
                                             </Typography>
                                         </Grid>
-                                        <Grid container xs={6} md={4}>
-                                            <Typography>
-                                                $30.00
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-
-                                    <Grid container>
-                                        <Grid container xs={6} md={7.8}>
-                                            <Typography>
-                                                Food & Beverage
-                                            </Typography>
-                                        </Grid>
-                                        <Grid container xs={6} md={4}>
-                                            <Typography>
-                                                $30.00
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container>
-                                        <Grid container xs={6} md={7.8}>
-                                            <Typography >
-                                                Convenience Fees
-                                            </Typography>
-                                        </Grid>
-                                        <Grid container xs={6} md={4}>
+                                        <Grid container xs={6} md={3}>
                                             <Typography>
                                                 $30.00
                                             </Typography>
@@ -166,11 +143,11 @@ const PaymentSummary = () => {
                                 </Grid>
 
                                 
-                                {/*line*/}
-                                <Grid container border={0.1} sx={{ mx: 'auto', width: '80%'}}></Grid>
+                                {/* line */}
+                                {/* <Grid container border={0.1} sx={{ mx: 'auto', width: '80%'}}></Grid> */}
                                 {/*line*/}
 
-                                <Grid container ml={10}>
+                                {/* <Grid container ml={10}>
                                     <Grid container xs={6} md={7.8}>
                                         <Typography >
                                             Total Amount
@@ -181,16 +158,16 @@ const PaymentSummary = () => {
                                             $90.00
                                         </Typography>
                                     </Grid>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>
                     </Box>
                     
                 </Grid>
 
-                <Grid container justifyContent="center">
-                    <Button color="primary">
-                        <Link href="/" style={{ textDecoration: 'none'}}> {'Back to home'} </Link>
+                <Grid container justifyContent="center"> 
+                    <Button>
+                        <Link href="/" color="#90caf9" underline="none"> {'Back to home'}</Link>
                     </Button>
                 </Grid>
             </Grid>
