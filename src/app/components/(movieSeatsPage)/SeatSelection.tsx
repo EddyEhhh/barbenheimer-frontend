@@ -52,13 +52,11 @@ const SeatSelection = (props : {seatingData : SeatingInterface[], width :number,
                     </Box>
                 </Box>
                 <Box pl={2}>
-                    {
-                    alphabet.map((alp, index) => {
+                    {alphabet.map((alp, index) => {
                         if (index < props.height) {
                             return <Typography mb={0.2} fontSize={'small'}> {alp} </Typography>
                         }
-                    })
-                    }
+                    })}
                 </Box>
             </Box>
           

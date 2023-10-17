@@ -63,7 +63,6 @@ export interface HallInterface {
     seats: number[]
 }
 
-
 export interface SeatingArrangementInterface {
     number: number,
     width: number,
@@ -76,7 +75,23 @@ export interface SeatingInterface {
     columnNumber: number,
     x: number,
     y:number,
-    state:number
+    state:number,
+    price:number,
 
     onClickHandler?:() => void
+}
+
+
+//customised interfaces for specific usage
+
+//movieSeats page
+export interface MovieSeatInformationInterface {
+    movie : MovieSpecificDetailsInterface,
+    showtime: string,
+    showdate: string,
+    width: number,
+    height: number,
+    number: string, //this is the hall number
+
+
 }

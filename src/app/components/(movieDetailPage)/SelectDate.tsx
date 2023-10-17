@@ -1,21 +1,10 @@
 import {Typography, Grid, Button, Stack, Paper} from "@mui/material/";    
 import Link from "next/link";
 import { MovieScheduleDatesInterface } from "../../interface/interface";
-
+import { dateConverter } from "@/app/services/util";
 
 
 const SelectDate = ({id, showDate, onClickHandler, selectedDate} : MovieScheduleDatesInterface)  => {
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-
-    const dateConverter = (showDate : string) => {
-        const [years, months, days] = showDate.split("-");
-        const day = parseInt(days, 10);
-        const month = parseInt(months,10);
-        const date = new Date(2022, month-1 ,day);
-    
-        return `${dayNames[date.getDay()]} ${days} ${monthNames[month -1]}`
-    }
 
     return (
         <Grid pl={2}>
