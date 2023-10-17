@@ -25,7 +25,7 @@ const SelectTime = ({id, showTime, selectedTime, onClickHandler} : MovieSchedule
             <Button 
                 size='medium' 
                 variant={selectedTime == id ? 'contained' : 'outlined'} 
-                color={selectedTime == id ? 'success' : 'secondary'} 
+                color={selectedTime == id ? 'primary' : 'secondary'} 
                 sx={{fontWeight:"bold"}}
                 onClick={onClickHandler}>
                 {convertTo12Hours(showTime)}

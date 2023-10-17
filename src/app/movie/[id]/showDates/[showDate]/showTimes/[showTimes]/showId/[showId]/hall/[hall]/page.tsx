@@ -27,16 +27,12 @@ const MovieSeatingPage = () => {
         const updatedSelectedSeatDisplay = [...selectedSeatDisplay];
         if (seat.state == 0) {
            seat.state = 4 
-           updatedSelectedSeatDisplay.push(seat);
+            updatedSelectedSeatDisplay.push(seat);
         } else if (seat.state == 4) {
-// console.log(selectedSeatDisplay.indexOf(seat));
             updatedSelectedSeatDisplay.splice(selectedSeatDisplay.indexOf(seat), 1);
             seat.state = 0
         }
         setSelectedSeatDisplay(updatedSelectedSeatDisplay)
-// console.log(selectedSeatDisplay)
-// console.log(selectedSeatDisplay);
-// setSeating(seating);
     }
 
 
@@ -49,21 +45,19 @@ const MovieSeatingPage = () => {
     }
  
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await getScheduleFromHall(params.hall);
-            setSeating(data.seats);
-            setSeatingData(data);
-
-            const data2 = await getSpecificMovies(params.id);
-            setMovieData(data2);
-        }
-         fetchData();
-    }, [])
+            const data = getScheduleFromHall(params.hall).then((data) => {
+                setSeating(data.seats);
+                setSeatingData(data);
+                setMovieData(data.movie)
+            }
+            );
+           
+    }, []);
 
     
     return (
         <Suspense fallback={<LoadingPage/>}>
-            {movieData ? (<Box>  
+            {movieData ? (<Box  height='100vh'>  
                 <Box display="flex" flexDirection="row" justifyContent={'center'} mt={13} >
                     {<DescriptionBox 
                         title={movieData.title}
@@ -92,7 +86,7 @@ const MovieSeatingPage = () => {
                
 
 
-                <Box pt={4}>
+                <Box className="seat-display-container" pt={4}>
                     <Box display="flex"  flexDirection={"column"} justifyContent={'center'} alignItems={'center'} >
                         <Typography variant="h6" fontWeight={'400'}> Seats Selected </Typography>
                         <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
@@ -112,7 +106,25 @@ const MovieSeatingPage = () => {
                         </Box> 
                     </Box>
                 </Box>
-                    
+                
+                <Box className="seat-price-container" pt={4}>
+                    <Box display="flex"  flexDirection={"column"} justifyContent={'center'} alignItems={'center'} >
+                        <Typography variant="h6" fontWeight={'400'}> Total price </Typography>
+                        <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
+                        <Box ml={1} height={30} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
+    
+                            {selectedSeatDisplay.length != 0 &&<Button
+                                disabled
+                                variant="contained"
+                                size="large"
+                                sx={{mr:1}}>
+                                <Typography color={'whitesmoke'}>{`$${selectedSeatDisplay.length * 4}`}</Typography>
+                            </Button> }
+                           
+                        </Box> 
+                    </Box>
+                </Box>
+
                 <Box display={'flex'} mt={4} justifyContent={'center'}>
                     <Button 
                         disabled={selectedSeatDisplay.length == 0} 

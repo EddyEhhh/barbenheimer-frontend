@@ -28,7 +28,7 @@ export const submitSeats =async (showId : string, seating : SeatingInterface[]) 
         const {data} = await AxiosInstance.post(`/api/v1/schedules/${showId}`, seating);
         return data;
     } catch {
-
+        
     }
     
 }

@@ -1,16 +1,15 @@
 
-import {Typography, Box, Paper} from '@mui/material'
+import {Typography, Box, Paper, AppBar, Toolbar} from '@mui/material'
 import Link from 'next/link'
 const Footer = () => {
     return (
-        <Box width={'100%'}>
-            <Paper sx={{mt:5, p:2}}> 
-                <Typography variant="body2" align="center"> 
-                    &copy; {new Date().getFullYear()} Barbenheimer
-                </Typography> 
-            </Paper>
-        </Box>
-     
+            <AppBar position="static" color="primary">
+                <Toolbar>
+                <Typography variant="body2" color="inherit">
+                    Barbenheimer
+                </Typography>
+                </Toolbar>
+            </AppBar>     
     )
    
 }

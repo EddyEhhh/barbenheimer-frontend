@@ -61,10 +61,8 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
          fetchData();
     }, [])
 
-    return (
-    
-        
-        <Box sx={{height:'100%'}}>
+    return ( 
+        <Box sx={{ width:'1', height:'100vh'}}>
             <Box sx={{pb:5}}>
                 {movieData && <MovieDescription
                     title={movieData.title}
