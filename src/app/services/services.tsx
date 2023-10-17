@@ -7,7 +7,6 @@ import Cookies from 'js-cookie'
 export const getAllMovies = async () => {
     try {
         const {data, status} = await AxiosInstance.get("/api/v1/movies");
-       
         return data;        
         } catch(error) {
             //set error
@@ -28,7 +27,7 @@ export const submitSeats =async (showId : string, seating : SeatingInterface[]) 
         const {data} = await AxiosInstance.post(`/api/v1/schedules/${showId}`, seating);
         return data;
     } catch {
-        
+
     }
     
 }

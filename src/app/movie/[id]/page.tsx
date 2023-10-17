@@ -21,7 +21,6 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
     const [timeSelection, setTimeSelection] = useState<MovieScheduleTimeInterface[]>([])
     const [selectedTime, setSelectedTime] = useState<number>() //gets id of time
 
-    const [selectedHall, setSelectedHall] = useState<number>();
 
     //string form of what is selected
     const [dateString, setDateString] = useState<string>('');
@@ -37,7 +36,6 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
 
     const selectTimeHandler = (data : number) => {
         setSelectedTime(timeSelection[data].id);
-        setSelectedHall(timeSelection[data].hall.id);
         setTimeString(timeSelection[data].showTime);
     }
 
@@ -45,10 +43,6 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
         const fetchData = async () => {
             try {
                 const {data, status} = await AxiosInstance.get(`/api/v1/movies/${params.id}`);
-                // console.log(data);
-                // console.log(data.movieScheduleDates[0]) //this gives me the schedule id..?
-
-                //default selection of data
                 setMovieData(data);
                 setDateSelection(data.movieScheduleDates);
                 setSelectedDate(data.movieScheduleDates[0].id);
@@ -133,9 +127,7 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
                     variant="contained">
                     <Link 
                         style={{textDecoration:'none', color:'black'}}
-                        href={{
-                            pathname:`${params.id}/showDates/${dateString}/showTimes/${timeString}/showId/${selectedTime}/hall/${selectedHall}`,
-                        }}>
+                        href={`/movieSeats/${selectedTime}`}>
                         <Typography fontWeight="bold"> Confirm </Typography>  
                     </Link>
                 </Button>

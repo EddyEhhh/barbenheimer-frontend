@@ -1,15 +1,15 @@
 'use client'
-import DescriptionBox from "../../../../../../../../../../components/(movieSeatsPage)/DescriptionBox";
-import SeatSelection from "../../../../../../../../../../components/(movieSeatsPage)/SeatSelection";
+import DescriptionBox from "../../components/(movieSeatsPage)/DescriptionBox";
+import SeatSelection from "../../components/(movieSeatsPage)/SeatSelection";
+import { dateConverter, convertTo12Hours } from "@/app/services/util";
 import { useState, useEffect } from "react";
-import AxiosInstance from "@/app/api/AxiosInstance";
-import { MovieSpecificDetailsInterface, SeatingArrangementInterface, SeatingInterface } from "@/app/interface/interface";
+import { MovieSeatInformationInterface, SeatingArrangementInterface,MovieSpecificDetailsInterface, SeatingInterface } from "@/app/interface/interface";
 import { useParams} from 'next/navigation';
 import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
-import LoadingPage from "../../../../../../../../../../loading";
-import SeatLegend from "../../../../../../../../../../components/(movieSeatsPage)/SeatLegend";
+import LoadingPage from "../../loading";
+import SeatLegend from "../../components/(movieSeatsPage)/SeatLegend";
 import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
 import Cookies from 'js-cookie';
 
@@ -18,19 +18,29 @@ const MovieSeatingPage = () => {
     const params = useParams();
     const router = useRouter();
 
-    const [movieData, setMovieData] = useState<MovieSpecificDetailsInterface>();
+    const [movieData, setMovieData] = useState<MovieSeatInformationInterface>();
     const [seatingData, setSeatingData] = useState<SeatingArrangementInterface>()
     const [seating, setSeating] = useState<SeatingInterface[]>([]);
     const [selectedSeatDisplay, setSelectedSeatDisplay] = useState<SeatingInterface[]>([]);
+    const [showTime, setShowTime] = useState<string>('');
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+
 
     const onClickHandler = (seat:SeatingInterface, index:number) => {
         const updatedSelectedSeatDisplay = [...selectedSeatDisplay];
+
+        //when seat is not selected
         if (seat.state == 0) {
-           seat.state = 4 
+            seat.state = 4;
             updatedSelectedSeatDisplay.push(seat);
+            setTotalPrice(totalPrice + seat.price);
+
+        //when seat is selected
         } else if (seat.state == 4) {
             updatedSelectedSeatDisplay.splice(selectedSeatDisplay.indexOf(seat), 1);
-            seat.state = 0
+            seat.state = 0;
+            setTotalPrice(totalPrice - seat.price);
+
         }
         setSelectedSeatDisplay(updatedSelectedSeatDisplay)
     }
@@ -45,13 +55,20 @@ const MovieSeatingPage = () => {
     }
  
     useEffect(() => {
-            const data = getScheduleFromHall(params.hall).then((data) => {
+        const fetchData = async () => {
+            try {
+                const data = await getScheduleFromHall(params.id);
+                console.log(data);
                 setSeating(data.seats);
                 setSeatingData(data);
-                setMovieData(data.movie)
+                setMovieData(data);
+            } catch {
+    
             }
-            );
-           
+        }
+        fetchData();
+        console.log(showTime);
+
     }, []);
 
     
@@ -60,22 +77,22 @@ const MovieSeatingPage = () => {
             {movieData ? (<Box  height='100vh'>  
                 <Box display="flex" flexDirection="row" justifyContent={'center'} mt={13} >
                     {<DescriptionBox 
-                        title={movieData.title}
-                        runtimeInMinute={movieData.runtimeInMinute}
-                        ageRestriction={movieData.ageRestriction}
-                        language={movieData.language}
-                        movieImage={movieData.movieImages[0].imageUrl}
-                        showDate={params.showDate}
-                        showTime={decodeURIComponent(params.showTimes)}
-                        hall={params.hall}
+                        title={movieData.movie.title}
+                        runtimeInMinute={movieData.movie.runtimeInMinute}
+                        ageRestriction={movieData.movie.ageRestriction}
+                        language={movieData.movie.language}
+                        movieImage={movieData.movie.movieImages[0].imageUrl}
+                        showDate={dateConverter(movieData.showdate)}
+                        showTime={convertTo12Hours(movieData.showtime)}
+                        hall={movieData.number}
                     />}
                     <Box display="flex" flexDirection={"column"} ml={3}  alignItems={'center'} >
                         <Typography variant="body1" fontWeight={'400'}> Seat selection </Typography>
                             <Divider variant="middle" light={true} sx={{width:'80%'}}/>
                             <Box pt={1}>
                                 <SeatSelection  
-                                width={seatingData?.width} 
-                                height={seatingData?.height} 
+                                width={movieData.width} 
+                                height={movieData.height} 
                                 seatingData={seating}
                                 onClickFunction={onClickHandler}
                                 ></SeatSelection>
@@ -118,7 +135,7 @@ const MovieSeatingPage = () => {
                                 variant="contained"
                                 size="large"
                                 sx={{mr:1}}>
-                                <Typography color={'whitesmoke'}>{`$${selectedSeatDisplay.length * 4}`}</Typography>
+                                <Typography color={'whitesmoke'}>{`$${totalPrice}`}</Typography>
                             </Button> }
                            
                         </Box> 
