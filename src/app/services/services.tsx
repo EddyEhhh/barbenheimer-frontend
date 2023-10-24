@@ -1,3 +1,4 @@
+import { Axios } from "axios";
 import AxiosInstance from "../api/AxiosInstance";
 import { HallInterface, SeatingInterface } from "../interface/interface";
 import Cookies from 'js-cookie'
@@ -41,3 +42,10 @@ export const getScheduleFromHall = async (hall : string | string[]) => {
 
     }
 }
+
+// export const getCheckoutLink = async (quantity : number) {
+//     try {
+//         const {data, status} = await Axios.post(`http://localhost/3000/api/checkout`, )
+//         AxiosInstance.
+//     }
+// }

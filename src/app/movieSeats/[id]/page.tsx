@@ -4,7 +4,7 @@ import SeatSelection from "../../components/(movieSeatsPage)/SeatSelection";
 import { dateConverter, convertTo12Hours } from "@/app/services/util";
 import { useState, useEffect } from "react";
 import { MovieSeatInformationInterface, SeatingArrangementInterface,MovieSpecificDetailsInterface, SeatingInterface } from "@/app/interface/interface";
-import { useParams} from 'next/navigation';
+import { redirect, useParams} from 'next/navigation';
 import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
@@ -12,6 +12,9 @@ import LoadingPage from "../../loading";
 import SeatLegend from "../../components/(movieSeatsPage)/SeatLegend";
 import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
 import Cookies from 'js-cookie';
+import handler from "@/app/api/checkout/route";
+import getStripe from "@/app/services/getStripe";
+import { red } from "@mui/material/colors";
 
 
 const MovieSeatingPage = () => {
@@ -24,7 +27,6 @@ const MovieSeatingPage = () => {
     const [selectedSeatDisplay, setSelectedSeatDisplay] = useState<SeatingInterface[]>([]);
     const [showTime, setShowTime] = useState<string>('');
     const [totalPrice, setTotalPrice] = useState<number>(0);
-
 
     const onClickHandler = (seat:SeatingInterface, index:number) => {
         const updatedSelectedSeatDisplay = [...selectedSeatDisplay];
@@ -47,11 +49,43 @@ const MovieSeatingPage = () => {
 
 
     const submitDataHandler =  async () => {
-            const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
+           
+            // const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
             // Cookies.set('test1', data);
             // const cookieValue = Cookies.get('sessid');
-            router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
+            // router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
       
+    }
+
+    const submitStripe = async () => {
+        try {
+            const ticket = {
+                ticketType: 'value1',
+                amount : 5,
+                };
+            const data = await fetch('/api/checkout/',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({amount: selectedSeatDisplay.length, seat:selectedSeatDisplay})
+            })
+            // const url = await data.json();
+            // console.log(url);
+            console.log(data.status)
+            if (data.status === 200) {
+                const url = await data.json()
+                .then((data)=> {
+                    window.location.href = data;
+                });
+            } else {
+                console.error(data.status);
+            }
+
+        } catch{
+            console.error('error');
+
+        }
     }
  
     useEffect(() => {
@@ -144,13 +178,15 @@ const MovieSeatingPage = () => {
 
                 <Box display={'flex'} mt={4} justifyContent={'center'}>
                     <Button 
+                    type="submit"
                         disabled={selectedSeatDisplay.length == 0} 
-                        onClick={submitDataHandler} 
+                        onClick={submitStripe} 
                         size="medium" variant="contained" 
                         color="success"
                         sx={{fontWeight:'bold'}}>
                         Proceed
                     </Button>
+
                 </Box>
 
 
