@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
 import LoadingPage from "../../loading";
 import SeatLegend from "../../components/(movieSeatsPage)/SeatLegend";
-import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
+import { submitSeats, getScheduleFromHall, getSpecificMovies, startPaymentSession } from "@/app/services/services";
 import Cookies from 'js-cookie';
 import handler from "@/app/api/checkout/route";
 import getStripe from "@/app/services/getStripe";
@@ -49,8 +49,9 @@ const MovieSeatingPage = () => {
 
 
     const submitDataHandler =  async () => {
-           
-            // const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
+        
+            const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
+            console.log(data);
             // Cookies.set('test1', data);
             // const cookieValue = Cookies.get('sessid');
             // router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
@@ -58,25 +59,30 @@ const MovieSeatingPage = () => {
     }
 
     const submitStripe = async () => {
+        submitDataHandler();
         try {
-            const ticket = {
-                ticketType: 'value1',
-                amount : 5,
-                };
-            const data = await fetch('/api/checkout/',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({amount: selectedSeatDisplay.length, seat:selectedSeatDisplay})
-            })
-            // const url = await data.json();
-            // console.log(url);
-            console.log(data.status)
+            // const data = await fetch('/api/checkout/',{
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body:JSON.stringify({
+            //         amount: selectedSeatDisplay.length, 
+            //         seat:selectedSeatDisplay,
+            //         showId: params.id
+            //     })
+            // })
+
+            const data = await startPaymentSession();
+            console.log(data);
+            // const test = await data.json();
+            // console.log(test);
+
             if (data.status === 200) {
                 const url = await data.json()
                 .then((data)=> {
-                    window.location.href = data;
+                    // console.log(data.url);
+                    window.location.href = data.url;
                 });
             } else {
                 console.error(data.status);
@@ -92,12 +98,11 @@ const MovieSeatingPage = () => {
         const fetchData = async () => {
             try {
                 const data = await getScheduleFromHall(params.id);
-                console.log(data);
                 setSeating(data.seats);
                 setSeatingData(data);
                 setMovieData(data);
             } catch {
-    
+                // router.push("/error");
             }
         }
         fetchData();
@@ -180,7 +185,7 @@ const MovieSeatingPage = () => {
                     <Button 
                     type="submit"
                         disabled={selectedSeatDisplay.length == 0} 
-                        onClick={submitStripe} 
+                        onClick={submitDataHandler} 
                         size="medium" variant="contained" 
                         color="success"
                         sx={{fontWeight:'bold'}}>

@@ -32,13 +32,13 @@ const SeatSelection = (props : {seatingData : SeatingInterface[], width :number,
                     {
                     alphabet.map((alp, index) => {
                         if (index <  props.height) {
-                            return <Typography mb={0.2} fontSize={'small'}> {alp} </Typography>
+                            return <Typography key={index} mb={0.2} fontSize={'small'}> {alp} </Typography>
                         }
                     })
                     }
                 </Box>
                 <Box position='relative' display={"flex"} justifyContent={"center"} style={{width:`${width *2.2}em`, height:`${height*2.2}em`}}>
-                    <Box width={1}  display={'flex'} justifyContent={'center'}>
+                    <Box width={1} border={1} display={'flex'} justifyContent={'center'}>
                         {(props.seatingData).map((seat : SeatingInterface, index) => (
                             <Seat 
                             x={seat.x} 
@@ -54,7 +54,7 @@ const SeatSelection = (props : {seatingData : SeatingInterface[], width :number,
                 <Box pl={2}>
                     {alphabet.map((alp, index) => {
                         if (index < props.height) {
-                            return <Typography mb={0.2} fontSize={'small'}> {alp} </Typography>
+                            return <Typography key={index} mb={0.2} fontSize={'small'}> {alp} </Typography>
                         }
                     })}
                 </Box>

@@ -5,26 +5,36 @@ import { Stripe } from 'stripe';
 import { headers } from 'next/headers'
 
 export async function POST(req : NextApiRequest, res: NextApiResponse) {
-  const ticketData = await new Response(req.body).text();
-  let valueToJson = JSON.parse(ticketData);
+  const ticketDataString = await new Response(req.body).text();
+  const ticketDataJson = JSON.parse(ticketDataString);
+  // console.log(ticketDataJson.showId);
   const url = headers().get('origin');
-
+  const currentTimestamp : number = Math.floor(Date.now() / 1000); // Get the current Unix timestamp in seconds
+  const futureTimestamp :number = currentTimestamp + 1800; // Add 5 seconds
+  // console.log(currentTimestamp);
+  
   if (req.method === "POST") {
     try {
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
             price: 'price_1O3BT5DkLPcWi5RDpMU888aj',
-            quantity: valueToJson.amount,
+            quantity: ticketDataJson.amount,
           }
         ],
         // expires_at: expirationTime, // Set the expiration time
         mode: 'payment',
         success_url: `${url}/paymentSummary?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/1`,
+        cancel_url: `${url}/movieSeats/1`,
+        metadata: {
+            seatingData: `${ticketDataJson.seat}`,
+            showId: `${ticketDataJson.showId}`,
+        },
+        expires_at:futureTimestamp 
       });
-      
-      return NextResponse.json(session.url, {status:200});
+      // console.log(session.id);
+      // console.log(session.url);
+      return NextResponse.json({url: session.url}, {status:200});
 
     } catch (err: any) {
       res.status;

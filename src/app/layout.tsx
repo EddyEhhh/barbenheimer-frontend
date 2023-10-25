@@ -9,6 +9,8 @@ const inter = Inter({ subsets: ['latin'] });
 import { Suspense } from 'react'
 import Footer from './footer'
 import LoadingPage from './loading'
+// import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
 export default function RootLayout ({children}: {
   children: React.ReactNode
 }) {
@@ -21,9 +23,11 @@ export default function RootLayout ({children}: {
         <CssBaseline enableColorScheme/>
           <Header/> 
             <Box mt={8}>
+
               <Suspense fallback={<LoadingPage/>}>
-                {children}
+                  {children}
               </Suspense>
+
             </Box>
             <Footer></Footer>
 
