@@ -12,7 +12,7 @@ const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestr
                 >
                 <Grid item position={"relative"}container xs={5}>
                     <Image 
-                        src={movieImages} 
+                        src={movieImages}
                         alt="no image" 
                         fill={true}
                         style={{objectFit:"contain", aspectRatio:3/2}}>
@@ -52,7 +52,7 @@ const MovieDescription = ({title, runtimeInMinute, movieImages, rating, ageRestr
                                             <Typography variant="body2" color={'GrayText'}> 
                                                 Release Date: 
                                             </Typography>
-                                            <Typography variant="body2">{releaseDate}</Typography>
+                                            <Typography variant="body2">{releaseDate.toString()}</Typography>
                                         </Grid>
                                     
                                         <Grid>

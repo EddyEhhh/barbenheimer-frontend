@@ -79,10 +79,10 @@ const MovieSeatingPage = () => {
                     {<DescriptionBox 
                         title={movieData.movie.title}
                         runtimeInMinute={movieData.movie.runtimeInMinute}
-                        ageRestriction={movieData.movie.ageRestriction}
+                        ageRestriction={parseInt(movieData.movie.ageRestriction)}
                         language={movieData.movie.language}
                         movieImage={movieData.movie.movieImages[0].imageUrl}
-                        showDate={dateConverter(movieData.showdate)}
+                        showDate={dateConverter(movieData.movie.showingDate.toString())}
                         showTime={convertTo12Hours(movieData.showtime)}
                         hall={movieData.number}
                     />}
