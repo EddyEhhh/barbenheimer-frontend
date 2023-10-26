@@ -17,7 +17,7 @@ export interface MovieSpecificDetailsInterface {
     id:number,
     title: string,
     runtimeInMinute: number,
-    movieImages: movieImage[],
+    movieImages: string,
     rating?: number,
     ageRestriction: string,
     releaseDate: Date,
