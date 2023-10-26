@@ -1,10 +1,13 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 
 // const config = require('../tsconfig.json');
 // const baseUrl = config.applicationApiBaseUrl;
 // withCredentials:true
 
-const baseUrl = 'http://localhost:8080'
+// Load environment variables from .env file
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:8080"
 
 export default axios.create({
     baseURL: baseUrl,
