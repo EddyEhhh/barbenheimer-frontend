@@ -1,5 +1,4 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
 
 // const config = require('../tsconfig.json');
 // const baseUrl = config.applicationApiBaseUrl;
