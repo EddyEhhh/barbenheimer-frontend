@@ -1,12 +1,19 @@
+"use client"
+import NowShowingMovies from "./components/(homePage)/NowShowing"
+import {Box, Grid} from "@mui/material/"
+import Preview from "./components/(homePage)/Preview"
+import { Suspense } from "react"
+import LoadingPage from "./Loading"
 
 export default function Home() {
+ 
   return (
   <>
-    <main className="flex flex-col items-center justify-between">
-      <div>
-          Home Page : Ashley says youre a bitch
-      </div>
-    </main> 
+      <Grid container direction={"column"} width={1} >
+        <Preview></Preview>
+        <NowShowingMovies></NowShowingMovies>
+
+      </Grid>
   </>
   )
 }
