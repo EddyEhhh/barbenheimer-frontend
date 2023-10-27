@@ -1,4 +1,5 @@
 import { Axios } from "axios";
+
 import AxiosInstance from "../api/AxiosInstance";
 import {SeatingInterface } from "../interface/interface";
 

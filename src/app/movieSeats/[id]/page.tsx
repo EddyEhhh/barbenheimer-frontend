@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
 import LoadingPage from "../../loading";
 import SeatLegend from "../../components/(movieSeatsPage)/SeatLegend";
-import { submitSeats, getScheduleFromHall, getSpecificMovies, startPaymentSession } from "@/app/services/services";
+import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
 import Cookies from 'js-cookie';
 import handler from "@/app/api/checkout/route";
 import getStripe from "@/app/services/getStripe";
@@ -51,7 +51,7 @@ const MovieSeatingPage = () => {
     const submitDataHandler =  async () => {
         
             const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
-            console.log(data);
+            // console.log(data);
             // Cookies.set('test1', data);
             // const cookieValue = Cookies.get('sessid');
             // router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
@@ -73,7 +73,7 @@ const MovieSeatingPage = () => {
             //     })
             // })
 
-            const data = await startPaymentSession();
+            // const data = await startPaymentSession();
             console.log(data);
             // const test = await data.json();
             // console.log(test);
