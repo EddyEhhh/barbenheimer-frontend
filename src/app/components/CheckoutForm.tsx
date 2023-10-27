@@ -31,8 +31,7 @@ export default function CheckoutForm() {
     //error handling
     stripe.retrievePaymentIntent(clientSecret).then((paymentIntent) => {
       console.log(paymentIntent.error);
-      console.log(      paymentIntent.paymentIntent?.status
-        );
+      console.log(paymentIntent.paymentIntent?.status);
       if (paymentIntent.error) {
         route.push('/error');
       } 
@@ -46,12 +45,11 @@ export default function CheckoutForm() {
       return;
     }
     setIsLoading(true);
-
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         //url when payment is completed
-        return_url: `/paymentSummary?sess=${clientSecret}`,
+        return_url: `http://localhost:3000/paymentSummary`,
       },
     });
 
