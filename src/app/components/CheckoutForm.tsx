@@ -7,77 +7,57 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
+  const search = useSearchParams();
+  const route = useRouter();
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const clientSecret= search.get('sess');
 
   useEffect(() => {
     if (!stripe) {
       return;
     }
-
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
-    );
-
     if (!clientSecret) {
       return;
     }
-
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
-      }
+    
+    //error handling
+    stripe.retrievePaymentIntent(clientSecret).then((paymentIntent) => {
+      console.log(paymentIntent.error);
+      console.log(      paymentIntent.paymentIntent?.status
+        );
+      if (paymentIntent.error) {
+        route.push('/error');
+      } 
     });
   }, [stripe]);
 
+//error handling stuffs
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
     setIsLoading(true);
 
-    const { error } = await stripe.confirmCardPayment(
-      // Replace with your client secret
-      "payment_intent_client_secret",
-      {
-        payment_method: {
-          card: elements.getElement(PaymentElement),
-          billing_details: {
-            email,
-          },
-        },
-      }
-    );
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        //url when payment is completed
+        return_url: `/paymentSummary?sess=${clientSecret}`,
+      },
+    });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`.
     if (error) {
       setMessage(error.message || "An unexpected error occurred.");
     }
-
     setIsLoading(false);
   };
 
@@ -87,29 +67,39 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-        <Box height={'100vh'} width={'900px'}>
+        <Box height={'fill'} width={'400px'}>
+          <Box pb={2}>
             <LinkAuthenticationElement
-                id="link-authentication-element"
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <PaymentElement
+                  id="link-authentication-element"
+                  onChange={(e) => setEmail(e.target.value)}
+              />
+          </Box>
+          <PaymentElement
                 id="payment-element"
                 options={paymentElementOptions}
             />
-            <Box mt={2} display={'flex'} justifyContent={'center'}>
-            <Button 
             
+            <Box mt={2} display={'flex'} justifyContent={'space-between'}>
+              <Button 
+                  disabled={isLoading || !stripe || !elements}
+                  id="submit"
+                  type="submit"
+                  size="large"
+                  variant="contained">
+                  <Typography fontWeight={'bold'} variant="body2">Pay</Typography>
+              </Button>
+
+              <Button 
                 disabled={isLoading || !stripe || !elements}
+                color="error"
                 id="submit"
                 type="submit"
                 size="large"
-                variant="contained" 
-
-            >
-                <Typography fontWeight={'bold'} variant="body2" id="button-text">
-                  Pay now
+                variant="contained">
+                <Typography fontWeight={'bold'} variant="subtitle2" id="button-text">
+                  Cancel 
                 </Typography>
-            </Button>
+              </Button>
             </Box>
             
             {/* Show any error or success messages */}

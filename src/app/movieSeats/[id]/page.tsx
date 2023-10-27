@@ -14,8 +14,6 @@ import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/servi
 import Cookies from 'js-cookie';
 import handler from "@/app/api/checkout/route";
 import getStripe from "@/app/services/getStripe";
-import { red } from "@mui/material/colors";
-
 
 const MovieSeatingPage = () => {
     const params = useParams();
@@ -59,39 +57,21 @@ const MovieSeatingPage = () => {
     }
 
     const submitStripe = async () => {
-        submitDataHandler();
         try {
-            // const data = await fetch('/api/checkout/',{
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body:JSON.stringify({
-            //         amount: selectedSeatDisplay.length, 
-            //         seat:selectedSeatDisplay,
-            //         showId: params.id
-            //     })
-            // })
-
-            // const data = await startPaymentSession();
-            console.log(data);
-            // const test = await data.json();
-            // console.log(test);
-
-            if (data.status === 200) {
-                const url = await data.json()
-                .then((data)=> {
-                    // console.log(data.url);
-                    window.location.href = data.url;
+            const data = await fetch("/api/paymentIntent/", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({seats: selectedSeatDisplay, showId: params.id}),
+            }).then(async (data) => {
+                const res = await data.json().then((data) => {
+                    router.push(`/payment?sess=${data.clientSecret}`);
                 });
-            } else {
-                console.error(data.status);
-            }
+                
+            })
 
-        } catch{
-            console.error('error');
-
-        }
+          } catch {
+    
+          }
     }
  
     useEffect(() => {
@@ -105,9 +85,7 @@ const MovieSeatingPage = () => {
                 // router.push("/error");
             }
         }
-        fetchData();
-        console.log(showTime);
-
+         fetchData();
     }, []);
 
     
@@ -185,7 +163,7 @@ const MovieSeatingPage = () => {
                     <Button 
                     type="submit"
                         disabled={selectedSeatDisplay.length == 0} 
-                        onClick={submitDataHandler} 
+                        onClick={submitStripe} 
                         size="medium" variant="contained" 
                         color="success"
                         sx={{fontWeight:'bold'}}>
