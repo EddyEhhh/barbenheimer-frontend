@@ -1,7 +1,24 @@
+'use client'
 import {Box, Button, Grid, Icon, Typography, Paper, Link} from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
+import { useEffect } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { getCompletedPurchaseInfo } from "../services/services";
+import { useState } from "react";
 
 const PaymentSummary = () => {
+    const [purchaseInfo, setPurchaseInfo] = useState<any>();
+    const params = useSearchParams();
+    useEffect(()=> {
+        const paymentIntentId = params.get('payment_intent');
+        console.log(paymentIntentId);
+        getCompletedPurchaseInfo(`paymentIntentId`).then((res)=>{
+            console.log(res);
+        })
+    },[])
+
+
+
     return (
         <Box sx = {{mt:10, height:800, width:"100%"}}> 
             <Grid container height={800} columns={4} justifyContent="center" alignItems="center">

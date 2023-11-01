@@ -38,7 +38,7 @@ const SeatSelection = (props : {seatingData : SeatingInterface[], width :number,
                     }
                 </Box>
                 <Box position='relative' display={"flex"} justifyContent={"center"} style={{width:`${width *2.2}em`, height:`${height*2.2}em`}}>
-                    <Box width={1} border={1} display={'flex'} justifyContent={'center'}>
+                    <Box width={1} display={'flex'} justifyContent={'center'}>
                         {(props.seatingData).map((seat : SeatingInterface, index) => (
                             <Seat 
                             x={seat.x} 

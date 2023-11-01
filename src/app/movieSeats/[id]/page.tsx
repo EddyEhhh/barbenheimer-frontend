@@ -11,9 +11,7 @@ import { Suspense } from "react";
 import LoadingPage from "../../loading";
 import SeatLegend from "../../components/(movieSeatsPage)/SeatLegend";
 import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
-import Cookies from 'js-cookie';
-import handler from "@/app/api/checkout/route";
-import getStripe from "@/app/services/getStripe";
+
 
 const MovieSeatingPage = () => {
     const params = useParams();
@@ -45,32 +43,40 @@ const MovieSeatingPage = () => {
         setSelectedSeatDisplay(updatedSelectedSeatDisplay)
     }
 
-
-    const submitDataHandler =  async () => {
-        
-            const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
-            // console.log(data);
-            // Cookies.set('test1', data);
-            // const cookieValue = Cookies.get('sessid');
-            // router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
-      
-    }
-
     const submitStripe = async () => {
         try {
             const data = await fetch("/api/paymentIntent/", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({seats: selectedSeatDisplay, showId: params.id}),
+              body: JSON.stringify(
+                {
+                    seats: selectedSeatDisplay, 
+                    showId: params.id, 
+                    showTitle: movieData?.movie.title,
+                    showHall: movieData?.number,
+                    showTime: convertTo12Hours(movieData!.showtime),
+                    showDate: dateConverter(movieData!.showdate)
+                }),
+             //converts to json
             }).then(async (data) => {
-                const res = await data.json().then((data) => {
-                    router.push(`/payment?sess=${data.clientSecret}`);
+                const res = await data.json()
+                .then(async (data) => {
+                    //submits to the backend to check if seats are most updated
+                    const seatAndToken = {
+                        seats: selectedSeatDisplay,
+                        token: data.id
+                    }
+
+                    await submitSeats(`${params.id}`, seatAndToken).then(()=> {
+                        //goes to payment if validation is correct
+                        router.push(`/payment?sess=${data.clientSecret}`);
+                    });
+                   
                 });
-                
             })
 
           } catch {
-    
+            router.push('/error')
           }
     }
  
@@ -82,7 +88,7 @@ const MovieSeatingPage = () => {
                 setSeatingData(data);
                 setMovieData(data);
             } catch {
-                // router.push("/error");
+                router.push("/error");
             }
         }
          fetchData();
@@ -103,10 +109,10 @@ const MovieSeatingPage = () => {
                         showTime={convertTo12Hours(movieData.showtime)}
                         hall={movieData.number}
                     />}
-                    <Box display="flex" flexDirection={"column"} ml={3}  alignItems={'center'} >
+                    <Box  display="flex" flexDirection={"column"} ml={3}  alignItems={'center'} >
                         <Typography variant="body1" fontWeight={'400'}> Seat selection </Typography>
                             <Divider variant="middle" light={true} sx={{width:'80%'}}/>
-                            <Box pt={1}>
+                            <Box  pt={1}>
                                 <SeatSelection  
                                 width={movieData.width} 
                                 height={movieData.height} 
@@ -147,7 +153,7 @@ const MovieSeatingPage = () => {
                         <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
                         <Box ml={1} height={30} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
     
-                            {selectedSeatDisplay.length != 0 &&<Button
+                            {selectedSeatDisplay.length != 0 && <Button
                                 disabled
                                 variant="contained"
                                 size="large"

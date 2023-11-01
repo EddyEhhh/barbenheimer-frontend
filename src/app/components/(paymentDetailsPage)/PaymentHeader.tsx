@@ -11,19 +11,28 @@ type paymentDetails = {
     image?: string;
 }
 
-const PaymentHeader = ({title, date, time, hall, seatNumber, image} : paymentDetails) => {
+const PaymentHeader = (props: paymentDetails) => {
     return (
-        <main>
-            <Grid className='payment-header' container sx= {{ height:250, pl: '5%', pr:'5%'}}>
-                
+            <Grid className='payment-header' container width={"100%"} sx= {{ pl: '5%', pr:'5%'}}>
 
-
-                <Grid className='description-box' container sx ={{width:'75%'}} direction="column">
-                    <Grid  className='title' sx={{height: '40%'}}>
+                {/* <Box position="relative" width={'1'} border={1}>
+                    <Image
+                        src={props.image}
+                        fill={true}
+                        style={{objectFit:"contain"}}
+                        sizes="(max-width: 600px) 100vw, 600px"
+                        priority
+                    >
+                    </Image>
+                </Box> */}
+                <Grid className='description-box' container  direction="row">
+                    <Grid  className='title' sx={{height:'30%'}}>
                         <Typography variant="h5" sx={{fontWeight:600}}>
-                                NARUTO SHIPPUDEN 2{title}
+                            {props.title}
                         </Typography>
                     </Grid>
+                   
+                 
                     
                     <Grid container className='selected-movie-details'  direction="column" justifyContent="space-between"  >
                         {/* <Grid className='theatre'>
@@ -33,31 +42,30 @@ const PaymentHeader = ({title, date, time, hall, seatNumber, image} : paymentDet
                         </Grid> */}
                         <Grid className='date'>
                             <Typography variant='h6' >
-                                Date: {date}
+                                Date: {props.date}
                             </Typography>
                         </Grid>
 
                         <Grid className='time'>
                             <Typography variant='h6' >
-                                Time: {time}
+                                Time: {props.time}
                             </Typography>
                         </Grid>
                         
                         <Grid className='hall'>  
                             <Typography variant='h6'>
-                                Hall: {hall}
+                                Hall: {props.hall}
                             </Typography>
                         </Grid>
                         
                         <Grid className='seat-number'>
                             <Typography variant='h6' >
-                                Selected seats:{seatNumber}
+                                Selected seats: {props.seatNumber}
                             </Typography>
                         </Grid>
                     </Grid>     
                 </Grid>
             </Grid>
-        </main>
     )
 }
 export default PaymentHeader;

@@ -2,6 +2,7 @@ import { Axios } from "axios";
 
 import AxiosInstance from "../api/AxiosInstance";
 import {SeatingInterface } from "../interface/interface";
+import { Router } from "next/router";
 
 export const getAllMovies = async () => {
     try {
@@ -16,27 +17,62 @@ export const getSpecificMovies = async (id : string | string[]) => {
     try {
         const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`);
         return data;
-    } catch {
-
+    } catch (error) {
+        return error;
     }
 }
 
-export const submitSeats =async (showId : string, seating : SeatingInterface[]) => {
+
+export const submitSeats =async (showId : string, id : {}[]) => {
+    // console.log(id);
     try {
-        const {data} = await AxiosInstance.post(`/api/v1/schedules/1`, seating);
+        const {data, status} = await AxiosInstance.post(`/api/v1/schedules/${showId}`, id);
         return data;
-    } catch {
-
+    } catch (error) {
+        window.location.reload();
     }
-    
+}
+//valid seats at /paymentpage
+export const validateSeats = async (paymentIntentId: string) => {
+    try{
+       return await AxiosInstance.get(`/api/v1/reserves/checkToken/${paymentIntentId}`);
+
+    } catch (error) {
+        return false
+    }
 }
 
+
+//gets payment info for /paymentpage
+export const getOnGoingPurchaseDetails = async (paymentIntentId: string) => {
+    try{
+        const data = await AxiosInstance.get(`/api/v1/reserves/${paymentIntentId}`);
+        // console.log(data.data.movie);
+        
+        // console.log(data.data);
+       return data.data;
+
+    } catch (error) {
+        
+    }
+}
+
+
+
+export const getCompletedPurchaseInfo = async (paymentIntentId :string) => {
+    try{
+        return await AxiosInstance.get(`/api/v1/payments/getPurchase/${paymentIntentId}`);
+    } catch{
+
+    }
+}
 
 export const getScheduleFromHall = async (hall : string | string[]) => {
     try {
         const {data, status} = await AxiosInstance.get(`/api/v1/schedules/${hall}`);
         return data;
     } catch (error) {
+
     }
 }
 
