@@ -3,7 +3,7 @@ import React, { useEffect, useState} from "react";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Box, Divider, Paper} from "@mui/material";
-import CheckoutForm from "../components/CheckoutForm";
+import CheckoutForm from "../components/(paymentPage)/CheckoutForm";
 import getStripe from "../services/getStripe";
 import CountdownTimer from "../components/(paymentDetailsPage)/CountdownTimer";
 import PaymentHeader from "../components/(paymentDetailsPage)/PaymentHeader";

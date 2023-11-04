@@ -51,11 +51,6 @@ const MovieSeatingPage = () => {
               body: JSON.stringify(
                 {
                     seats: selectedSeatDisplay, 
-                    showId: params.id, 
-                    showTitle: movieData?.movie.title,
-                    showHall: movieData?.number,
-                    showTime: convertTo12Hours(movieData!.showtime),
-                    showDate: dateConverter(movieData!.showdate)
                 }),
              //converts to json
             }).then(async (data) => {

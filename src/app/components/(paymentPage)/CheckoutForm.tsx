@@ -9,13 +9,15 @@ import {
 } from "@stripe/react-stripe-js";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import CountdownTimer from "./(paymentDetailsPage)/CountdownTimer";
-import PaymentHeader from "./(paymentDetailsPage)/PaymentHeader";
-import { MovieSeatInformationInterface } from "../interface/interface";
-import { getOnGoingPurchaseDetails, getPurchaseInfo, validateSeats } from "../services/services";
+import CountdownTimer from "../(paymentDetailsPage)/CountdownTimer";
+import PaymentHeader from "../(paymentDetailsPage)/PaymentHeader";
+import { MovieSeatInformationInterface } from "../../interface/interface";
+import { getOnGoingPurchaseDetails, getPurchaseInfo, validateSeats } from "../../services/services";
 import { usePathname } from "next/navigation";
-import { seatToString } from "../services/util";
+import { seatToString } from "../../services/util";
 import Image from "next/image";
+import { hostname } from "os";
+import { SourceTextModule } from "vm";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -54,7 +56,6 @@ export default function CheckoutForm() {
   const cancelButton = () => {
     // stripe!.retrievePaymentIntent(`clientSecret`).then((paymentIntent) => {
     //   paymentIntent.paymentIntent.cancel();
-    
     // })
   }
 
@@ -69,12 +70,20 @@ export default function CheckoutForm() {
     //retrive the paymentID to send to springboot for external validation of seats
     const isSeatAval = await backendSeatValidation();
     //if seats are not taken, check with stripe if payment is correct
+    
     if (isSeatAval) {
+      let hostname = "";
+      if (typeof window !== 'undefined') {
+        hostname = window.location.origin;
+      } else {
+        route.push('/error');
+      }
+      const returnURL = hostname + `/paymentSummary`;
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
           //success URL
-          return_url: `http://localhost:3000/paymentSummary`,
+          return_url:returnURL,
         },
       });
   
@@ -169,8 +178,6 @@ export default function CheckoutForm() {
               <Button 
                 disabled={isLoading || !stripe || !elements}
                 color="error"
-                id="submit"
-                type="submit"
                 size="large"
                 variant="contained"
                 onClick={cancelButton}>
