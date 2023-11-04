@@ -1,13 +1,12 @@
-import { Grid, Typography,Box, Paper, Divider} from "@mui/material";
+import {Typography,Box} from "@mui/material";
 import Image from "next/image";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import SeatSelection from "./SeatSelection";
 import TodayIcon from '@mui/icons-material/Today';
 import CameraOutdoorIcon from '@mui/icons-material/CameraOutdoor';
 import LanguageIcon from '@mui/icons-material/Language';
 
 
-const DescriptionBox = ( props : {title:string, runtimeInMinute:number, ageRestriction:number, language:string, movieImage:string, showDate:string, showTime:string, hall:string} ) => {
+const DescriptionBox = ( props : {title:string, runtimeInMinute:number, ageRestriction:string, language:string, movieImage:string, showDate:string, showTime:string, hall:string} ) => {
     const ratings : string[] = ["G", "PG", "PG13", "NC16", "M18", "R21" ]
     return (
         <Box display={'flex'} width={'auto'} justifyContent={'center'} flexDirection={'column'} >

@@ -17,7 +17,7 @@ const Seat = (props : SeatingInterface) => {
             position:"absolute"}} 
         >
             
-        {props.state == 0 && <EventSeatIcon color="secondary"/> }
+        {props.state == 0 && <EventSeatIcon  color="secondary"/> }
         {props.state == 1 && <EventSeatIcon color="error" />}
         {props.state == 2 && <EventSeatIcon color="disabled"/>} 
         {props.state == 4 && <EventSeatIcon color = "success"/>}
