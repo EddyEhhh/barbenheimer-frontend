@@ -1,4 +1,4 @@
-import {Typography, Box, Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@mui/material';
+import {Typography, Box, Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Link} from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 function createData(
@@ -28,12 +28,15 @@ const Account = () => {
           <Grid container>
             <Grid xs={2}></Grid>
             <Grid xs={8}>
-              <Grid className='accountDetailsGrid'container>
+              <Grid className='accountDetailsGrid'container >
+
+                <Grid container border={2} borderRadius={3} borderColor='divider'>
                 {/*Account Icon*/}
-                <Grid className='accountIcon' sx={{pt:2, pb:2}}>
+                <Grid className='accountIcon' sx={{pl: 3, pr:3, pt:2, pb:1.9,}}
+                  >
                   <AccountCircleRoundedIcon sx={{fontSize: 110}}/>
                 </Grid>
-                <Grid sx={{pl:1}}>
+                <Grid sx={{pl:1}} xs={9.26}>
                   {/*Name*/}
                   <Grid container>
                     <Grid rowSpacing={1} sx={{p:2}}>
@@ -52,7 +55,19 @@ const Account = () => {
                       <Typography variant='h6' fontWeight="semibold">james@bmail.com</Typography>
                     </Grid>
                   </Grid>
+                  </Grid>
                 </Grid>
+                <Grid className='logoutButton' container display="flex" justifyContent="right">
+                  <Button style={{borderRadius: '16px'}}>
+                    <Link href="/" underline="none" style={{textTransform: 'none', 
+                      fontStyle: 'semibold',fontSize: '16px'}}>
+                        <Typography>
+                          Log Out
+                        </Typography>
+                    </Link> 
+                    </Button>
+                </Grid>
+                
               </Grid>
               <Grid className='purchaseHistoryGrid'>
                  {/*Purchase History*/}
@@ -73,8 +88,7 @@ const Account = () => {
                       {rows.map((row) => (
                         <TableRow
                           key={row.date}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
+                          sx={{ '&:last-child td, &:last-child th': { border: 0 }}}>
                           <TableCell component="th" scope="row" style={{width: 300}}>
                             <Typography fontWeight="semibold">
                               {row.date}
@@ -97,7 +111,8 @@ const Account = () => {
                             
                           </TableCell>
                           <TableCell align="right">
-                              <Button variant="text" style={{textTransform: 'none', fontStyle: 'semibold'}}>
+                              <Button variant="text" style={{textTransform: 'none', 
+                              fontStyle: 'semibold', borderRadius: '16px'}}>
                                 Review
                               </Button>
                           </TableCell>
