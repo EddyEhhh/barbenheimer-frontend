@@ -40,7 +40,7 @@ const Account = () => {
                       <Typography variant='h6'>Name:</Typography>
                     </Grid>
                     <Grid sx={{p:2}}>
-                      <Typography variant='h6' fontWeight="semibold">Jaibun Thana</Typography>
+                      <Typography variant='h6' fontWeight="semibold">James</Typography>
                     </Grid>
                   </Grid>
                   {/*Email*/}
@@ -49,7 +49,7 @@ const Account = () => {
                       <Typography variant='h6'>Email:</Typography>
                     </Grid>
                     <Grid sx={{p:2}}>
-                      <Typography variant='h6' fontWeight="semibold">JaibunThana@gmail.com</Typography>
+                      <Typography variant='h6' fontWeight="semibold">james@bmail.com</Typography>
                     </Grid>
                   </Grid>
                 </Grid>
