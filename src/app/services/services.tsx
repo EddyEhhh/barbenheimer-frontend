@@ -1,12 +1,15 @@
 import AxiosInstance from "../api/AxiosInstance";
 import { HallInterface, SeatingInterface } from "../interface/interface";
 import Cookies from 'js-cookie'
+import { getAuthConfig } from "./AuthenticationService";
+
 
 
 
 export const getAllMovies = async () => {
     try {
-        const {data, status} = await AxiosInstance.get("/api/v1/movies");
+        const {data, status} = await AxiosInstance.get("/api/v1/movies"
+        );
         return data;        
         } catch(error) {
             //set error
@@ -15,10 +18,14 @@ export const getAllMovies = async () => {
 
 export const getSpecificMovies = async (id : string | string[]) => {
     try {
-        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`);
+        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`,
+        {
+            ...getAuthConfig() 
+        }
+        );
         return data;
-    } catch {
-
+    } catch(e) {
+        console.log(e)
     }
 }
 

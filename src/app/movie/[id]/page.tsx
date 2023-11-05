@@ -5,7 +5,7 @@ import SelectDate from "../../components/(movieDetailPage)/SelectDate";
 import SelectTime from "../../components/(movieDetailPage)/SelectTime";
 import {Box, Paper, Grid, Typography, Button, Divider} from "@mui/material";
 import Link from "next/link";
-import AxiosInstance from "@/app/api/AxiosInstance";
+import { getSpecificMovies } from "@/app/services/services";
 import { MovieSpecificDetailsInterface, MovieScheduleDatesInterface, MovieScheduleTimeInterface, HallInterface} from "@/app/interface/interface";
 
 
@@ -42,7 +42,7 @@ const MovieDetails = ({params} : {params: {id : string}}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const {data, status} = await AxiosInstance.get(`/api/v1/movies/${params.id}`);
+                const data = await getSpecificMovies(params.id);
                 setMovieData(data);
                 setDateSelection(data.movieScheduleDates);
                 setSelectedDate(data.movieScheduleDates[0].id);
