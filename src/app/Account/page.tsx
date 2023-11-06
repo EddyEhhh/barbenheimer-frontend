@@ -9,11 +9,15 @@ function createData(
   movie: string,
   ticketQuantity: number,
   totalSpend: number
-
+  
 ) {
   return { date, movie, ticketQuantity, totalSpend};
 }
 const rows = [
+  createData('01/01/2111', 'Barbie', 10, 0),
+  createData('01/01/2111', 'Barbie', 0, 0),
+  createData('01/01/2111', 'Barbie', 0, 0),
+  createData('01/01/2111', 'Barbie', 0, 0),
   createData('01/01/2111', 'Barbie', 0, 0),
   createData('01/01/2111', 'Barbie', 0, 0),
   createData('01/01/2111', 'Barbie', 0, 0),
@@ -37,27 +41,27 @@ const Account = () => {
 
                 <Grid container border={2} borderRadius={3} borderColor='divider'>
                 {/*Account Icon*/}
-                <Grid className='accountIcon' sx={{pl: 3, pr:3, pt:2, pb:1.9,}}
+                <Grid className='accountIcon' sx={{pl: 3, pr:3, pt:2, pb:2}}
                   >
-                  <AccountCircleRoundedIcon sx={{fontSize: 110}}/>
+                  <AccountCircleRoundedIcon fontSize='large'/>
                 </Grid>
                 <Grid sx={{pl:1}} xs={9.26}>
                   {/*Name*/}
                   <Grid container>
                     <Grid rowSpacing={1} sx={{p:2}}>
-                      <Typography variant='h6'>Name:</Typography>
+                      <Typography variant='subtitle1'>Name:</Typography>
                     </Grid>
                     <Grid sx={{p:2}}>
-                      <Typography variant='h6' fontWeight="semibold">James</Typography>
+                      <Typography variant='subtitle1' fontWeight="semibold">James</Typography>
                     </Grid>
                   </Grid>
                   {/*Email*/}
                   <Grid container>
                     <Grid rowSpacing={1} sx={{p:2, pr:2.6}}>
-                      <Typography variant='h6'>Email:</Typography>
+                      <Typography variant='subtitle1'>Email:</Typography>
                     </Grid>
                     <Grid sx={{p:2}}>
-                      <Typography variant='h6' fontWeight="semibold">james@bmail.com</Typography>
+                      <Typography variant='subtitle1' fontWeight="semibold">james@bmail.com</Typography>
                     </Grid>
                   </Grid>
                   </Grid>
@@ -94,16 +98,16 @@ const Account = () => {
                       <TableRow>
                         <TableCell><Typography fontWeight="bold">Date</Typography></TableCell>
                         <TableCell align="left"><Typography fontWeight="bold">Movie</Typography></TableCell>
-                        <TableCell align="right"><Typography fontWeight="bold">Ticket Quantity</Typography></TableCell>
-                        <TableCell align="right"><Typography fontWeight="bold">Amount Paid</Typography></TableCell>
+                        <TableCell align="left"><Typography fontWeight="bold">Ticket Details</Typography></TableCell>
+                        {/* <TableCell align="right"><Typography fontWeight="bold">Amount Paid</Typography></TableCell> */}
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rows.map((row) => (
+                      {rows.map((row,index) => (
                         <TableRow
-                          key={row.date}
+                          key={index}
                           sx={{ '&:last-child td, &:last-child th': { border: 0 }}}>
-                          <TableCell component="th" scope="row" style={{width: 300}}>
+                          <TableCell scope="row" style={{width: 300}}>
                             <Typography fontWeight="semibold">
                               {row.date}
                             </Typography>
@@ -123,23 +127,26 @@ const Account = () => {
                                     style={{objectFit:"contain", aspectRatio:3/2}}>
                                 </Image> */}
                               </Grid>
-                              <Grid sx={{pt:6, pl:3}}>
+                              <Grid>
                                 <Typography fontWeight="semibold">
                                   {row.movie}
                                 </Typography>
                               </Grid>
                             </Grid>
                           </TableCell>
-                          <TableCell align="right" style={{width: 400}}>
+                          <TableCell align="left" style={{width: 400}}>
                             <Typography fontWeight="semibold">
-                              {row.ticketQuantity}
+                              Quantity: {row.ticketQuantity}
                             </Typography>
+                            <Typography> Seats </Typography>
+                            <Typography> Total Price:  </Typography>
+
                           </TableCell>
                           <TableCell align="right" style={{width: 400}}>
-                            {/* <Typography fontWeight="semibold">
+                            <Typography fontWeight="semibold">
                               {row.totalSpend}
-                            </Typography> */}
-                             <QuantityDetails></QuantityDetails>
+                            </Typography>
+                            Test <QuantityDetails></QuantityDetails>
                           </TableCell>
                           
                         </TableRow>

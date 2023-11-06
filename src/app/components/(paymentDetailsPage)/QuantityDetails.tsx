@@ -7,6 +7,7 @@ type paymentDetails = {
 }
 
 const QuantityDetails = ({ticketType, quantity, ticketPrice} : paymentDetails) => {
+     
     const renderDetail = (label: string, value: string) => (
             <Grid direction="column" justifyContent="center" alignItems="center">
                 <Grid className='quantity-details-column-title' container justifyContent={"center"}>
@@ -20,7 +21,7 @@ const QuantityDetails = ({ticketType, quantity, ticketPrice} : paymentDetails) =
 
     return (
         <main>
-            <Grid className='quantity-details' container direction="row" sx={{ width: 1, height: 60, pl: '20%', pr: '20%' }} alignItems="center" justifyContent="space-between">
+            <Grid className='quantity-details' border={1} container direction="row" sx={{ width: '1', height: 200, pl: '20%', pr: '20%' }} alignItems="center" justifyContent="space-between">
                 {renderDetail("Type", `${ticketType} Type of Ticket`)}
                 <Divider orientation="vertical" flexItem></Divider>
                 {renderDetail("Quantity", `${quantity} Quantity of Ticket`)}
