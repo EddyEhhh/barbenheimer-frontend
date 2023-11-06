@@ -1,22 +1,27 @@
 import {Typography, Box, Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Link} from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import Image from 'next/image'
+import QuantityDetails from "../components/(paymentDetailsPage)/QuantityDetails";
+import ContactInfo from "../components/(paymentDetailsPage)/QuantityDetails";
 
 function createData(
   date: string,
   movie: string,
-  review: null
+  ticketQuantity: number,
+  totalSpend: number
 
 ) {
-  return { date, movie, review};
+  return { date, movie, ticketQuantity, totalSpend};
 }
 const rows = [
-  createData('01/01/2111', 'Barbie', null),
-  createData('01/01/2111', 'Barbie', null),
-  createData('01/01/2111', 'Barbie', null),
-  createData('01/01/2111', 'Barbie', null),
+  createData('01/01/2111', 'Barbie', 0, 0),
+  createData('01/01/2111', 'Barbie', 0, 0),
+  createData('01/01/2111', 'Barbie', 0, 0),
+  createData('01/01/2111', 'Barbie', 0, 0),
 ];
 
 const Account = () => {
+  // console.log(QuantityDetails({}));
     return (
       <Box>
         <Grid container>
@@ -81,7 +86,8 @@ const Account = () => {
                       <TableRow>
                         <TableCell><Typography fontWeight="bold">Date</Typography></TableCell>
                         <TableCell align="left"><Typography fontWeight="bold">Movie</Typography></TableCell>
-                        <TableCell align="right"><Typography fontWeight="bold"></Typography></TableCell>
+                        <TableCell align="right"><Typography fontWeight="bold">Ticket Quantity</Typography></TableCell>
+                        <TableCell align="right"><Typography fontWeight="bold">Amount Paid</Typography></TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -97,9 +103,13 @@ const Account = () => {
                             </TableCell>
                           <TableCell align="right" style={{width: 400}}>
                             <Grid container>
-                              <Grid>
-                                <Box sx={{width: 100, backgroundColor: 'primary.main', pt:15}}>
-                                </Box>
+                              <Grid item position={"relative"}container>
+                                  {/* <Image 
+                                    src={movieImages} 
+                                    alt="no image" 
+                                    fill={true}
+                                    style={{objectFit:"contain", aspectRatio:3/2}}>
+                                </Image> */}
                               </Grid>
                               <Grid sx={{pt:6, pl:3}}>
                                 <Typography fontWeight="semibold">
@@ -107,15 +117,19 @@ const Account = () => {
                                 </Typography>
                               </Grid>
                             </Grid>
-                            
-                            
                           </TableCell>
-                          <TableCell align="right">
-                              <Button variant="text" style={{textTransform: 'none', 
-                              fontStyle: 'semibold', borderRadius: '16px'}}>
-                                Review
-                              </Button>
+                          <TableCell align="right" style={{width: 400}}>
+                            <Typography fontWeight="semibold">
+                              {row.ticketQuantity}
+                            </Typography>
                           </TableCell>
+                          <TableCell align="right" style={{width: 400}}>
+                            <Typography fontWeight="semibold">
+                              {row.totalSpend}
+                            </Typography>
+                            Test <QuantityDetails></QuantityDetails>
+                          </TableCell>
+                          
                         </TableRow>
                       ))}
                     </TableBody>
