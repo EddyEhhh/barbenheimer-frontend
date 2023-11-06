@@ -20,19 +20,20 @@ const LogInForm = () => {
   }
 
   const inputValidation = () => {
+    //checks if password/username is empty
+    console.log(password);
     if (username == ''|| password=='') {
       return false;
     }
-
     return true;
   }
 
   const handleSubmit = async () => {
-
+    console.log(inputValidation());
     if (inputValidation()) {
       await checkLoginDetails(username, password).then((data) => {
-        const tokenExpireTime :number = parseInt(data.expiresIn);
-        const refreshTokenExpireTime :number = parseInt(data.refreshExpiresIn);
+        const tokenExpireTime :number = parseInt(data.expiresIn) /86400  ;
+        const refreshTokenExpireTime :number = parseInt(data.refreshExpiresIn) /86400 ;
         Cookies.set('access_token', data.accessToken, {expires:tokenExpireTime, secure:true});
         Cookies.set('refresh_token', data.refreshToken, {expires:refreshTokenExpireTime,secure:true});
         router.push('/');      
@@ -40,16 +41,11 @@ const LogInForm = () => {
           const message = 'Wrong Credentials'
           setError(message);
         });
+    } else {
+      const message = 'Please enter password/username'
+      setError(message);
     }
-
-    const message = 'Please enter password/username'
-    setError(message);
-
-      
-     
   
-
-    
   };
 
   return (
