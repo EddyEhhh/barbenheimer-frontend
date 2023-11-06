@@ -7,8 +7,10 @@ import { getAuthConfig } from "./AuthenticationService";
 
 
 export const getAllMovies = async () => {
+    // console.log("Hello: " + getAuthConfig().headers.Authorization);
     try {
         const {data, status} = await AxiosInstance.get("/api/v1/movies");
+
         return data;        
         } catch(error) {
             //set error

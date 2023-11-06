@@ -1,12 +1,12 @@
-'client'
-import { AppBar, Toolbar, Box, Typography, Avatar, Autocomplete, TextField, Link} from '@mui/material';
+
+import {AppBar, Toolbar, Box, Typography, Avatar, Autocomplete, TextField, Link, Button} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import React, { useEffect,useState } from 'react';
 import AxiosInstance from '../api/AxiosInstance';
 import { useRouter } from 'next/navigation';
 import { getAllMovies } from '../services/services';
-import { title } from 'process';
+import useAuth, {client} from "@/app/hooks/useAuth";
 
 interface searchFormat {
   title: string
@@ -34,6 +34,12 @@ const Header = () => {
     const setEnteredDataHandler =(event, value) => {
       setEnteredData(value);
     }
+
+    const loginButtonHandler = ()  => {
+        client.login();
+    }
+
+    const isLogin = useAuth()
   
     return (
 
@@ -66,9 +72,25 @@ const Header = () => {
                     </Box>
                   </Link>
                   
-                  <Link underline="none" href= "/account" >
-                    <Avatar></Avatar>
-                  </Link>
+
+                      {isLogin ?
+                          <Link underline="none" href= "/account" >
+                              <Avatar></Avatar>
+                          </Link>
+                          :
+                          <Button
+                              className={"px-5"}
+                              color="primary"
+                              size="small"
+                              variant="text">
+                              <Link onClick={loginButtonHandler}>
+                                  Login
+                              </Link>
+                          </Button>
+                          }
+
+
+
                 </Box>
             </Box>
           </Toolbar>

@@ -1,10 +1,38 @@
 import AxiosInstance from "../api/AxiosInstance";
-import Cookies from "js-cookie"
+import { UserManager } from "oidc-client"
 
-const tempAccessToken = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxYk9BTVdfVzdyS2xsRmsxNkRPQzZIdmtZVGtBRHR1QkNQWG8wS09IWEtRIn0.eyJleHAiOjE2OTkxNzQyMDksImlhdCI6MTY5OTE3MzkwOSwianRpIjoiODZhYjYzNzktMzcwOC00ZjRmLWJiYTAtYWI5YThiODlhYjUyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9iYXJiZW5oZWltZXItcmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiM2MwZmUyNTQtYmM4NC00ODZmLWI4NjktZjZiNmU4ZjViNWZkIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYmFyYmVuaGVpbWVyLXJlc3QtYXBpIiwic2Vzc2lvbl9zdGF0ZSI6ImE4MDBjNjNkLTI3MGMtNGVjYS1iZDIxLTllOGE2YzZhYTM3NiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLWJhcmJlbmhlaW1lci1yZWFsbSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19LCJiYXJiZW5oZWltZXItcmVzdC1hcGkiOnsicm9sZXMiOlsiY2xpZW50X2N1c3RvbWVyIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYTgwMGM2M2QtMjcwYy00ZWNhLWJkMjEtOWU4YTZjNmFhMzc2IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqYW1lcyJ9.e89NBSyRqNbPMEh3vl3NR6R9dbsotfSLWGpWKxlbdB-NrlW0PUFE1MRAoMRbISMGoJGIquBb2CPNKhXdslRp_HPCnSlI7UrWKBJWqJNfY0Dhe15TtbY7xLWtNRokQt13TbGueSIyYS1dRlUzH3BICoDQcSoI72xz_jQKxFHxRYWcnx-2jAZDkoml8swaGuSz545GrFXWPLInYxnZgjVJQklm6u50E_pISVwjIQ_7Zgt701M-ONas351tFAL8zbqfMN4YfguRjx-SfEfRteAIDkEk2guKHtu5epnZOgYrEDrOQm8ORftmSDB-P-YiULM-ZmzU5CBXofXTSCvZIow7GA"
+const tempAccessToken = ""
 export const getAuthConfig = () => ({
     headers: {
+        Accept: "application/json",
         Authorization: `Bearer ${tempAccessToken}`
     }
 
 })
+
+//
+// const kcSettings = {
+//     authority: "http://localhost:8181/realms/barbenheimer-realm/",
+//     client_id: "barbenheimer-rest-api",
+//     redirect_uri: "http://localhost:3000",
+//     response_type: "code",
+//     scope: "openid profile message.read"
+// }
+//
+// const userManager = new UserManager(kcSettings);
+//
+// export const getUser = () : any => {
+//     return userManager.getUser()
+// }
+//
+// export const login = () => {
+//     return userManager.signinRedirect();
+// }
+//
+// export const logout = () => {
+//     return userManager.signoutRedirect();
+// }
+//
+//
+
+
