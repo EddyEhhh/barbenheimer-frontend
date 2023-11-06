@@ -95,3 +95,24 @@ export interface MovieSeatInformationInterface {
 
 
 }
+
+//Accounts page
+
+//Interface to set what data is to be contained
+export interface Data {
+    date: string,
+    movie: string,
+    ticketQuantity: number,
+    totalSpend: number
+    description: string;
+}
+
+//Interface to 
+export interface HeadCell {
+    disablePadding: boolean;
+    id: keyof Data;
+    label: string;
+    numeric: boolean;
+    sortable: boolean;
+}
+  
