@@ -63,7 +63,15 @@ const Account = () => {
                   </Grid>
                 </Grid>
                 <Grid className='logoutButton' container display="flex" justifyContent="right">
-                  <Button style={{borderRadius: '16px'}}>
+                  <Button className={'resetPasswordButton'} style={{borderRadius: '16px'}}>
+                      <Link href="" underline="none" style={{textTransform: 'none', 
+                        fontStyle: 'semibold',fontSize: '16px'}}>
+                          <Typography>
+                            Reset Password
+                          </Typography>
+                      </Link> 
+                    </Button>
+                  <Button className={'logOutButton'} style={{borderRadius: '16px'}}>
                     <Link href="/" underline="none" style={{textTransform: 'none', 
                       fontStyle: 'semibold',fontSize: '16px'}}>
                         <Typography>
@@ -104,6 +112,10 @@ const Account = () => {
                           <TableCell align="right" style={{width: 400}}>
                             <Grid container>
                               <Grid item position={"relative"}container>
+
+
+                                  {/*Diplay movie picture*/}
+                                  
                                   {/* <Image 
                                     src={movieImages} 
                                     alt="no image" 
@@ -124,10 +136,10 @@ const Account = () => {
                             </Typography>
                           </TableCell>
                           <TableCell align="right" style={{width: 400}}>
-                            <Typography fontWeight="semibold">
+                            {/* <Typography fontWeight="semibold">
                               {row.totalSpend}
-                            </Typography>
-                            Test <QuantityDetails></QuantityDetails>
+                            </Typography> */}
+                             <QuantityDetails></QuantityDetails>
                           </TableCell>
                           
                         </TableRow>
