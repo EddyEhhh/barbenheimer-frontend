@@ -1,44 +1,55 @@
-import React, { useState } from 'react';
+import React, { ReactEventHandler, SetStateAction, useState, ChangeEvent} from 'react';
 import { Box, Typography, Grid, Avatar, Paper, TextField, Button, FormControlLabel, Checkbox, Link } from '@mui/material/';
 import LoginIcon from '@mui/icons-material/Login';
 import AxiosInstance from '../../api/AxiosInstance';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
-import { checkLoginDetails } from '../../services/userAuth';
-
+import { useRouter } from 'next/navigation';
+import { checkLoginDetails } from '@/app/services/userAuth';
 
 const LogInForm = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); 
+  const [username, setUsername] = useState('');
+  const [password,setPassword]= useState('');
+  const router = useRouter();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const username = data.get('username') as string; 
-    const password = data.get('password') as string;
-    // console.log("CREDENTIALS: "+ username + password);
-    const router = useRouter();
+  const usernameHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setUsername(e.target.value);
+  }
+  const passwordHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setPassword(e.target.value);
+  }
 
-    if (!username || !password) {
-      setError('Please fill in all the fields.');
-      return;
+  const inputValidation = () => {
+    if (username == ''|| password=='') {
+      return false;
     }
-    console.log("A1");
-    setError('');
-    console.log("A2");
-    try {
-      console.log("before data");
-      const data = await checkLoginDetails(username, password); 
-      console.log("data stuff: " + data);
-      console.log('Response from the backend:', data);
-      Cookies.set('access_token', data.accessToken, { secure: true });
-      Cookies.set('refresh_token', data.refreshToken, { secure: true });
-      Cookies.set('expires_in', data.expiresIn, { secure: true });
-      Cookies.set('refresh_expires_in', data.refreshExpiresIn, { secure: true });
-      Cookies.set('token_type', data.tokenType, { secure: true });
-      router.push('/');       
-    } catch (error) {
-      console.error('Error while sending data to the backend:', error);
+
+    return true;
+  }
+
+  const handleSubmit = async () => {
+
+    if (inputValidation()) {
+      await checkLoginDetails(username, password).then((data) => {
+        const tokenExpireTime :number = parseInt(data.expiresIn);
+        const refreshTokenExpireTime :number = parseInt(data.refreshExpiresIn);
+        Cookies.set('access_token', data.accessToken, {expires:tokenExpireTime, secure:true});
+        Cookies.set('refresh_token', data.refreshToken, {expires:refreshTokenExpireTime,secure:true});
+        router.push('/');      
+        }).catch((error) => {
+          const message = 'Wrong Credentials'
+          setError(message);
+        });
     }
+
+    const message = 'Please enter password/username'
+    setError(message);
+
+      
+     
+  
+
+    
   };
 
   return (
@@ -69,7 +80,7 @@ const LogInForm = () => {
             alignItems: 'center',
           }}
         >
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <Box sx={{ mt: 2 }}>
             <TextField
               margin="normal"
               fullWidth
@@ -77,6 +88,7 @@ const LogInForm = () => {
               name="username" 
               autoComplete="username" 
               autoFocus
+              onChange={usernameHandler}
             />
             <TextField
               margin="normal"
@@ -85,6 +97,7 @@ const LogInForm = () => {
               label="Password"
               type="password"
               id="password"
+              onChange={passwordHandler}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -92,9 +105,9 @@ const LogInForm = () => {
               label="Remember me"
             />
             <Grid sx={{ height: 3 }}>
-              {error && <Typography variant="subtitle2" color="error">{error}</Typography>}
+              {error && <Typography variant="subtitle2" color="error"> {error} </Typography>}
             </Grid>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit" onClick={handleSubmit} fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               <Typography sx={{ fontWeight: 'bold' }}>Sign In</Typography>
             </Button>
             <Grid container>

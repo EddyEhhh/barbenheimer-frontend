@@ -8,8 +8,7 @@ import { getAuthConfig } from "./AuthenticationService";
 
 export const getAllMovies = async () => {
     try {
-        const {data, status} = await AxiosInstance.get("/api/v1/movies"
-        );
+        const {data, status} = await AxiosInstance.get("/api/v1/movies");
         return data;        
         } catch(error) {
             //set error
@@ -18,11 +17,7 @@ export const getAllMovies = async () => {
 
 export const getSpecificMovies = async (id : string | string[]) => {
     try {
-        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`,
-        {
-            ...getAuthConfig() 
-        }
-        );
+        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`)
         return data;
     } catch(e) {
         console.log(e)
