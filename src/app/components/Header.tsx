@@ -1,23 +1,24 @@
-'client'
-import { AppBar, Toolbar, Box, Typography, Avatar, Autocomplete, TextField, Link} from '@mui/material';
+
+import {AppBar, Toolbar, Box, Typography, Avatar, Autocomplete, TextField, Link, Button} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import React, { useEffect,useState } from 'react';
 import AxiosInstance from '../api/AxiosInstance';
 import { useRouter } from 'next/navigation';
 import { getAllMovies } from '../services/services';
-import { title } from 'process';
+import useAuth, {client} from "@/app/hooks/useAuth";
+import {logout} from "@/app/services/userAuth";
+import Cookies from "js-cookie";
 
 interface searchFormat {
   title: string
   id: string
-}  
+}
 
 const Header = () => {
   const router = useRouter();
     const [searchData, setSearchData] = useState<searchFormat[]>([])
     const [enteredData, setEnteredData] = useState<searchFormat>('');
-
 
     useEffect (() => {
         getAllMovies().then((data)=>setSearchData(data));
@@ -34,7 +35,18 @@ const Header = () => {
     const setEnteredDataHandler =(event, value) => {
       setEnteredData(value);
     }
-  
+
+    const loginButtonHandler = ()  => {
+        client.login();
+    }
+
+    const logoutButtonHandler = ()  => {
+        client.logout()
+    }
+
+    const isLogin = useAuth();
+
+
     return (
 
       <Box>
@@ -66,9 +78,28 @@ const Header = () => {
                     </Box>
                   </Link>
                   
-                  <Link underline="none" href= "/account" >
-                    <Avatar></Avatar>
-                  </Link>
+
+                      {isLogin ?
+                          <div>
+                          <Link underline="none" href= "/account" >
+                              <Avatar></Avatar>
+                          </Link>
+                          </div>
+                          :
+                          <Button
+                              className={"px-5"}
+                              color="primary"
+                              size="small"
+                              variant="text">
+                              <Link onClick={loginButtonHandler}>
+                                  Login
+                              </Link>
+                          </Button>
+                          }
+                    <Button onClick={logoutButtonHandler}>Logout</Button>
+
+
+
                 </Box>
             </Box>
           </Toolbar>

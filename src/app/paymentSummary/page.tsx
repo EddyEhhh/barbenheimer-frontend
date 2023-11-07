@@ -1,9 +1,35 @@
+'use client'
 import {Box, Button, Grid, Icon, Typography, Paper, Link} from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
+import { useEffect } from "react";
+import {useSearchParams } from "next/navigation";
+import { getCompletedPurchaseInfo } from "../services/services";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { paymentSummaryDisplayInterface } from "../interface/interface";
+import paymentDetails from "../paymentDetails/page";
+import { seatToString } from "../services/util";
 
 const PaymentSummary = () => {
+    const [purchaseInfo, setPurchaseInfo] = useState<paymentSummaryDisplayInterface>();
+    const params = useSearchParams();
+    const router = useRouter();
+    const clientSecret= params.get('payment_intent');
+
+    useEffect(()=> {
+        getCompletedPurchaseInfo(clientSecret!).then((res : any)=>{
+            console.log(res.data);
+            setPurchaseInfo(res.data);
+        }).catch((error) => {
+            router.push('/error');
+        })
+    },[])
+
+
+
     return (
         <Box sx = {{mt:10, height:800, width:"100%"}}> 
+                {purchaseInfo && 
             <Grid container height={800} columns={4} justifyContent="center" alignItems="center">
                 {/*Grid for Check Icon*/}
                 <Grid>
@@ -39,18 +65,18 @@ const PaymentSummary = () => {
                                         Payment summary
                                     </Typography>
                                 </Grid>
-                                <Grid item>
+                                {/* <Grid item>
                                     <Typography component="div" fontWeight="bold">
                                         Ticket ID: 0000000
                                     </Typography>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                             <Grid className = "movieDetails" height='90%' sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
                                 <Grid container ml={6.5}>
                                     <Grid container mb={1}>
                                         <Grid container xs={6} md={7.8}>
                                             <Typography>
-                                                Movie: Barbenheimer
+                                                Movie: {purchaseInfo?.movie.title}
                                             </Typography>
                                         </Grid>
 
@@ -63,70 +89,51 @@ const PaymentSummary = () => {
                                     <Grid container mb={1}>
                                         <Grid container xs={6} md={7.8}>
                                             <Typography>
-                                                Date & Time: 01/01/00001 2359
+                                                Date & Time: {purchaseInfo?.movieDate} {purchaseInfo?.movieTime}
                                             </Typography>
                                         </Grid>
                                         <Grid container xs={6} md={4}>
                                             <Typography>
-                                                Seat: A1, A2
+                                                Seat: {seatToString(purchaseInfo.seatDetails)}
                                             </Typography>
                                         </Grid>
                                         
                                     </Grid>
 
-                                    <Grid container>
+                                    <Grid container  mb={1}>
                                         <Grid container xs={6} md={2.5}>
                                             <Typography>
-                                                Venue Details: 
+                                                Hall number:
                                             </Typography>
                                         </Grid>
                                         <Grid container xs={6} md={9}>
                                             <Typography>
-                                                Gold Class Express, Lala Mall 
-                                                Hall 2
+                                            {purchaseInfo?.hallNumber}
                                             </Typography>
                                         </Grid>
                                         
+                                    </Grid>
+
+                                    
+                                    <Grid className="bookingDetails" container  >
+                                        <Grid container mb={1}>
+                                            <Grid container xs={6} md={5.3}>
+                                                <Typography>
+                                                    Booking ID: {clientSecret?.substring(3)}
+                                                </Typography>
+                                            </Grid>
+                                            {/* <Grid container xs={6} md={6}>
+                                                <Typography>
+                                                    Payment type: Credit Card
+                                                </Typography>
+                                            </Grid> */}
+                                        </Grid>
                                     </Grid>
                                 </Grid>
 
                                 {/*line*/}
                                 <Grid className="line" container border={0.1} sx={{ mx: 'auto', width: '80%'}}></Grid>
                                 {/*line*/}
-
-                                <Grid className="bookingDetails" container ml={6.5}  >
-                                    <Grid container mb={1}>
-                                        <Grid container xs={6} md={5.3}>
-                                            <Typography>
-                                                Booking ID: 0000000
-                                            </Typography>
-                                        </Grid>
-                                        <Grid container xs={6} md={6}>
-                                            <Typography>
-                                                Payment type: Credit Card
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-
-                                    <Grid container>
-                                        <Grid container xs={6} md={3.7}>
-                                            <Typography>
-                                                Booking Date & Time:
-                                            </Typography>
-                                        </Grid>
-                                        <Grid>
-                                            <Typography>
-                                                01/01/00001 2359
-                                            </Typography>
-                                        </Grid>
-                                    
-                                    </Grid>
-                                </Grid>
-
-                                {/*line*/}
-                                <Grid className="line" container border={0.1}  sx={{ mx: 'auto', width: '80%'}}></Grid>
-                                {/*line*/}
-
                                 <Grid className="Total Amount" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
                                     <Grid container ml={6.5}>
                                         <Grid container xs={6} md={8.5}>
@@ -135,12 +142,19 @@ const PaymentSummary = () => {
                                             </Typography>
                                         </Grid>
                                         <Grid container xs={6} md={3}>
+
                                             <Typography>
-                                                $30.00
+                                               ${purchaseInfo?.paidAmount /100}
                                             </Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
+
+                                {/*line*/}
+                                <Grid className="line" container border={0.1}  sx={{ mx: 'auto', width: '80%'}}></Grid>
+                                {/*line*/}
+
+                           
 
                                 
                                 {/* line */}
@@ -166,11 +180,12 @@ const PaymentSummary = () => {
                 </Grid>
 
                 <Grid container justifyContent="center"> 
-                    <Button>
-                        <Link href="/" color="#90caf9" underline="none"> {'Back to home'}</Link>
+                    <Button href="/" variant="contained"> 
+                        <Typography fontWeight={'bold'} variant="subtitle2"> Back to home </Typography>
                     </Button>
                 </Grid>
-            </Grid>
+            </Grid>}
+
         </Box>
     );
 }
