@@ -1,4 +1,5 @@
 import AxiosInstance from "../api/AxiosInstance";
+import Cookie from "js-cookie";
 
 
 
@@ -11,4 +12,6 @@ export const checkLoginDetails = async (username : string, password : string) =>
         throw error;
     }
 }
+
+
 

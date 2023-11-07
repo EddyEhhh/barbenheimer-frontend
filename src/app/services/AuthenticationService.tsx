@@ -1,11 +1,12 @@
 import AxiosInstance from "../api/AxiosInstance";
 import { UserManager } from "oidc-client"
+import Cookie from "js-cookie";
 
-const tempAccessToken = ""
+const token = Cookie.get('token');
 export const getAuthConfig = () => ({
     headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${tempAccessToken}`
+        // Accept: "application/json",
+        Authorization: `Bearer ${token}`
     }
 
 })

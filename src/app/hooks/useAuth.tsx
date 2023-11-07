@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Keycloak from "keycloak-js";
+import Cookies from "js-cookie";
 
 
 export const client = new Keycloak({
@@ -19,11 +20,18 @@ const useAuth = () => {
         client
             .init({
                 onLoad: "check-sso",
+                checkLoginIframe: false,
+                // silentCheckSsoFallback: false,
+                // silentCheckSsoRedirectUri: `${location.origin}/silent-check-sso.html`
             })
             .then((res) => {
                 setLogin(res);
+                const token = client.token;
+                Cookies.set('token', token);
+                // Cookies.set('refresh_token', client.refreshToken);
                 // setToken(client.token);
             });
+
     }, []);
 
     return isLogin;

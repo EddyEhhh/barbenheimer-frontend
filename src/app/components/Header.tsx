@@ -7,17 +7,18 @@ import AxiosInstance from '../api/AxiosInstance';
 import { useRouter } from 'next/navigation';
 import { getAllMovies } from '../services/services';
 import useAuth, {client} from "@/app/hooks/useAuth";
+import {logout} from "@/app/services/userAuth";
+import Cookies from "js-cookie";
 
 interface searchFormat {
   title: string
   id: string
-}  
+}
 
 const Header = () => {
   const router = useRouter();
     const [searchData, setSearchData] = useState<searchFormat[]>([])
     const [enteredData, setEnteredData] = useState<searchFormat>('');
-
 
     useEffect (() => {
         getAllMovies().then((data)=>setSearchData(data));
@@ -39,8 +40,13 @@ const Header = () => {
         client.login();
     }
 
-    const isLogin = useAuth()
-  
+    const logoutButtonHandler = ()  => {
+        client.logout()
+    }
+
+
+
+
     return (
 
       <Box>
@@ -73,10 +79,12 @@ const Header = () => {
                   </Link>
                   
 
-                      {isLogin ?
+                      {Cookies.get('token')!='undefined' ?
+                          <div>
                           <Link underline="none" href= "/account" >
                               <Avatar></Avatar>
                           </Link>
+                          </div>
                           :
                           <Button
                               className={"px-5"}
@@ -88,6 +96,7 @@ const Header = () => {
                               </Link>
                           </Button>
                           }
+                    <Button onClick={logoutButtonHandler}>Logout</Button>
 
 
 

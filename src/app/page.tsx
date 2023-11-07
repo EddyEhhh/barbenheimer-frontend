@@ -4,9 +4,10 @@ import {Box, Grid} from "@mui/material/"
 import Preview from "./components/(homePage)/Preview"
 import { Suspense } from "react"
 import LoadingPage from "./Loading"
-import useAuth, {client} from "@/app/services/UserService";
+import useAuth from "@/app/hooks/useAuth";
 
 export default function Home() {
+    useAuth();
   return (
   <>
       <Grid container direction={"column"} width={1} >
