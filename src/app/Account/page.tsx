@@ -22,29 +22,29 @@ function createData(
 }
 
 const rows = [
-  createData('01/01/2123', 'Barbie', 10, 0),
-  createData('03/01/2123', 'Barber', 0, 0),
-  createData('01/02/2123', 'Aarbie', 0, 0),
-  createData('03/01/2023', 'Barbie', 0, 0),
-  createData('01/01/2111', 'Barbie', 0, 0),
-  createData('01/01/2111', 'Barbie', 0, 0),
-  createData('01/01/2111', 'Barbie', 0, 0),
-  createData('01/01/2111', 'Barbie', 0, 0),
+  createData('20/07/2023', 'Barbie', 2, 26),
+  createData('20/07/2023', 'Oppenheimer', 10, 130),
+  createData('02/03/2023', 'Creed III', 1, 13),
+  createData('23/03/2023', 'John Wick: Chapter 4', 2, 26),
+  createData('07/09/2023', 'The Nun 2', 1, 13),
+  createData('22/06/2023', 'The Flash', 2, 26),
+  createData('08/06/2023', 'Transformers: Rise of the Beast', 3, 39),
+  createData('25/05/2023', 'The Little Mermaid', 2, 26),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (orderBy === 'date') {
-    const dateA = new Date(a[orderBy] as string);
-    const dateB = new Date(b[orderBy] as string);
-    
+    const dateA = new Date((a[orderBy] as string).split('/').reverse().join('/'));
+    const dateB = new Date((b[orderBy] as string).split('/').reverse().join('/'));
+
     if (dateB < dateA) {
       return -1;
     }
-    
+
     if (dateB > dateA) {
       return 1;
     }
-    
+
     return 0;
   } else {
     if (b[orderBy] < a[orderBy]) {
@@ -56,6 +56,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     return 0;
   }
 }
+
 
 type Order = 'asc' | 'desc';
 
@@ -225,7 +226,7 @@ const Account = () => {
                     </TableCell>
                     <TableCell align="right">{row.movie}</TableCell>
                     <TableCell align="right">
-                      {`${row.ticketQuantity} tickets, $${row.totalSpend}`}
+                      {`${row.ticketQuantity} ${row.ticketQuantity === 1 ? 'ticket' : 'tickets'}, Total: $${row.totalSpend}`}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -242,7 +243,7 @@ const Account = () => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 15]}
+            rowsPerPageOptions={[5,10, 15]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}
