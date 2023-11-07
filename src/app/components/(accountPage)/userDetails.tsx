@@ -12,33 +12,35 @@ const UserDetails = () => {
         </Grid>
 
         {/* Body */}
-        <Grid border={2} borderRadius={3} borderColor="divider" display="flex"width={"100%"}>
+        <Grid container border={2} borderRadius={3} borderColor="divider" display="flex" width={"100%"} justifyContent={"space-between"} height={200}>
           {/* Account Icon */}
-          <Grid container className='accountIcon' border={1} alignContent="center" justifyContent={"center"} width={"20%"}>
-              <AccountCircleRoundedIcon fontSize='large' />
+          <Grid display={"flex"} width={"65%"}>
+            <Grid container className='accountIcon' alignContent="center" justifyContent={"center"} width={"35%"}>
+                <AccountCircleRoundedIcon fontSize='large' style={{ fontSize: '9em' }} />
+            </Grid>
+
+            <Grid container display="column" alignContent={"center"} width={"20%"}>
+              {/* Name */}
+                <Grid sx={{ pt:2, pl:2, pr:2}}>
+                  <Typography variant='h6'>Username:</Typography>
+                </Grid>
+              {/* Email */}
+                <Grid sx={{ pb: 2, pl:2, pr:2, mt: 2}}>
+                  <Typography variant='h6'>Email:</Typography>
+                </Grid>
+            </Grid>
+            
+            <Grid container display="column" alignContent={"center"} width={"30%"}>
+                <Grid sx={{  pt:2, pl:2, pr:2}}>
+                  <Typography variant='h6' fontWeight="semibold">James{}</Typography> 
+                </Grid>
+                <Grid sx={{ pb: 2, pl:2, pr:2, mt: 2}}>
+                  <Typography variant='h6' fontWeight="semibold">James@gmail.com{}</Typography>
+                </Grid>
+            </Grid>
           </Grid>
 
-          <Grid display="column">
-            {/* Name */}
-              <Grid sx={{ pt:2, pl:2, pr:2}}>
-                <Typography variant='h6'>Username:</Typography>
-              </Grid>
-            {/* Email */}
-              <Grid sx={{ pb: 2, pl:2, pr:2, mt: 2}}>
-                <Typography variant='h6'>Email:</Typography>
-              </Grid>
-          </Grid>
-          
-          <Grid display="column">
-              <Grid sx={{  pt:2, pl:2, pr:2}}>
-                <Typography variant='h6' fontWeight="semibold">James</Typography>
-              </Grid>
-              <Grid sx={{ pb: 2, pl:2, pr:2, mt: 2}}>
-                <Typography variant='h6' fontWeight="semibold">James@gmail.com</Typography>
-              </Grid>
-          </Grid>
-
-          <Grid container className='logoutButton' alignContent={"center"}>
+          <Grid container className='logoutButton' alignContent={"center"} width={"20%"} display={"flex"} justifyContent={"center"}>
             <Button sx={{ border: 1 }}>
               <Link href="/" underline="none">
                 <Typography>Log Out</Typography>

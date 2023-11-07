@@ -204,7 +204,7 @@ const Account = () => {
     
     <Grid container justifyContent={"center"} >
       <UserDetails></UserDetails>
-      <Box component={Paper} sx={{pt:3, pb:4,pr:3,pl:3, width: '80%', mb:10, mt: 10, border:1, borderRadius:5}}>
+      <Box component={Paper} sx={{pt:3, pb:4,pr:3,pl:3, width: '80%', mb:10, mt: 8, border:1, borderRadius:5}}>
           <EnhancedTableToolbar />
           <TableContainer>
             <Table
