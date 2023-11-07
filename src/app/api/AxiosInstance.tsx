@@ -7,7 +7,7 @@ import axios from 'axios';
 // Load environment variables from .env file
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:8080"
-
+// const baseUrl = "http://localhost:56410"
 export default axios.create({
     baseURL: baseUrl,
     withCredentials: true
