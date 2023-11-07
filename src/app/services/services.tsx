@@ -1,22 +1,14 @@
 import { Axios } from "axios";
 
 import AxiosInstance from "../api/AxiosInstance";
-import {SeatingInterface } from "../interface/interface";
-import { Router } from "next/router";
-import { SourceTextModule } from "vm";
-import { HallInterface, SeatingInterface } from "../interface/interface";
-import Cookies from 'js-cookie'
-import { getAuthConfig } from "./AuthenticationService";
+
 
 
 
 
 export const getAllMovies = async () => {
-    // console.log("Hello: " + getAuthConfig().headers.Authorization);
     try {
-        const {data, status} = await AxiosInstance.get("/api/v1/movies"
-            );
-
+        const {data, status} = await AxiosInstance.get("/api/v1/movies");
         return data;        
         } catch(error) {
             //set error

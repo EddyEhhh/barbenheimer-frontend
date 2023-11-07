@@ -7,7 +7,6 @@ import LoadingPage from "./Loading"
 import useAuth from "@/app/hooks/useAuth";
 
 export default function Home() {
-    useAuth();
   return (
   <>
       <Grid container direction={"column"} width={1} >
