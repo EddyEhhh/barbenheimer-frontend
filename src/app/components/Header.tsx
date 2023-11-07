@@ -44,7 +44,7 @@ const Header = () => {
         client.logout()
     }
 
-
+    const isLogin = useAuth();
 
 
     return (
@@ -79,7 +79,7 @@ const Header = () => {
                   </Link>
                   
 
-                      {Cookies.get('token')!='undefined' ?
+                      {isLogin ?
                           <div>
                           <Link underline="none" href= "/account" >
                               <Avatar></Avatar>
