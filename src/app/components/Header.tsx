@@ -41,7 +41,9 @@ const Header = () => {
     }
 
     const logoutButtonHandler = ()  => {
-        client.logout()
+        router.push("/");
+        client.logout();
+        isLogin == false;
     }
 
     const isLogin = useAuth();
@@ -80,11 +82,12 @@ const Header = () => {
                   
 
                       {isLogin ?
-                          <div>
+                          <Box display={'flex'} flexDirection={"row"}>
                           <Link underline="none" href= "/account" >
                               <Avatar></Avatar>
                           </Link>
-                          </div>
+                          <Button onClick={logoutButtonHandler}>Logout</Button>
+                          </Box>
                           :
                           <Button
                               className={"px-5"}
@@ -96,7 +99,7 @@ const Header = () => {
                               </Link>
                           </Button>
                           }
-                    <Button onClick={logoutButtonHandler}>Logout</Button>
+                
 
 
 
