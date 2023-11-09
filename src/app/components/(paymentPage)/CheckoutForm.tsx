@@ -157,7 +157,7 @@ export default function CheckoutForm() {
           <Box pb={2}>
             <LinkAuthenticationElement
                   id="link-authentication-element"
-                  onChange={(e) => setEmail(e.target.value)}
+                  // onChange={(e : any) => setEmail(e.target.value)}
               />
           </Box>
           <PaymentElement

@@ -1,9 +1,10 @@
 import { Axios } from "axios";
 
 import AxiosInstance from "../api/AxiosInstance";
-import {SeatingInterface } from "../interface/interface";
-import { Router } from "next/router";
-import { SourceTextModule } from "vm";
+
+
+
+
 
 export const getAllMovies = async () => {
     try {
@@ -16,7 +17,7 @@ export const getAllMovies = async () => {
 
 export const getSpecificMovies = async (id : string | string[]) => {
     try {
-        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`);
+        const {data, status} = await AxiosInstance.get(`/api/v1/movies/${id}`)
         return data;
     } catch (error) {
         return error;
@@ -49,12 +50,12 @@ export const getOnGoingPurchaseDetails = async (paymentIntentId: string) => {
     try{
         const data = await AxiosInstance.get(`/api/v1/reserves/${paymentIntentId}`);
         // console.log(data.data.movie);
-        
+
         // console.log(data.data);
        return data.data;
 
     } catch (error) {
-        
+
     }
 }
 
