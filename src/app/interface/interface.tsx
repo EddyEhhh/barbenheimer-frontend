@@ -92,6 +92,16 @@ export interface MovieSeatInformationInterface {
     width: number,
     height: number,
     number: string, //this is the hall number
+}
 
 
+
+export interface paymentSummaryDisplayInterface {
+    customerDetail : {email : string}
+    paidAmount: number
+    movie: MovieSpecificDetailsInterface,
+    movieTime: string,
+    movieDate: string,
+    hallNumber: number,
+    seatDetails : SeatingInterface[]
 }

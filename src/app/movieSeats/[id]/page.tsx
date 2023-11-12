@@ -4,14 +4,13 @@ import SeatSelection from "../../components/(movieSeatsPage)/SeatSelection";
 import { dateConverter, convertTo12Hours } from "@/app/services/util";
 import { useState, useEffect } from "react";
 import { MovieSeatInformationInterface, SeatingArrangementInterface,MovieSpecificDetailsInterface, SeatingInterface } from "@/app/interface/interface";
-import { useParams} from 'next/navigation';
+import { redirect, useParams} from 'next/navigation';
 import { Box, Typography, Divider, Button} from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { Suspense } from "react";
 import LoadingPage from "../../loading";
 import SeatLegend from "../../components/(movieSeatsPage)/SeatLegend";
 import { submitSeats, getScheduleFromHall, getSpecificMovies } from "@/app/services/services";
-import Cookies from 'js-cookie';
 
 
 const MovieSeatingPage = () => {
@@ -24,7 +23,6 @@ const MovieSeatingPage = () => {
     const [selectedSeatDisplay, setSelectedSeatDisplay] = useState<SeatingInterface[]>([]);
     const [showTime, setShowTime] = useState<string>('');
     const [totalPrice, setTotalPrice] = useState<number>(0);
-
 
     const onClickHandler = (seat:SeatingInterface, index:number) => {
         const updatedSelectedSeatDisplay = [...selectedSeatDisplay];
@@ -45,30 +43,50 @@ const MovieSeatingPage = () => {
         setSelectedSeatDisplay(updatedSelectedSeatDisplay)
     }
 
+    const submitStripe = async () => {
+        try {
+            const data = await fetch("/api/paymentIntent/", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(
+                {
+                    seats: selectedSeatDisplay, 
+                }),
+             //converts to json
+            }).then(async (data) => {
+                const res = await data.json()
+                .then(async (data) => {
+                    //submits to the backend to check if seats are most updated
+                    const seatAndToken = {
+                        seats: selectedSeatDisplay,
+                        token: data.id
+                    }
 
-    const submitDataHandler =  async () => {
-            const data = await submitSeats(`${params.showId}`, selectedSeatDisplay);
-            // Cookies.set('test1', data);
-            // const cookieValue = Cookies.get('sessid');
-            router.push(`/paymentDetails?id=${params.id}&sid=${params.showId}&time=${params.showTimes}&date=${params.showDate}&hall=${params.hall}`);
-      
+                    await submitSeats(`${params.id}`, seatAndToken).then(()=> {
+                        //goes to payment if validation is correct
+                        router.push(`/payment?sess=${data.clientSecret}`);
+                    });
+                   
+                });
+            })
+
+          } catch {
+            router.push('/error')
+          }
     }
  
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const data = await getScheduleFromHall(params.id);
-                console.log(data);
                 setSeating(data.seats);
                 setSeatingData(data);
                 setMovieData(data);
             } catch {
-    
+                router.push("/error");
             }
         }
-        fetchData();
-        console.log(showTime);
-
+         fetchData();
     }, []);
 
     
@@ -86,10 +104,10 @@ const MovieSeatingPage = () => {
                         showTime={convertTo12Hours(movieData.showtime)}
                         hall={movieData.number}
                     />}
-                    <Box display="flex" flexDirection={"column"} ml={3}  alignItems={'center'} >
+                    <Box  display="flex" flexDirection={"column"} ml={3}  alignItems={'center'} >
                         <Typography variant="body1" fontWeight={'400'}> Seat selection </Typography>
                             <Divider variant="middle" light={true} sx={{width:'80%'}}/>
-                            <Box pt={1}>
+                            <Box  pt={1}>
                                 <SeatSelection  
                                 width={movieData.width} 
                                 height={movieData.height} 
@@ -130,7 +148,7 @@ const MovieSeatingPage = () => {
                         <Divider variant="middle" light={true} sx={{width:'80%', mb:2}}/>
                         <Box ml={1} height={30} display={'flex'} flexDirection={'row'} justifyContent={'center'}>
     
-                            {selectedSeatDisplay.length != 0 &&<Button
+                            {selectedSeatDisplay.length != 0 && <Button
                                 disabled
                                 variant="contained"
                                 size="large"
@@ -144,13 +162,15 @@ const MovieSeatingPage = () => {
 
                 <Box display={'flex'} mt={4} justifyContent={'center'}>
                     <Button 
+                    type="submit"
                         disabled={selectedSeatDisplay.length == 0} 
-                        onClick={submitDataHandler} 
+                        onClick={submitStripe} 
                         size="medium" variant="contained" 
                         color="success"
                         sx={{fontWeight:'bold'}}>
                         Proceed
                     </Button>
+
                 </Box>
 
 

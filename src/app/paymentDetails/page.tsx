@@ -20,10 +20,10 @@ const paymentDetails = () => {
     useEffect(() => {
         const fetchData = async () => {        
             try {
-                console.log(Cookies.get('test1'))
-                const {data, status} = await AxiosInstance.get(`/api/v1/pay`,Cookies.get('test1'));
-                setMovieData(data);
-                console.log(data);
+                // console.log(Cookies.get('test1'))
+                // const {data, status} = await AxiosInstance.get(`/api/v1/pay`,Cookies.get('test1'));
+                // setMovieData(data);
+                // console.log(data);
             } catch {
 
             }
@@ -38,7 +38,7 @@ const paymentDetails = () => {
     return (
         <main>
             <CountdownTimer></CountdownTimer>
-            <Box sx={{pb:10, pt:10}}>
+                <Box sx={{pb:10, pt:10}}>
                 <PaymentHeader title={movieData?.title} date={search.get('date')} time={search.get('time')} hall={search.get('hall')}
                 image={movieData?.movieImages[0].imageUrl} seatNumber={search.get('seats')}></PaymentHeader>
 
